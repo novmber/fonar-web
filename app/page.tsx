@@ -20,7 +20,7 @@ export default function Home() {
           <div style={{ width: 28, height: 28, borderRadius: 8, background: 'var(--accent)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 14 }}>📊</div>
           <span style={{ fontWeight: 600, fontSize: 15, letterSpacing: -0.3 }}>fonar</span>
         </div>
-        <div style={{ display: 'flex', align: 'center', gap: 32, fontSize: 13, color: 'var(--text2)' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 32, fontSize: 13, color: 'var(--text2)' }}>
           <span>{funds.length} fon</span>
           <span style={{ color: 'var(--green)' }}>● Canlı</span>
         </div>
