@@ -91,7 +91,7 @@ export default function Home() {
 
       {/* NAV */}
       <nav className="nav-padding" style={{ position: 'fixed', top: 0, left: 0, right: 0, zIndex: 100, borderBottom: '1px solid var(--border)', background: 'rgba(8,8,8,0.9)', backdropFilter: 'blur(20px)', height: 56 }}>
-        <div style={{ maxWidth: 1100, margin: '0 auto', padding: '0 40px', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+        <div style={{ maxWidth: 1400, margin: '0 auto', padding: '0 5%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
           <span style={{ fontWeight: 700, fontSize: 16, letterSpacing: 3 }}>FONAR</span>
           <div style={{ display: 'flex', alignItems: 'center', gap: 24, fontSize: 13, color: 'var(--text2)' }}>
             <a href="https://x.com/GridBotman" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--text2)', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 6, transition: 'color 0.2s' }}
@@ -129,7 +129,7 @@ export default function Home() {
       </div>
 
       {/* HERO */}
-      <section className="hero-section" style={{ padding: '40px 40px 32px', maxWidth: 900, margin: '0 auto' }}>
+      <section className="hero-section" style={{ padding: '40px 5% 32px', maxWidth: 1400, margin: '0 auto' }}>
         <div className="fade-up" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: 'var(--accent2)', border: '1px solid rgba(232,255,0,0.2)', borderRadius: 100, padding: '5px 14px', fontSize: 11, color: 'var(--accent)', fontWeight: 500, marginBottom: 28, letterSpacing: 0.5 }}>
           ✦ YAPAY ZEKA DESTEKLİ ANALİZ
         </div>
@@ -154,10 +154,10 @@ export default function Home() {
         </div>
       </section>
 
-      <div style={{ height: 1, background: 'var(--border)', maxWidth: 1200, margin: '0 auto' }} />
+      <div style={{ height: 1, background: 'var(--border)' }} />
 
       {/* FİLTRELEME */}
-      <section className="filter-section" style={{ padding: '28px 40px 16px', maxWidth: 1200, margin: '0 auto' }}>
+      <section className="filter-section" style={{ padding: '28px 5% 16px', maxWidth: 1400, margin: '0 auto' }}>
         <div className="filter-bar" style={{ display: 'flex', gap: 10, flexWrap: 'wrap', alignItems: 'center' }}>
           <input value={search} onChange={e => setSearch(e.target.value)} placeholder="Fon kodu veya isim ara..."
             style={{ background: 'var(--bg3)', border: '1px solid var(--border2)', borderRadius: 12, padding: '10px 16px', fontSize: 13, color: 'var(--text)', outline: 'none', width: 220, fontFamily: 'DM Sans, sans-serif' }} />
@@ -190,7 +190,7 @@ export default function Home() {
       </section>
 
       {/* FUNDS */}
-      <section className="funds-section" style={{ padding: '20px 40px 60px', maxWidth: 1200, margin: '0 auto' }}>
+      <section className="funds-section" style={{ padding: '20px 5% 60px', maxWidth: 1400, margin: '0 auto' }}>
         {filtered.length === 0 ? (
           <div style={{ textAlign: 'center', padding: '80px 0' }}>
             <div style={{ fontSize: 32, marginBottom: 12 }}>🔍</div>
@@ -198,7 +198,7 @@ export default function Home() {
             <div style={{ color: 'var(--text3)', fontSize: 12 }}>Filtrelerinizi değiştirerek tekrar deneyin.</div>
           </div>
         ) : (
-          <div className="funds-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(360px, 1fr))', gap: 16, borderRadius: 20 }}>
+          <div className="funds-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: 16, borderRadius: 20 }}>
             {filtered.map((fund: any) => {
               const isHovered = hoveredCard === fund.code
               const yearColor = fund.yearlyReturn == null ? 'var(--text3)' : fund.yearlyReturn >= 0 ? 'var(--green)' : 'var(--red)'
@@ -288,7 +288,7 @@ export default function Home() {
       </footer>
       {/* FOOTER */}
       <footer style={{ borderTop: '1px solid var(--border)', marginTop: 80, padding: '32px 40px' }}>
-        <div style={{ maxWidth: 1100, margin: '0 auto', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 16 }}>
+        <div style={{ maxWidth: 1400, margin: '0 auto', padding: '0 5%', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 16 }}>
           <div>
             <div style={{ fontWeight: 700, fontSize: 14, letterSpacing: 3, marginBottom: 6 }}>FONAR</div>
             <div style={{ fontSize: 12, color: 'var(--text3)', maxWidth: 340, lineHeight: 1.6 }}>
