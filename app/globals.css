@@ -55,3 +55,21 @@ a { color: inherit; text-decoration: none; }
   .filter-bar input, .filter-bar select, .filter-bar button { width: 100% !important; }
   .filter-count { margin-left: 0 !important; }
 }
+
+/* Stats grid responsive */
+@media (max-width: 1024px) {
+  .stats-grid {
+    grid-template-columns: repeat(4, 1fr) !important;
+  }
+}
+@media (max-width: 640px) {
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+  .hero-section {
+    padding: 28px 20px 24px !important;
+  }
+  .filter-section {
+    padding: 16px 20px !important;
+  }
+}

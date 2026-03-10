@@ -147,7 +147,7 @@ export default function Home() {
         <p className="fade-up-3" style={{ fontSize: 14, color: 'var(--text2)', maxWidth: 420, lineHeight: 1.7, marginBottom: 28 }}>
           KAP raporları ve TEFAS verileriyle beslenen AI analizleri. Her fon için derinlemesine içgörü.
         </p>
-        <div className="fade-up-4" style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)', gap: 10 }}>
+        <div className="fade-up-4 stats-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)', gap: 10 }}>
           <a href={`/fon/${bestFund?.code?.toLowerCase()}`} style={{ textDecoration: 'none', background: 'rgba(232,255,0,0.04)', border: '1px solid rgba(232,255,0,0.15)', borderRadius: 12, padding: '14px 18px', display: 'flex', flexDirection: 'column', gap: 4, transition: 'border-color 0.2s' }}
             onMouseOver={e => (e.currentTarget.style.borderColor = 'rgba(232,255,0,0.4)')}
             onMouseOut={e => (e.currentTarget.style.borderColor = 'rgba(232,255,0,0.15)')}>
