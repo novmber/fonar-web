@@ -1,4 +1,6 @@
+'use client'
 import fundsData from '../public/funds.json'
+
 
 function fmt(v: number) {
   if (v >= 1e9) return `₺${(v/1e9).toFixed(1)}B`
