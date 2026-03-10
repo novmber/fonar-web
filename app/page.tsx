@@ -147,27 +147,27 @@ export default function Home() {
         <p className="fade-up-3" style={{ fontSize: 14, color: 'var(--text2)', maxWidth: 420, lineHeight: 1.7, marginBottom: 28 }}>
           KAP raporları ve TEFAS verileriyle beslenen AI analizleri. Her fon için derinlemesine içgörü.
         </p>
-        <div className="fade-up-4" style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
-          <a href={`/fon/${bestFund?.code?.toLowerCase()}`} style={{ textDecoration: 'none', background: 'rgba(232,255,0,0.04)', border: '1px solid rgba(232,255,0,0.15)', borderRadius: 12, padding: '14px 18px', display: 'flex', flexDirection: 'column', gap: 4, transition: 'border-color 0.2s', minWidth: 160 }}
+        <div className="fade-up-4" style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)', gap: 10 }}>
+          <a href={`/fon/${bestFund?.code?.toLowerCase()}`} style={{ textDecoration: 'none', background: 'rgba(232,255,0,0.04)', border: '1px solid rgba(232,255,0,0.15)', borderRadius: 12, padding: '14px 18px', display: 'flex', flexDirection: 'column', gap: 4, transition: 'border-color 0.2s' }}
             onMouseOver={e => (e.currentTarget.style.borderColor = 'rgba(232,255,0,0.4)')}
             onMouseOut={e => (e.currentTarget.style.borderColor = 'rgba(232,255,0,0.15)')}>
             <div style={{ fontSize: 9, color: 'var(--text3)', letterSpacing: 0.8 }}>EN İYİ YILLIK GETİRİ</div>
             <div style={{ fontSize: 20, fontWeight: 500, color: 'var(--accent)', fontFamily: 'DM Mono, monospace', letterSpacing: -0.5 }}>+{bestFund?.yearlyReturn?.toFixed(1)}%</div>
             <div style={{ fontSize: 11, color: 'var(--text2)' }}>{bestFund?.code} · {bestFund?.name?.split(' ').slice(0,3).join(' ')}</div>
           </a>
-          <div style={{ background: 'rgba(0,240,128,0.04)', border: '1px solid rgba(0,240,128,0.12)', borderRadius: 12, padding: '14px 18px', display: 'flex', flexDirection: 'column', gap: 4, minWidth: 150 }}>
+          <div style={{ background: 'rgba(0,240,128,0.04)', border: '1px solid rgba(0,240,128,0.12)', borderRadius: 12, padding: '14px 18px', display: 'flex', flexDirection: 'column', gap: 4 }}>
             <div style={{ fontSize: 9, color: 'var(--text3)', letterSpacing: 0.8 }}>BU AY POZİTİF</div>
             <div style={{ fontSize: 20, fontWeight: 500, color: 'var(--green)', fontFamily: 'DM Mono, monospace', letterSpacing: -0.5 }}>{positiveFunds}/{funds.length} fon</div>
             <div style={{ fontSize: 11, color: 'var(--text2)' }}>aylık getiri pozitif</div>
           </div>
-          <a href={`/fon/${lowestRiskFund?.code?.toLowerCase()}`} style={{ textDecoration: 'none', background: 'rgba(58,134,255,0.04)', border: '1px solid rgba(58,134,255,0.12)', borderRadius: 12, padding: '14px 18px', display: 'flex', flexDirection: 'column', gap: 4, transition: 'border-color 0.2s', minWidth: 150 }}
+          <a href={`/fon/${lowestRiskFund?.code?.toLowerCase()}`} style={{ textDecoration: 'none', background: 'rgba(58,134,255,0.04)', border: '1px solid rgba(58,134,255,0.12)', borderRadius: 12, padding: '14px 18px', display: 'flex', flexDirection: 'column', gap: 4, transition: 'border-color 0.2s' }}
             onMouseOver={e => (e.currentTarget.style.borderColor = 'rgba(58,134,255,0.35)')}
             onMouseOut={e => (e.currentTarget.style.borderColor = 'rgba(58,134,255,0.12)')}>
             <div style={{ fontSize: 9, color: 'var(--text3)', letterSpacing: 0.8 }}>EN DÜŞÜK RİSK</div>
             <div style={{ fontSize: 20, fontWeight: 500, color: '#3A86FF', fontFamily: 'DM Mono, monospace', letterSpacing: -0.5 }}>{lowestRiskFund?.riskScore}/7</div>
             <div style={{ fontSize: 11, color: 'var(--text2)' }}>{lowestRiskFund?.code} · {lowestRiskFund?.fundType?.split(' ').slice(0,2).join(' ')}</div>
           </a>
-          <div style={{ background: 'var(--bg3)', border: '1px solid var(--border)', borderRadius: 12, padding: '14px 18px', display: 'flex', flexDirection: 'column', gap: 4, minWidth: 140 }}>
+          <div style={{ background: 'var(--bg3)', border: '1px solid var(--border)', borderRadius: 12, padding: '14px 18px', display: 'flex', flexDirection: 'column', gap: 4 }}>
             <div style={{ fontSize: 9, color: 'var(--text3)', letterSpacing: 0.8 }}>SON GÜNCELLEME</div>
             <div style={{ fontSize: 16, fontWeight: 500, fontFamily: 'DM Mono, monospace', letterSpacing: -0.5 }}>{today}</div>
             <div style={{ display: 'flex', alignItems: 'center', gap: 5, fontSize: 11, color: 'var(--green)' }}>
@@ -176,7 +176,7 @@ export default function Home() {
             </div>
           </div>
 
-          <a href={`/fon/${biggestFund?.code?.toLowerCase()}`} style={{ textDecoration: 'none', background: 'rgba(255,152,0,0.04)', border: '1px solid rgba(255,152,0,0.15)', borderRadius: 12, padding: '14px 18px', display: 'flex', flexDirection: 'column', gap: 4, transition: 'border-color 0.2s', minWidth: 160 }}
+          <a href={`/fon/${biggestFund?.code?.toLowerCase()}`} style={{ textDecoration: 'none', background: 'rgba(255,152,0,0.04)', border: '1px solid rgba(255,152,0,0.15)', borderRadius: 12, padding: '14px 18px', display: 'flex', flexDirection: 'column', gap: 4, transition: 'border-color 0.2s' }}
             onMouseOver={e => (e.currentTarget.style.borderColor = 'rgba(255,152,0,0.4)')}
             onMouseOut={e => (e.currentTarget.style.borderColor = 'rgba(255,152,0,0.15)')}>
             <div style={{ fontSize: 9, color: 'var(--text3)', letterSpacing: 0.8 }}>EN BÜYÜK FON</div>
@@ -184,7 +184,7 @@ export default function Home() {
             <div style={{ fontSize: 11, color: 'var(--text2)' }}>{biggestFund?.code} · {biggestFund?.name?.split(' ').slice(0,3).join(' ')}</div>
           </a>
 
-          <a href={`/fon/${bestMonthlyFund?.code?.toLowerCase()}`} style={{ textDecoration: 'none', background: 'rgba(131,56,236,0.04)', border: '1px solid rgba(131,56,236,0.15)', borderRadius: 12, padding: '14px 18px', display: 'flex', flexDirection: 'column', gap: 4, transition: 'border-color 0.2s', minWidth: 150 }}
+          <a href={`/fon/${bestMonthlyFund?.code?.toLowerCase()}`} style={{ textDecoration: 'none', background: 'rgba(131,56,236,0.04)', border: '1px solid rgba(131,56,236,0.15)', borderRadius: 12, padding: '14px 18px', display: 'flex', flexDirection: 'column', gap: 4, transition: 'border-color 0.2s' }}
             onMouseOver={e => (e.currentTarget.style.borderColor = 'rgba(131,56,236,0.4)')}
             onMouseOut={e => (e.currentTarget.style.borderColor = 'rgba(131,56,236,0.15)')}>
             <div style={{ fontSize: 9, color: 'var(--text3)', letterSpacing: 0.8 }}>BU AY EN İYİ</div>
@@ -192,7 +192,7 @@ export default function Home() {
             <div style={{ fontSize: 11, color: 'var(--text2)' }}>{bestMonthlyFund?.code} · {bestMonthlyFund?.name?.split(' ').slice(0,3).join(' ')}</div>
           </a>
 
-          <a href={`/fon/${highestRiskFund?.code?.toLowerCase()}`} style={{ textDecoration: 'none', background: 'rgba(255,68,68,0.04)', border: '1px solid rgba(255,68,68,0.12)', borderRadius: 12, padding: '14px 18px', display: 'flex', flexDirection: 'column', gap: 4, transition: 'border-color 0.2s', minWidth: 150 }}
+          <a href={`/fon/${highestRiskFund?.code?.toLowerCase()}`} style={{ textDecoration: 'none', background: 'rgba(255,68,68,0.04)', border: '1px solid rgba(255,68,68,0.12)', borderRadius: 12, padding: '14px 18px', display: 'flex', flexDirection: 'column', gap: 4, transition: 'border-color 0.2s' }}
             onMouseOver={e => (e.currentTarget.style.borderColor = 'rgba(255,68,68,0.35)')}
             onMouseOut={e => (e.currentTarget.style.borderColor = 'rgba(255,68,68,0.12)')}>
             <div style={{ fontSize: 9, color: 'var(--text3)', letterSpacing: 0.8 }}>EN YÜKSEK RİSK</div>
@@ -271,7 +271,7 @@ export default function Home() {
 
                   {/* Üst: kod + isim + risk */}
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 16 }}>
-                    <div style={{ flex: 1, minWidth: 0 }}>
+                    <div style={{ flex: 1 }}>
                       <div style={{ fontFamily: 'DM Mono, monospace', fontSize: 11, color: 'var(--accent)', fontWeight: 500, marginBottom: 6, letterSpacing: 1 }}>{fund.code}</div>
                       <div style={{ fontSize: 13, fontWeight: 500, lineHeight: 1.4, color: 'var(--text)', maxWidth: 200 }}>{fund.name}</div>
                       {fund.fundType && <div style={{ fontSize: 11, color: 'var(--text3)', marginTop: 5 }}>{fund.fundType}</div>}
