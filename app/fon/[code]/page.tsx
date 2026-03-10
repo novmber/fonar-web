@@ -1,15 +1,11 @@
-export const revalidate = 3600
+import fundsData from '../../../public/funds.json'
 
-async function getFund(code: string) {
-  try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/public/funds`, { next: { revalidate: 3600 } })
-    const funds = await res.json()
-    return funds.find((f: any) => f.code.toLowerCase() === code.toLowerCase()) || null
-  } catch { return null }
+export function generateStaticParams() {
+  return (fundsData as any[]).map((f: any) => ({ code: f.code.toLowerCase() }))
 }
 
-export default async function FundPage({ params }: { params: { code: string } }) {
-  const fund = await getFund(params.code)
+export default function FundPage({ params }: { params: { code: string } }) {
+  const fund = (fundsData as any[]).find((f: any) => f.code.toLowerCase() === params.code.toLowerCase())
   if (!fund) return <div style={{ color: '#f1f5f9', padding: 40 }}>Fon bulunamadı.</div>
 
   return (
@@ -23,7 +19,6 @@ export default async function FundPage({ params }: { params: { code: string } })
         <h1 style={{ fontSize: 24, fontWeight: 800, marginBottom: 4 }}>{fund.name}</h1>
         <p style={{ color: '#475569', fontSize: 13, marginBottom: 28 }}>Son güncelleme: {fund.latestDate}</p>
 
-        {/* Temel Bilgiler */}
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 14, marginBottom: 28 }}>
           {[
             { label: 'Pay Fiyatı', value: `${fund.unitPrice?.toFixed(6)} ₺` },
@@ -38,7 +33,6 @@ export default async function FundPage({ params }: { params: { code: string } })
           ))}
         </div>
 
-        {/* Getiri */}
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 14, marginBottom: 28 }}>
           <div style={{ background: '#0f172a', border: '1px solid #1e293b', borderRadius: 12, padding: '20px 24px' }}>
             <div style={{ color: '#475569', fontSize: 11, marginBottom: 8 }}>AYLIK GETİRİ</div>
@@ -54,7 +48,6 @@ export default async function FundPage({ params }: { params: { code: string } })
           </div>
         </div>
 
-        {/* AI Tespitler */}
         {fund.aiInsights?.length > 0 && (
           <div style={{ background: '#0f172a', border: '1px solid #1e293b', borderRadius: 12, padding: '20px 24px', marginBottom: 20 }}>
             <h2 style={{ fontSize: 15, fontWeight: 700, marginBottom: 14, color: '#00C2A8' }}>💡 AI Tespitleri</h2>
@@ -66,7 +59,6 @@ export default async function FundPage({ params }: { params: { code: string } })
           </div>
         )}
 
-        {/* Dexter Önerileri */}
         {fund.dexterRecommendations?.length > 0 && (
           <div style={{ background: '#0f172a', border: '1px solid #1e293b', borderRadius: 12, padding: '20px 24px', marginBottom: 20 }}>
             <h2 style={{ fontSize: 15, fontWeight: 700, marginBottom: 14, color: '#FFD166' }}>🤖 Dexter Analizi</h2>
@@ -78,7 +70,6 @@ export default async function FundPage({ params }: { params: { code: string } })
           </div>
         )}
 
-        {/* Tweet Özeti */}
         {fund.twitterSummary && (
           <div style={{ background: '#0a0a0a', border: '1px solid #2f3336', borderRadius: 16, padding: 24, marginBottom: 20 }}>
             <h2 style={{ fontSize: 15, fontWeight: 700, marginBottom: 14, color: '#f1f5f9' }}>𝕏 Fon Özeti</h2>
@@ -86,7 +77,6 @@ export default async function FundPage({ params }: { params: { code: string } })
           </div>
         )}
 
-        {/* Sorumluluk */}
         <p style={{ color: '#475569', fontSize: 11, lineHeight: 1.6, marginTop: 32, padding: '16px 0', borderTop: '1px solid #1e293b' }}>
           ⚠️ Bu sayfadaki bilgiler yalnızca bilgilendirme amaçlıdır. Yatırım tavsiyesi değildir.
         </p>
