@@ -68,22 +68,54 @@ export default async function FundPage({ params }: { params: Promise<{ code: str
         </div>
 
         {/* PORTFÖY DAĞILIMI */}
-        {fund.portfolioItems?.length > 0 && (
-          <div style={{ background: '#0f0f0f', border: '1px solid rgba(255,255,255,0.07)', borderRadius: 16, padding: '24px 28px', marginBottom: 20 }}>
-            <div style={{ fontSize: 11, color: '#444', letterSpacing: 1, marginBottom: 20 }}>PORTFÖY DAĞILIMI</div>
-            {fund.portfolioItems.map((item: any, i: number) => (
-              <div key={i} style={{ marginBottom: 14 }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 6, fontSize: 13 }}>
-                  <span style={{ color: '#888' }}>{item.name}</span>
-                  <span style={{ fontFamily: 'DM Mono, monospace', fontSize: 12, color: '#f5f5f5' }}>{item.value?.toFixed(1)}%</span>
-                </div>
-                <div style={{ height: 3, background: 'rgba(255,255,255,0.06)', borderRadius: 2 }}>
-                  <div style={{ height: '100%', width: `${item.value}%`, background: 'rgba(232,255,0,0.6)', borderRadius: 2, transition: 'width 0.5s' }} />
+        {fund.portfolioItems?.length > 0 && (() => {
+          const COLORS = ['#e8ff00','#00e676','#00b8d4','#ff6b6b','#ff9800','#b388ff','#f06292','#80cbc4']
+          const items = fund.portfolioItems
+          const total = items.reduce((s: number, i: any) => s + (i.value || 0), 0)
+          let cumAngle = -90
+          const slices = items.map((item: any, idx: number) => {
+            const pct = (item.value || 0) / total
+            const startAngle = cumAngle
+            cumAngle += pct * 360
+            return { ...item, pct, startAngle, endAngle: cumAngle, color: COLORS[idx % COLORS.length] }
+          })
+          const polarToCartesian = (cx: number, cy: number, r: number, deg: number) => {
+            const rad = (deg * Math.PI) / 180
+            return { x: cx + r * Math.cos(rad), y: cy + r * Math.sin(rad) }
+          }
+          const describeArc = (cx: number, cy: number, r: number, start: number, end: number) => {
+            const s = polarToCartesian(cx, cy, r, start)
+            const e = polarToCartesian(cx, cy, r, end)
+            const large = end - start > 180 ? 1 : 0
+            return `M ${cx} ${cy} L ${s.x} ${s.y} A ${r} ${r} 0 ${large} 1 ${e.x} ${e.y} Z`
+          }
+          return (
+            <div style={{ background: '#0f0f0f', border: '1px solid rgba(255,255,255,0.07)', borderRadius: 16, padding: '24px 28px', marginBottom: 20 }}>
+              <div style={{ fontSize: 11, color: '#444', letterSpacing: 1, marginBottom: 24 }}>PORTFÖY DAĞILIMI</div>
+              <div style={{ display: 'flex', gap: 32, alignItems: 'center', flexWrap: 'wrap' }}>
+                {/* PASTA */}
+                <svg width={180} height={180} viewBox="0 0 180 180" style={{ flexShrink: 0 }}>
+                  {slices.map((slice: any, i: number) => (
+                    <path key={i} d={describeArc(90, 90, 80, slice.startAngle, slice.endAngle - 0.3)} fill={slice.color} opacity={0.85} />
+                  ))}
+                  <circle cx={90} cy={90} r={48} fill="#0f0f0f" />
+                  <text x={90} y={85} textAnchor="middle" fill="#555" fontSize={10} fontFamily="DM Mono, monospace">{items.length} varlık</text>
+                  <text x={90} y={100} textAnchor="middle" fill="#888" fontSize={11} fontFamily="DM Mono, monospace">{items[0]?.value?.toFixed(1)}%</text>
+                </svg>
+                {/* LEGEND */}
+                <div style={{ flex: 1, minWidth: 200 }}>
+                  {slices.map((slice: any, i: number) => (
+                    <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 10 }}>
+                      <div style={{ width: 10, height: 10, borderRadius: 2, background: slice.color, flexShrink: 0 }} />
+                      <div style={{ flex: 1, fontSize: 13, color: '#888' }}>{slice.name}</div>
+                      <div style={{ fontFamily: 'DM Mono, monospace', fontSize: 12, color: '#f5f5f5' }}>{slice.value?.toFixed(1)}%</div>
+                    </div>
+                  ))}
                 </div>
               </div>
-            ))}
-          </div>
-        )}
+            </div>
+          )
+        })()}
 
         {/* AI TESPİTLER */}
         {fund.aiInsights?.length > 0 && (
