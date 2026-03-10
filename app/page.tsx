@@ -1,4 +1,4 @@
-import fundsData from '../../../public/funds.json'
+import fundsData from '../public/funds.json'
 
 export function generateStaticParams() {
   return (fundsData as any[]).filter((f: any) => f.code).map((f: any) => ({ code: f.code.toLowerCase() }))
