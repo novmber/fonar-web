@@ -63,6 +63,10 @@ export default function Home() {
   const funds: any[] = fundsData
   const totalAum = funds.reduce((s, f) => s + (f.totalValue || 0), 0)
   const avgReturn = funds.filter(f => f.yearlyReturn).reduce((s, f) => s + f.yearlyReturn, 0) / funds.filter(f => f.yearlyReturn).length
+  const bestFund = funds.filter(f => f.yearlyReturn).sort((a, b) => b.yearlyReturn - a.yearlyReturn)[0]
+  const lowestRiskFund = funds.filter(f => f.riskScore).sort((a, b) => a.riskScore - b.riskScore)[0]
+  const positiveFunds = funds.filter(f => f.monthlyReturn != null && f.monthlyReturn > 0).length
+  const today = new Date().toLocaleDateString('tr-TR', { day: 'numeric', month: 'long' })
 
   const [search, setSearch] = useState('')
   const [fundType, setFundType] = useState('')
@@ -140,17 +144,34 @@ export default function Home() {
         <p className="fade-up-3" style={{ fontSize: 14, color: 'var(--text2)', maxWidth: 420, lineHeight: 1.7, marginBottom: 28 }}>
           KAP raporları ve TEFAS verileriyle beslenen AI analizleri. Her fon için derinlemesine içgörü.
         </p>
-        <div className="fade-up-4 stats-bar" style={{ display: 'flex', gap: 1, background: 'var(--border)', borderRadius: 12, overflow: 'hidden', maxWidth: 480 }}>
-          {[
-            { label: 'Analiz Edilen Fon', value: funds.length.toString() },
-            { label: 'Toplam AUM', value: fmt(totalAum) },
-            { label: 'Ort. Yıllık Getiri', value: `+${avgReturn?.toFixed(1)}%` },
-          ].map((s, i) => (
-            <div key={i} style={{ flex: 1, background: 'var(--bg3)', padding: '18px 20px', borderRight: i < 2 ? '1px solid var(--border)' : 'none' }}>
-              <div style={{ fontSize: 10, color: 'var(--text3)', marginBottom: 6, letterSpacing: 0.5 }}>{s.label.toUpperCase()}</div>
-              <div style={{ fontSize: 20, fontWeight: 500, letterSpacing: -0.5, fontFamily: 'DM Mono, monospace' }}>{s.value}</div>
+        <div className="fade-up-4" style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
+          <a href={`/fon/${bestFund?.code?.toLowerCase()}`} style={{ textDecoration: 'none', background: 'rgba(232,255,0,0.04)', border: '1px solid rgba(232,255,0,0.15)', borderRadius: 12, padding: '14px 18px', display: 'flex', flexDirection: 'column', gap: 4, transition: 'border-color 0.2s', minWidth: 160 }}
+            onMouseOver={e => (e.currentTarget.style.borderColor = 'rgba(232,255,0,0.4)')}
+            onMouseOut={e => (e.currentTarget.style.borderColor = 'rgba(232,255,0,0.15)')}>
+            <div style={{ fontSize: 9, color: 'var(--text3)', letterSpacing: 0.8 }}>EN İYİ YILLIK GETİRİ</div>
+            <div style={{ fontSize: 20, fontWeight: 500, color: 'var(--accent)', fontFamily: 'DM Mono, monospace', letterSpacing: -0.5 }}>+{bestFund?.yearlyReturn?.toFixed(1)}%</div>
+            <div style={{ fontSize: 11, color: 'var(--text2)' }}>{bestFund?.code} · {bestFund?.name?.split(' ').slice(0,3).join(' ')}</div>
+          </a>
+          <div style={{ background: 'rgba(0,240,128,0.04)', border: '1px solid rgba(0,240,128,0.12)', borderRadius: 12, padding: '14px 18px', display: 'flex', flexDirection: 'column', gap: 4, minWidth: 150 }}>
+            <div style={{ fontSize: 9, color: 'var(--text3)', letterSpacing: 0.8 }}>BU AY POZİTİF</div>
+            <div style={{ fontSize: 20, fontWeight: 500, color: 'var(--green)', fontFamily: 'DM Mono, monospace', letterSpacing: -0.5 }}>{positiveFunds}/{funds.length} fon</div>
+            <div style={{ fontSize: 11, color: 'var(--text2)' }}>aylık getiri pozitif</div>
+          </div>
+          <a href={`/fon/${lowestRiskFund?.code?.toLowerCase()}`} style={{ textDecoration: 'none', background: 'rgba(58,134,255,0.04)', border: '1px solid rgba(58,134,255,0.12)', borderRadius: 12, padding: '14px 18px', display: 'flex', flexDirection: 'column', gap: 4, transition: 'border-color 0.2s', minWidth: 150 }}
+            onMouseOver={e => (e.currentTarget.style.borderColor = 'rgba(58,134,255,0.35)')}
+            onMouseOut={e => (e.currentTarget.style.borderColor = 'rgba(58,134,255,0.12)')}>
+            <div style={{ fontSize: 9, color: 'var(--text3)', letterSpacing: 0.8 }}>EN DÜŞÜK RİSK</div>
+            <div style={{ fontSize: 20, fontWeight: 500, color: '#3A86FF', fontFamily: 'DM Mono, monospace', letterSpacing: -0.5 }}>{lowestRiskFund?.riskScore}/7</div>
+            <div style={{ fontSize: 11, color: 'var(--text2)' }}>{lowestRiskFund?.code} · {lowestRiskFund?.fundType?.split(' ').slice(0,2).join(' ')}</div>
+          </a>
+          <div style={{ background: 'var(--bg3)', border: '1px solid var(--border)', borderRadius: 12, padding: '14px 18px', display: 'flex', flexDirection: 'column', gap: 4, minWidth: 140 }}>
+            <div style={{ fontSize: 9, color: 'var(--text3)', letterSpacing: 0.8 }}>SON GÜNCELLEME</div>
+            <div style={{ fontSize: 16, fontWeight: 500, fontFamily: 'DM Mono, monospace', letterSpacing: -0.5 }}>{today}</div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 5, fontSize: 11, color: 'var(--green)' }}>
+              <span style={{ display: 'inline-block', width: 5, height: 5, borderRadius: '50%', background: 'var(--green)', animation: 'pulse 2s infinite' }} />
+              TEFAS canlı veri
             </div>
-          ))}
+          </div>
         </div>
       </section>
 
