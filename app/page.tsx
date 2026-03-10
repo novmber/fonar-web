@@ -166,7 +166,7 @@ export default function Home() {
             {filtered.map((fund: any) => (
               <a key={fund.code} href={`/fon/${fund.code?.toLowerCase()}`}
                 className="fund-card"
-                style={{ background: 'var(--bg2)', padding: '28px 32px', display: 'block', transition: 'background 0.2s' }}
+                style={{ background: 'var(--bg2)', padding: '28px 32px', display: 'flex', flexDirection: 'column', transition: 'background 0.2s' }}
                 onMouseOver={e => (e.currentTarget.style.background = 'var(--bg3)')}
                 onMouseOut={e => (e.currentTarget.style.background = 'var(--bg2)')}>
 
