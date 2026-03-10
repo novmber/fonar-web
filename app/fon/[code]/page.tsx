@@ -1,11 +1,13 @@
 import fundsData from '../../../public/funds.json'
 
 export function generateStaticParams() {
-  return (fundsData as any[]).map((f: any) => ({ code: f.code.toLowerCase() }))
+  return (fundsData as any[])
+    .filter((f: any) => f.code)
+    .map((f: any) => ({ code: f.code.toLowerCase() }))
 }
 
 export default function FundPage({ params }: { params: { code: string } }) {
-  const fund = (fundsData as any[]).find((f: any) => f.code.toLowerCase() === params.code.toLowerCase())
+  const fund = (fundsData as any[]).find((f: any) => f.code?.toLowerCase() === params.code.toLowerCase())
   if (!fund) return <div style={{ color: '#f1f5f9', padding: 40 }}>Fon bulunamadı.</div>
 
   return (
@@ -24,7 +26,7 @@ export default function FundPage({ params }: { params: { code: string } }) {
             { label: 'Pay Fiyatı', value: `${fund.unitPrice?.toFixed(6)} ₺` },
             { label: 'Portföy', value: fund.totalValue >= 1e9 ? `₺${(fund.totalValue/1e9).toFixed(2)}B` : `₺${(fund.totalValue/1e6).toFixed(1)}M` },
             { label: 'Yatırımcı', value: fund.participantCount?.toLocaleString('tr-TR') },
-            { label: 'Risk', value: `${fund.riskScore}/7` },
+            { label: 'Risk', value: fund.riskScore ? `${fund.riskScore}/7` : '—' },
           ].map(item => (
             <div key={item.label} style={{ background: '#0f172a', border: '1px solid #1e293b', borderRadius: 12, padding: '16px 18px' }}>
               <div style={{ color: '#475569', fontSize: 11, marginBottom: 6 }}>{item.label.toUpperCase()}</div>
@@ -37,13 +39,13 @@ export default function FundPage({ params }: { params: { code: string } }) {
           <div style={{ background: '#0f172a', border: '1px solid #1e293b', borderRadius: 12, padding: '20px 24px' }}>
             <div style={{ color: '#475569', fontSize: 11, marginBottom: 8 }}>AYLIK GETİRİ</div>
             <div style={{ color: fund.monthlyReturn >= 0 ? '#00C2A8' : '#FF6B6B', fontWeight: 800, fontSize: 32 }}>
-              {fund.monthlyReturn >= 0 ? '+' : ''}{fund.monthlyReturn?.toFixed(2)}%
+              {fund.monthlyReturn != null ? `${fund.monthlyReturn >= 0 ? '+' : ''}${fund.monthlyReturn?.toFixed(2)}%` : '—'}
             </div>
           </div>
           <div style={{ background: '#0f172a', border: '1px solid #1e293b', borderRadius: 12, padding: '20px 24px' }}>
             <div style={{ color: '#475569', fontSize: 11, marginBottom: 8 }}>YILLIK GETİRİ</div>
             <div style={{ color: fund.yearlyReturn >= 0 ? '#00C2A8' : '#FF6B6B', fontWeight: 800, fontSize: 32 }}>
-              {fund.yearlyReturn >= 0 ? '+' : ''}{fund.yearlyReturn?.toFixed(2)}%
+              {fund.yearlyReturn != null ? `${fund.yearlyReturn >= 0 ? '+' : ''}${fund.yearlyReturn?.toFixed(2)}%` : '—'}
             </div>
           </div>
         </div>
@@ -52,9 +54,7 @@ export default function FundPage({ params }: { params: { code: string } }) {
           <div style={{ background: '#0f172a', border: '1px solid #1e293b', borderRadius: 12, padding: '20px 24px', marginBottom: 20 }}>
             <h2 style={{ fontSize: 15, fontWeight: 700, marginBottom: 14, color: '#00C2A8' }}>💡 AI Tespitleri</h2>
             {fund.aiInsights.map((insight: string, i: number) => (
-              <div key={i} style={{ padding: '10px 0', borderBottom: i < fund.aiInsights.length - 1 ? '1px solid #1e293b' : 'none', fontSize: 14, color: '#cbd5e1', lineHeight: 1.6 }}>
-                • {insight}
-              </div>
+              <div key={i} style={{ padding: '10px 0', borderBottom: i < fund.aiInsights.length - 1 ? '1px solid #1e293b' : 'none', fontSize: 14, color: '#cbd5e1', lineHeight: 1.6 }}>• {insight}</div>
             ))}
           </div>
         )}
@@ -63,9 +63,7 @@ export default function FundPage({ params }: { params: { code: string } }) {
           <div style={{ background: '#0f172a', border: '1px solid #1e293b', borderRadius: 12, padding: '20px 24px', marginBottom: 20 }}>
             <h2 style={{ fontSize: 15, fontWeight: 700, marginBottom: 14, color: '#FFD166' }}>🤖 Dexter Analizi</h2>
             {fund.dexterRecommendations.map((rec: string, i: number) => (
-              <div key={i} style={{ padding: '10px 0', borderBottom: i < fund.dexterRecommendations.length - 1 ? '1px solid #1e293b' : 'none', fontSize: 14, color: '#cbd5e1', lineHeight: 1.6 }}>
-                {i + 1}. {rec}
-              </div>
+              <div key={i} style={{ padding: '10px 0', borderBottom: i < fund.dexterRecommendations.length - 1 ? '1px solid #1e293b' : 'none', fontSize: 14, color: '#cbd5e1', lineHeight: 1.6 }}>{i + 1}. {rec}</div>
             ))}
           </div>
         )}
