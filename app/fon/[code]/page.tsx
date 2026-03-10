@@ -93,15 +93,15 @@ export default async function FundPage({ params }: { params: Promise<{ code: str
 
         {/* GETİRİ */}
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 1, background: 'rgba(255,255,255,0.07)', borderRadius: 16, overflow: 'hidden', margin: '1px 0 28px' }}>
-          <div style={{ background: '#0f0f0f', padding: '28px 32px' }}>
+          <div style={{ background: '#0f0f0f', padding: '20px 20px' }}>
             <div style={{ fontSize: 10, color: '#444', letterSpacing: 1, marginBottom: 12, fontWeight: 600 }}>AYLIK GETİRİ</div>
-            <div style={{ fontSize: 40, fontWeight: 300, fontFamily: 'DM Mono, monospace', letterSpacing: -1, color: fund.monthlyReturn == null ? '#333' : fund.monthlyReturn >= 0 ? '#00f080' : '#ff4444' }}>
+            <div style={{ fontSize: 'clamp(24px, 6vw, 40px)', fontWeight: 300, fontFamily: 'DM Mono, monospace', letterSpacing: -1, color: fund.monthlyReturn == null ? '#333' : fund.monthlyReturn >= 0 ? '#00f080' : '#ff4444' }}>
               {fund.monthlyReturn != null ? `${fund.monthlyReturn >= 0 ? '+' : ''}${fund.monthlyReturn.toFixed(2)}%` : '—'}
             </div>
           </div>
-          <div style={{ background: '#0f0f0f', padding: '28px 32px' }}>
+          <div style={{ background: '#0f0f0f', padding: '20px 20px' }}>
             <div style={{ fontSize: 10, color: '#444', letterSpacing: 1, marginBottom: 12, fontWeight: 600 }}>YILLIK GETİRİ</div>
-            <div style={{ fontSize: 40, fontWeight: 300, fontFamily: 'DM Mono, monospace', letterSpacing: -1, color: fund.yearlyReturn == null ? '#333' : fund.yearlyReturn >= 0 ? '#00f080' : '#ff4444' }}>
+            <div style={{ fontSize: 'clamp(24px, 6vw, 40px)', fontWeight: 300, fontFamily: 'DM Mono, monospace', letterSpacing: -1, color: fund.yearlyReturn == null ? '#333' : fund.yearlyReturn >= 0 ? '#00f080' : '#ff4444' }}>
               {fund.yearlyReturn != null ? `${fund.yearlyReturn >= 0 ? '+' : ''}${fund.yearlyReturn.toFixed(2)}%` : '—'}
             </div>
           </div>
