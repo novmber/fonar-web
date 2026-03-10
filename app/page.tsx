@@ -90,14 +90,22 @@ export default function Home() {
     <main style={{ minHeight: '100vh', background: 'var(--bg)' }}>
 
       {/* NAV */}
-      <nav className="nav-padding" style={{ position: 'fixed', top: 0, left: 0, right: 0, zIndex: 100, borderBottom: '1px solid var(--border)', background: 'rgba(8,8,8,0.9)', backdropFilter: 'blur(20px)', padding: '0 40px', height: 56, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-        <span style={{ fontWeight: 700, fontSize: 16, letterSpacing: 3 }}>FONAR</span>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 24, fontSize: 13, color: 'var(--text2)' }}>
-          <span>{funds.length} fon</span>
-          <span style={{ color: 'var(--green)', display: 'flex', alignItems: 'center', gap: 6 }}>
-            <span style={{ display: 'inline-block', width: 6, height: 6, borderRadius: '50%', background: 'var(--green)', animation: 'pulse 2s infinite' }} />
-            Canlı
-          </span>
+      <nav className="nav-padding" style={{ position: 'fixed', top: 0, left: 0, right: 0, zIndex: 100, borderBottom: '1px solid var(--border)', background: 'rgba(8,8,8,0.9)', backdropFilter: 'blur(20px)', height: 56 }}>
+        <div style={{ maxWidth: 1100, margin: '0 auto', padding: '0 40px', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+          <span style={{ fontWeight: 700, fontSize: 16, letterSpacing: 3 }}>FONAR</span>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 24, fontSize: 13, color: 'var(--text2)' }}>
+            <a href="https://x.com/GridBotman" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--text2)', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 6, transition: 'color 0.2s' }}
+              onMouseOver={e => (e.currentTarget.style.color = '#fff')}
+              onMouseOut={e => (e.currentTarget.style.color = 'var(--text2)')}>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.911-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+              @GridBotman
+            </a>
+            <span>{funds.length} fon</span>
+            <span style={{ color: 'var(--green)', display: 'flex', alignItems: 'center', gap: 6 }}>
+              <span style={{ display: 'inline-block', width: 6, height: 6, borderRadius: '50%', background: 'var(--green)', animation: 'pulse 2s infinite' }} />
+              Canlı
+            </span>
+          </div>
         </div>
       </nav>
 
@@ -121,18 +129,18 @@ export default function Home() {
       </div>
 
       {/* HERO */}
-      <section className="hero-section" style={{ padding: '56px 40px 48px', maxWidth: 1200, margin: '0 auto' }}>
+      <section className="hero-section" style={{ padding: '40px 40px 32px', maxWidth: 900, margin: '0 auto' }}>
         <div className="fade-up" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: 'var(--accent2)', border: '1px solid rgba(232,255,0,0.2)', borderRadius: 100, padding: '5px 14px', fontSize: 11, color: 'var(--accent)', fontWeight: 500, marginBottom: 28, letterSpacing: 0.5 }}>
           ✦ YAPAY ZEKA DESTEKLİ ANALİZ
         </div>
-        <h1 className="fade-up-2 hero-h1" style={{ fontSize: 'clamp(32px, 5vw, 64px)', fontWeight: 300, lineHeight: 1.1, letterSpacing: -1.5, marginBottom: 24 }}>
+        <h1 className="fade-up-2 hero-h1" style={{ fontSize: 'clamp(24px, 3.5vw, 44px)', fontWeight: 300, lineHeight: 1.1, letterSpacing: -1.5, marginBottom: 16 }}>
           Karar vermeden önce,<br />
           <em style={{ fontStyle: 'italic', fontWeight: 300 }}>analiz et.</em>
         </h1>
-        <p className="fade-up-3" style={{ fontSize: 15, color: 'var(--text2)', maxWidth: 420, lineHeight: 1.7, marginBottom: 48 }}>
+        <p className="fade-up-3" style={{ fontSize: 14, color: 'var(--text2)', maxWidth: 420, lineHeight: 1.7, marginBottom: 28 }}>
           KAP raporları ve TEFAS verileriyle beslenen AI analizleri. Her fon için derinlemesine içgörü.
         </p>
-        <div className="fade-up-4 stats-bar" style={{ display: 'flex', gap: 1, background: 'var(--border)', borderRadius: 16, overflow: 'hidden', maxWidth: 560 }}>
+        <div className="fade-up-4 stats-bar" style={{ display: 'flex', gap: 1, background: 'var(--border)', borderRadius: 12, overflow: 'hidden', maxWidth: 480 }}>
           {[
             { label: 'Analiz Edilen Fon', value: funds.length.toString() },
             { label: 'Toplam AUM', value: fmt(totalAum) },
@@ -277,6 +285,29 @@ export default function Home() {
           ⚠️ Bu platformdaki içerikler yalnızca bilgilendirme amaçlıdır. Yatırım tavsiyesi değildir.
           Geçmiş performans gelecekteki getirilerin garantisi değildir.
         </p>
+      </footer>
+      {/* FOOTER */}
+      <footer style={{ borderTop: '1px solid var(--border)', marginTop: 80, padding: '32px 40px' }}>
+        <div style={{ maxWidth: 1100, margin: '0 auto', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 16 }}>
+          <div>
+            <div style={{ fontWeight: 700, fontSize: 14, letterSpacing: 3, marginBottom: 6 }}>FONAR</div>
+            <div style={{ fontSize: 12, color: 'var(--text3)', maxWidth: 340, lineHeight: 1.6 }}>
+              Yapay zeka destekli yatırım fonu analiz platformu. TEFAS ve KAP verilerine dayalı içgörüler.
+            </div>
+          </div>
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: 12 }}>
+            <a href="https://x.com/GridBotman" target="_blank" rel="noopener noreferrer"
+              style={{ display: 'flex', alignItems: 'center', gap: 8, color: 'var(--text2)', textDecoration: 'none', fontSize: 13, transition: 'color 0.2s' }}
+              onMouseOver={e => (e.currentTarget.style.color = '#fff')}
+              onMouseOut={e => (e.currentTarget.style.color = 'var(--text2)')}>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.911-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+              @GridBotman
+            </a>
+            <div style={{ fontSize: 11, color: 'var(--text3)' }}>
+              Bu platform yalnızca bilgilendirme amaçlıdır. Yatırım tavsiyesi değildir.
+            </div>
+          </div>
+        </div>
       </footer>
     </main>
   )
