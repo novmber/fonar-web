@@ -1,23 +1,21 @@
-export const revalidate = 3600 // her saat güncelle
+import fs from 'fs'
+import path from 'path'
 
-async function getFunds() {
+function getFunds() {
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/public/funds`, {
-      next: { revalidate: 3600 }
-    })
-    if (!res.ok) return []
-    return res.json()
+    const filePath = path.join(process.cwd(), 'public', 'funds.json')
+    const data = fs.readFileSync(filePath, 'utf-8')
+    return JSON.parse(data)
   } catch {
     return []
   }
 }
 
-export default async function Home() {
-  const funds = await getFunds()
+export default function Home() {
+  const funds = getFunds()
 
   return (
     <main style={{ minHeight: '100vh', background: '#020817', color: '#f1f5f9', fontFamily: 'system-ui, sans-serif' }}>
-      {/* Header */}
       <header style={{ borderBottom: '1px solid #1e293b', padding: '20px 40px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
           <div style={{ width: 40, height: 40, borderRadius: 12, background: 'linear-gradient(135deg,#00C2A8,#118AB2)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 20 }}>📊</div>
@@ -29,7 +27,6 @@ export default async function Home() {
         <div style={{ color: '#475569', fontSize: 12 }}>{funds.length} fon takipte</div>
       </header>
 
-      {/* Funds Grid */}
       <div style={{ padding: '32px 40px', maxWidth: 1200, margin: '0 auto' }}>
         <h1 style={{ fontSize: 28, fontWeight: 800, marginBottom: 8 }}>Fon Analizleri</h1>
         <p style={{ color: '#475569', marginBottom: 32, fontSize: 14 }}>Detaylı AI analizi yapılmış yatırım fonları</p>
@@ -37,9 +34,7 @@ export default async function Home() {
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(340px, 1fr))', gap: 20 }}>
           {funds.map((fund: any) => (
             <a key={fund.code} href={`/fon/${fund.code.toLowerCase()}`}
-              style={{ textDecoration: 'none', display: 'block', background: '#0f172a', border: '1px solid #1e293b', borderRadius: 16, padding: 24, transition: 'border-color 0.2s', cursor: 'pointer' }}
-              onMouseOver={e => (e.currentTarget.style.borderColor = '#00C2A8')}
-              onMouseOut={e => (e.currentTarget.style.borderColor = '#1e293b')}>
+              style={{ textDecoration: 'none', display: 'block', background: '#0f172a', border: '1px solid #1e293b', borderRadius: 16, padding: 24, cursor: 'pointer' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 12 }}>
                 <div>
                   <span style={{ background: 'rgba(0,194,168,0.1)', color: '#00C2A8', fontSize: 11, fontWeight: 700, padding: '3px 8px', borderRadius: 6 }}>{fund.code}</span>
@@ -77,7 +72,6 @@ export default async function Home() {
         </div>
       </div>
 
-      {/* Footer */}
       <footer style={{ borderTop: '1px solid #1e293b', padding: '20px 40px', marginTop: 40, textAlign: 'center' }}>
         <p style={{ color: '#475569', fontSize: 11, maxWidth: 700, margin: '0 auto', lineHeight: 1.6 }}>
           ⚠️ <strong style={{ color: '#64748b' }}>Sorumluluk Reddi:</strong> Bu platformda yer alan tüm bilgiler yalnızca bilgilendirme amaçlıdır. 
