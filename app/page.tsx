@@ -87,7 +87,7 @@ export default function Home() {
       </div>
 
       {/* HERO */}
-      <section className="hero-section" style={{ padding: '80px 40px 60px', maxWidth: 1200, margin: '0 auto' }}>
+      <section className="hero-section" style={{ padding: '56px 40px 48px', maxWidth: 1200, margin: '0 auto' }}>
         <div className="fade-up" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: 'var(--accent2)', border: '1px solid rgba(232,255,0,0.2)', borderRadius: 100, padding: '5px 14px', fontSize: 11, color: 'var(--accent)', fontWeight: 500, marginBottom: 28, letterSpacing: 0.5 }}>
           ✦ YAPAY ZEKA DESTEKLİ ANALİZ
         </div>
@@ -117,7 +117,7 @@ export default function Home() {
       <div style={{ height: 1, background: 'var(--border)', maxWidth: 1200, margin: '0 auto' }} />
 
       {/* FİLTRELEME */}
-      <section className="filter-section" style={{ padding: '32px 40px 0', maxWidth: 1200, margin: '0 auto' }}>
+      <section className="filter-section" style={{ padding: '28px 40px 16px', maxWidth: 1200, margin: '0 auto' }}>
         <div className="filter-bar" style={{ display: 'flex', gap: 10, flexWrap: 'wrap', alignItems: 'center' }}>
           <input
             value={search}
@@ -205,7 +205,7 @@ export default function Home() {
                 </div>
 
                 {fund.aiInsights?.[0] && (
-                  <div style={{ borderTop: '1px solid var(--border)', paddingTop: 14, fontSize: 12, color: 'var(--text2)', lineHeight: 1.6, display: 'flex', gap: 8 }}>
+                  <div style={{ marginTop: 'auto', borderTop: '1px solid var(--border)', paddingTop: 14, fontSize: 12, color: 'var(--text2)', lineHeight: 1.6, display: 'flex', gap: 8 }}>
                     <span style={{ color: 'var(--accent)', flexShrink: 0, fontSize: 10, paddingTop: 2 }}>✦</span>
                     <span>{fund.aiInsights[0]}</span>
                   </div>
