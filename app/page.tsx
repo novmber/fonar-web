@@ -1,65 +1,89 @@
-import Image from "next/image";
+export const revalidate = 3600 // her saat güncelle
 
-export default function Home() {
+async function getFunds() {
+  try {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/public/funds`, {
+      next: { revalidate: 3600 }
+    })
+    if (!res.ok) return []
+    return res.json()
+  } catch {
+    return []
+  }
+}
+
+export default async function Home() {
+  const funds = await getFunds()
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <main style={{ minHeight: '100vh', background: '#020817', color: '#f1f5f9', fontFamily: 'system-ui, sans-serif' }}>
+      {/* Header */}
+      <header style={{ borderBottom: '1px solid #1e293b', padding: '20px 40px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+          <div style={{ width: 40, height: 40, borderRadius: 12, background: 'linear-gradient(135deg,#00C2A8,#118AB2)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 20 }}>📊</div>
+          <div>
+            <div style={{ fontWeight: 800, fontSize: 22, letterSpacing: -0.5 }}>Fonar</div>
+            <div style={{ color: '#475569', fontSize: 12 }}>Fon Analiz Platformu</div>
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+        <div style={{ color: '#475569', fontSize: 12 }}>{funds.length} fon takipte</div>
+      </header>
+
+      {/* Funds Grid */}
+      <div style={{ padding: '32px 40px', maxWidth: 1200, margin: '0 auto' }}>
+        <h1 style={{ fontSize: 28, fontWeight: 800, marginBottom: 8 }}>Fon Analizleri</h1>
+        <p style={{ color: '#475569', marginBottom: 32, fontSize: 14 }}>Detaylı AI analizi yapılmış yatırım fonları</p>
+
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(340px, 1fr))', gap: 20 }}>
+          {funds.map((fund: any) => (
+            <a key={fund.code} href={`/fon/${fund.code.toLowerCase()}`}
+              style={{ textDecoration: 'none', display: 'block', background: '#0f172a', border: '1px solid #1e293b', borderRadius: 16, padding: 24, transition: 'border-color 0.2s', cursor: 'pointer' }}
+              onMouseOver={e => (e.currentTarget.style.borderColor = '#00C2A8')}
+              onMouseOut={e => (e.currentTarget.style.borderColor = '#1e293b')}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 12 }}>
+                <div>
+                  <span style={{ background: 'rgba(0,194,168,0.1)', color: '#00C2A8', fontSize: 11, fontWeight: 700, padding: '3px 8px', borderRadius: 6 }}>{fund.code}</span>
+                  <div style={{ color: '#f1f5f9', fontWeight: 700, fontSize: 14, marginTop: 8, lineHeight: 1.4 }}>{fund.name}</div>
+                </div>
+                <span style={{ color: '#475569', fontSize: 11, whiteSpace: 'nowrap', marginLeft: 8 }}>Risk {fund.riskScore}/7</span>
+              </div>
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 12, marginTop: 16 }}>
+                <div style={{ background: '#0a0a1a', borderRadius: 10, padding: '10px 12px' }}>
+                  <div style={{ color: '#475569', fontSize: 10, marginBottom: 4 }}>AYLIK</div>
+                  <div style={{ color: fund.monthlyReturn >= 0 ? '#00C2A8' : '#FF6B6B', fontWeight: 700, fontSize: 15 }}>
+                    {fund.monthlyReturn >= 0 ? '+' : ''}{fund.monthlyReturn?.toFixed(2)}%
+                  </div>
+                </div>
+                <div style={{ background: '#0a0a1a', borderRadius: 10, padding: '10px 12px' }}>
+                  <div style={{ color: '#475569', fontSize: 10, marginBottom: 4 }}>YILLIK</div>
+                  <div style={{ color: fund.yearlyReturn >= 0 ? '#00C2A8' : '#FF6B6B', fontWeight: 700, fontSize: 15 }}>
+                    {fund.yearlyReturn >= 0 ? '+' : ''}{fund.yearlyReturn?.toFixed(2)}%
+                  </div>
+                </div>
+                <div style={{ background: '#0a0a1a', borderRadius: 10, padding: '10px 12px' }}>
+                  <div style={{ color: '#475569', fontSize: 10, marginBottom: 4 }}>PORTFÖY</div>
+                  <div style={{ color: '#f1f5f9', fontWeight: 700, fontSize: 13 }}>
+                    {fund.totalValue >= 1e9 ? `₺${(fund.totalValue/1e9).toFixed(1)}B` : `₺${(fund.totalValue/1e6).toFixed(0)}M`}
+                  </div>
+                </div>
+              </div>
+              {fund.aiInsights?.[0] && (
+                <div style={{ marginTop: 14, padding: '10px 12px', background: 'rgba(0,194,168,0.05)', borderRadius: 10, border: '1px solid rgba(0,194,168,0.1)', fontSize: 12, color: '#94a3b8', lineHeight: 1.5 }}>
+                  💡 {fund.aiInsights[0]}
+                </div>
+              )}
+            </a>
+          ))}
         </div>
-      </main>
-    </div>
-  );
+      </div>
+
+      {/* Footer */}
+      <footer style={{ borderTop: '1px solid #1e293b', padding: '20px 40px', marginTop: 40, textAlign: 'center' }}>
+        <p style={{ color: '#475569', fontSize: 11, maxWidth: 700, margin: '0 auto', lineHeight: 1.6 }}>
+          ⚠️ <strong style={{ color: '#64748b' }}>Sorumluluk Reddi:</strong> Bu platformda yer alan tüm bilgiler yalnızca bilgilendirme amaçlıdır. 
+          Hiçbir içerik yatırım tavsiyesi niteliği taşımaz. Geçmiş performans gelecekteki getirilerin garantisi değildir.
+        </p>
+      </footer>
+    </main>
+  )
 }
