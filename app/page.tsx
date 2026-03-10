@@ -37,9 +37,8 @@ export default function Home() {
 
       {/* NAV */}
       <nav style={{ position: 'fixed', top: 0, left: 0, right: 0, zIndex: 100, borderBottom: '1px solid var(--border)', background: 'rgba(8,8,8,0.85)', backdropFilter: 'blur(20px)', padding: '0 40px', height: 56, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-          <div style={{ width: 28, height: 28, borderRadius: 8, background: 'var(--accent)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 14 }}>📊</div>
-          <span style={{ fontWeight: 600, fontSize: 15, letterSpacing: -0.3 }}>fonar</span>
+        <div style={{ display: 'flex', alignItems: 'center' }}>
+          <span style={{ fontWeight: 700, fontSize: 16, letterSpacing: 3, color: 'var(--text)' }}>FONAR</span>
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: 32, fontSize: 13, color: 'var(--text2)' }}>
           <span>{funds.length} fon</span>

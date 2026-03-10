@@ -20,7 +20,9 @@ export default async function FundPage({ params }: { params: Promise<{ code: str
 
       {/* NAV */}
       <nav style={{ position: 'fixed', top: 0, left: 0, right: 0, zIndex: 100, borderBottom: '1px solid rgba(255,255,255,0.07)', background: 'rgba(8,8,8,0.9)', backdropFilter: 'blur(20px)', padding: '0 40px', height: 56, display: 'flex', alignItems: 'center', gap: 16 }}>
-        <a href="/" style={{ fontSize: 13, color: '#555', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 6 }}>← Tüm Fonlar</a>
+        <a href="/" style={{ fontSize: 13, color: '#555', textDecoration: 'none' }}>← Tüm Fonlar</a>
+        <div style={{ width: 1, height: 16, background: 'rgba(255,255,255,0.1)' }} />
+        <span style={{ fontWeight: 700, fontSize: 14, letterSpacing: 3 }}>FONAR</span>
         <div style={{ width: 1, height: 16, background: 'rgba(255,255,255,0.1)' }} />
         <span style={{ fontFamily: 'DM Mono, monospace', fontSize: 12, color: '#e8ff00', letterSpacing: 1, fontWeight: 500 }}>{fund.code}</span>
       </nav>
