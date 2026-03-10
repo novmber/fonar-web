@@ -162,7 +162,7 @@ export default function Home() {
             <div style={{ color: 'var(--text3)', fontSize: 12 }}>Filtrelerinizi değiştirerek tekrar deneyin.</div>
           </div>
         ) : (
-          <div className="funds-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(360px, 1fr))', gap: 1, background: 'var(--border)', borderRadius: 20, overflow: 'hidden' }}>
+          <div className="funds-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(360px, 1fr))', gap: 1, background: 'var(--bg)', borderRadius: 20, overflow: 'hidden' }}>
             {filtered.map((fund: any) => (
               <a key={fund.code} href={`/fon/${fund.code?.toLowerCase()}`}
                 className="fund-card"
