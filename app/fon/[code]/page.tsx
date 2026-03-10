@@ -6,8 +6,9 @@ export function generateStaticParams() {
     .map((f: any) => ({ code: f.code.toLowerCase() }))
 }
 
-export default function FundPage({ params }: { params: { code: string } }) {
-  const fund = (fundsData as any[]).find((f: any) => f.code?.toLowerCase() === params.code.toLowerCase())
+export default async function FundPage({ params }: { params: Promise<{ code: string }> }) {
+  const { code } = await params
+  const fund = (fundsData as any[]).find((f: any) => f.code?.toLowerCase() === code?.toLowerCase())
   if (!fund) return <div style={{ color: '#f1f5f9', padding: 40 }}>Fon bulunamadı.</div>
 
   return (
@@ -38,14 +39,14 @@ export default function FundPage({ params }: { params: { code: string } }) {
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 14, marginBottom: 28 }}>
           <div style={{ background: '#0f172a', border: '1px solid #1e293b', borderRadius: 12, padding: '20px 24px' }}>
             <div style={{ color: '#475569', fontSize: 11, marginBottom: 8 }}>AYLIK GETİRİ</div>
-            <div style={{ color: fund.monthlyReturn >= 0 ? '#00C2A8' : '#FF6B6B', fontWeight: 800, fontSize: 32 }}>
-              {fund.monthlyReturn != null ? `${fund.monthlyReturn >= 0 ? '+' : ''}${fund.monthlyReturn?.toFixed(2)}%` : '—'}
+            <div style={{ color: (fund.monthlyReturn ?? 0) >= 0 ? '#00C2A8' : '#FF6B6B', fontWeight: 800, fontSize: 32 }}>
+              {fund.monthlyReturn != null ? `${fund.monthlyReturn >= 0 ? '+' : ''}${fund.monthlyReturn.toFixed(2)}%` : '—'}
             </div>
           </div>
           <div style={{ background: '#0f172a', border: '1px solid #1e293b', borderRadius: 12, padding: '20px 24px' }}>
             <div style={{ color: '#475569', fontSize: 11, marginBottom: 8 }}>YILLIK GETİRİ</div>
-            <div style={{ color: fund.yearlyReturn >= 0 ? '#00C2A8' : '#FF6B6B', fontWeight: 800, fontSize: 32 }}>
-              {fund.yearlyReturn != null ? `${fund.yearlyReturn >= 0 ? '+' : ''}${fund.yearlyReturn?.toFixed(2)}%` : '—'}
+            <div style={{ color: (fund.yearlyReturn ?? 0) >= 0 ? '#00C2A8' : '#FF6B6B', fontWeight: 800, fontSize: 32 }}>
+              {fund.yearlyReturn != null ? `${fund.yearlyReturn >= 0 ? '+' : ''}${fund.yearlyReturn.toFixed(2)}%` : '—'}
             </div>
           </div>
         </div>
