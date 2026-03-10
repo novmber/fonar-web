@@ -1,4 +1,31 @@
+import type { Metadata } from 'next'
 import fundsData from '../../../public/funds.json'
+
+export async function generateMetadata({ params }: { params: Promise<{ code: string }> }): Promise<Metadata> {
+  const { code } = await params
+  const fund = (fundsData as any[]).find((f: any) => f.code?.toLowerCase() === code.toLowerCase())
+  if (!fund) return { title: 'Fon Bulunamadı' }
+  const monthly = fund.monthlyReturn != null ? `${fund.monthlyReturn >= 0 ? '+' : ''}${fund.monthlyReturn.toFixed(2)}%` : '—'
+  const yearly = fund.yearlyReturn != null ? `${fund.yearlyReturn >= 0 ? '+' : ''}${fund.yearlyReturn.toFixed(2)}%` : '—'
+  const title = `${fund.code} — ${fund.name}`
+  const description = `${fund.name} fon analizi. Aylık getiri: ${monthly}, Yıllık getiri: ${yearly}, Risk skoru: ${fund.riskScore || '—'}/7. TEFAS verileri ve AI analizi.`
+  return {
+    title,
+    description,
+    alternates: { canonical: `https://fonar.com.tr/fon/${fund.code.toLowerCase()}` },
+    openGraph: {
+      title,
+      description,
+      url: `https://fonar.com.tr/fon/${fund.code.toLowerCase()}`,
+      siteName: 'Fonar',
+      locale: 'tr_TR',
+      type: 'website',
+    },
+    twitter: { card: 'summary', title, description },
+  }
+}
+
+// fundsData already imported above
 
 export function generateStaticParams() {
   return (fundsData as any[]).filter((f: any) => f.code).map((f: any) => ({ code: f.code.toLowerCase() }))
@@ -46,8 +73,18 @@ export default async function FundPage({ params }: { params: Promise<{ code: str
     </main>
   )
 
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'FinancialProduct',
+    name: fund.name,
+    description: `${fund.name} yatırım fonu. Risk skoru: ${fund.riskScore}/7.`,
+    url: `https://fonar.com.tr/fon/${fund.code.toLowerCase()}`,
+    provider: { '@type': 'Organization', name: 'Fonar', url: 'https://fonar.com.tr' },
+  }
+
   return (
     <main style={{ minHeight: '100vh', background: '#080808', color: '#f5f5f5', fontFamily: 'DM Sans, sans-serif' }}>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 
       {/* NAV */}
       <nav style={{ position: 'fixed', top: 0, left: 0, right: 0, zIndex: 100, borderBottom: '1px solid rgba(255,255,255,0.07)', background: 'rgba(8,8,8,0.9)', backdropFilter: 'blur(20px)', padding: '0 40px', height: 56, display: 'flex', alignItems: 'center', gap: 16 }}>
