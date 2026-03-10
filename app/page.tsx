@@ -70,6 +70,11 @@ export default function Home() {
   const biggestFund = funds.filter(f => f.totalValue).sort((a, b) => b.totalValue - a.totalValue)[0]
   const bestMonthlyFund = funds.filter(f => f.monthlyReturn).sort((a, b) => b.monthlyReturn - a.monthlyReturn)[0]
   const highestRiskFund = funds.filter(f => f.riskScore).sort((a, b) => b.riskScore - a.riskScore)[0]
+  const mostStableFund = funds.filter(f => f.priceHistory && f.priceHistory.length > 1).sort((a, b) => {
+    const negA = (a.priceHistory || []).filter((_: any, i: number, arr: any[]) => i > 0 && arr[i].price < arr[i-1].price).length
+    const negB = (b.priceHistory || []).filter((_: any, i: number, arr: any[]) => i > 0 && arr[i].price < arr[i-1].price).length
+    return negA - negB
+  })[0] || funds.filter(f => f.riskScore).sort((a, b) => a.riskScore - b.riskScore)[0]
 
   const [search, setSearch] = useState('')
   const [fundType, setFundType] = useState('')
@@ -147,7 +152,7 @@ export default function Home() {
         <p className="fade-up-3" style={{ fontSize: 14, color: 'var(--text2)', maxWidth: 420, lineHeight: 1.7, marginBottom: 28 }}>
           KAP raporları ve TEFAS verileriyle beslenen AI analizleri. Her fon için derinlemesine içgörü.
         </p>
-        <div className="fade-up-4 stats-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)', gap: 10 }}>
+        <div className="fade-up-4 stats-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(8, 1fr)', gap: 10 }}>
           <a href={`/fon/${bestFund?.code?.toLowerCase()}`} style={{ textDecoration: 'none', background: 'rgba(232,255,0,0.04)', border: '1px solid rgba(232,255,0,0.15)', borderRadius: 12, padding: '14px 18px', display: 'flex', flexDirection: 'column', gap: 4, transition: 'border-color 0.2s' }}
             onMouseOver={e => (e.currentTarget.style.borderColor = 'rgba(232,255,0,0.4)')}
             onMouseOut={e => (e.currentTarget.style.borderColor = 'rgba(232,255,0,0.15)')}>
@@ -198,6 +203,14 @@ export default function Home() {
             <div style={{ fontSize: 10, color: '#777', letterSpacing: 0.8, fontWeight: 600 }}>EN YÜKSEK RİSK</div>
             <div style={{ fontSize: 20, fontWeight: 500, color: '#ff4444', fontFamily: 'DM Mono, monospace', letterSpacing: -0.5 }}>{highestRiskFund?.riskScore}/7</div>
             <div style={{ fontSize: 11, color: 'var(--text2)' }}>{highestRiskFund?.code} · {highestRiskFund?.fundType?.split(' ').slice(0,2).join(' ')}</div>
+          </a>
+
+          <a href={`/fon/${mostStableFund?.code?.toLowerCase()}`} style={{ textDecoration: 'none', background: 'rgba(0,184,212,0.04)', border: '1px solid rgba(0,184,212,0.12)', borderRadius: 12, padding: '14px 18px', display: 'flex', flexDirection: 'column', gap: 4, transition: 'border-color 0.2s' }}
+            onMouseOver={e => (e.currentTarget.style.borderColor = 'rgba(0,184,212,0.4)')}
+            onMouseOut={e => (e.currentTarget.style.borderColor = 'rgba(0,184,212,0.12)')}>
+            <div style={{ fontSize: 10, color: '#777', letterSpacing: 0.8, fontWeight: 600 }}>EN İSTİKRARLI</div>
+            <div style={{ fontSize: 20, fontWeight: 500, color: '#00b8d4', fontFamily: 'DM Mono, monospace', letterSpacing: -0.5 }}>{mostStableFund?.code}</div>
+            <div style={{ fontSize: 11, color: 'var(--text2)' }}>{mostStableFund?.fundType?.split(' ').slice(0,2).join(' ')} · risk {mostStableFund?.riskScore}/7</div>
           </a>
         </div>
       </section>
