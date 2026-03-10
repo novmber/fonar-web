@@ -8,22 +8,54 @@ function fmt(v: number) {
   return `₺${v.toFixed(0)}`
 }
 
-function RiskBar({ score }: { score: number }) {
+function RiskBadge({ score }: { score: number }) {
   const color = score >= 6 ? '#ff4444' : score >= 4 ? '#ff9800' : '#00f080'
+  const bg = score >= 6 ? 'rgba(255,68,68,0.12)' : score >= 4 ? 'rgba(255,152,0,0.12)' : 'rgba(0,240,128,0.12)'
+  const label = score >= 6 ? 'Yüksek' : score >= 4 ? 'Orta' : 'Düşük'
   return (
-    <div>
-      <div style={{ fontSize: 10, color: 'var(--text3)', marginBottom: 4 }}>Risk</div>
-      <div style={{ display: 'flex', gap: 3, alignItems: 'center' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: 5 }}>
+      <div style={{ display: 'flex', gap: 2, alignItems: 'center' }}>
         {Array.from({ length: 7 }, (_, i) => (
-          <div key={i} style={{
-            width: 4, height: 14, borderRadius: 2,
-            background: i < (score || 0) ? color : 'var(--border2)',
-            transition: 'background 0.2s'
-          }} />
+          <div key={i} style={{ width: 4, height: 12, borderRadius: 2, background: i < score ? color : 'rgba(255,255,255,0.1)' }} />
         ))}
-        <span style={{ fontSize: 10, color: 'var(--text3)', marginLeft: 4, fontFamily: 'DM Mono, monospace' }}>{score}/7</span>
+      </div>
+      <div style={{ fontSize: 10, color, background: bg, borderRadius: 6, padding: '2px 7px', fontWeight: 600, letterSpacing: 0.3 }}>
+        {label} · {score}/7
       </div>
     </div>
+  )
+}
+
+function Sparkline({ history, color }: { history: any[], color: string }) {
+  if (!history || history.length < 2) return null
+  const prices = history.map((h: any) => h.price)
+  const min = Math.min(...prices)
+  const max = Math.max(...prices)
+  const range = max - min || 1
+  const w = 120, h = 40
+  const points = prices.map((p, i) => {
+    const x = (i / (prices.length - 1)) * w
+    const y = h - ((p - min) / range) * (h - 4) - 2
+    return `${x},${y}`
+  }).join(' ')
+  return (
+    <svg width={w} height={h} style={{ display: 'block' }}>
+      <defs>
+        <linearGradient id={`sg-${color.replace('#','')}`} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor={color} stopOpacity="0.3" />
+          <stop offset="100%" stopColor={color} stopOpacity="0" />
+        </linearGradient>
+      </defs>
+      <polyline
+        points={points}
+        fill="none"
+        stroke={color}
+        strokeWidth="1.5"
+        strokeLinejoin="round"
+        strokeLinecap="round"
+        opacity="0.9"
+      />
+    </svg>
   )
 }
 
@@ -36,6 +68,7 @@ export default function Home() {
   const [fundType, setFundType] = useState('')
   const [risk, setRisk] = useState('')
   const [sort, setSort] = useState('')
+  const [hoveredCard, setHoveredCard] = useState<string | null>(null)
 
   const fundTypes = [...new Set(funds.map(f => f.fundType).filter(Boolean))]
 
@@ -57,11 +90,9 @@ export default function Home() {
     <main style={{ minHeight: '100vh', background: 'var(--bg)' }}>
 
       {/* NAV */}
-      <nav className="nav-padding" style={{ position: 'fixed', top: 0, left: 0, right: 0, zIndex: 100, borderBottom: '1px solid var(--border)', background: 'rgba(8,8,8,0.85)', backdropFilter: 'blur(20px)', padding: '0 40px', height: 56, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-        <div style={{ display: 'flex', alignItems: 'center' }}>
-          <span style={{ fontWeight: 700, fontSize: 16, letterSpacing: 3, color: 'var(--text)' }}>FONAR</span>
-        </div>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 32, fontSize: 13, color: 'var(--text2)' }}>
+      <nav className="nav-padding" style={{ position: 'fixed', top: 0, left: 0, right: 0, zIndex: 100, borderBottom: '1px solid var(--border)', background: 'rgba(8,8,8,0.9)', backdropFilter: 'blur(20px)', padding: '0 40px', height: 56, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+        <span style={{ fontWeight: 700, fontSize: 16, letterSpacing: 3 }}>FONAR</span>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 24, fontSize: 13, color: 'var(--text2)' }}>
           <span>{funds.length} fon</span>
           <span style={{ color: 'var(--green)', display: 'flex', alignItems: 'center', gap: 6 }}>
             <span style={{ display: 'inline-block', width: 6, height: 6, borderRadius: '50%', background: 'var(--green)', animation: 'pulse 2s infinite' }} />
@@ -70,18 +101,21 @@ export default function Home() {
         </div>
       </nav>
 
-      {/* TICKER */}
+      {/* TICKER — tıklanabilir */}
       <div style={{ marginTop: 56, borderBottom: '1px solid var(--border)', background: 'var(--bg2)', overflow: 'hidden', height: 36, display: 'flex', alignItems: 'center' }}>
-        <div style={{ display: 'flex', animation: 'ticker 30s linear infinite', whiteSpace: 'nowrap' }}>
+        <div style={{ display: 'flex', animation: 'ticker 40s linear infinite', whiteSpace: 'nowrap' }}>
           {[...funds, ...funds].map((f, i) => (
-            <span key={i} style={{ padding: '0 32px', fontSize: 12, color: 'var(--text2)', borderRight: '1px solid var(--border)', display: 'inline-flex', alignItems: 'center', gap: 10, height: 36 }}>
+            <a key={i} href={`/fon/${f.code?.toLowerCase()}`}
+              style={{ padding: '0 28px', fontSize: 12, color: 'var(--text2)', borderRight: '1px solid var(--border)', display: 'inline-flex', alignItems: 'center', gap: 10, height: 36, textDecoration: 'none', transition: 'background 0.15s' }}
+              onMouseOver={e => (e.currentTarget.style.background = 'rgba(255,255,255,0.04)')}
+              onMouseOut={e => (e.currentTarget.style.background = 'transparent')}>
               <span style={{ color: 'var(--text)', fontFamily: 'DM Mono, monospace', fontWeight: 500, fontSize: 11 }}>{f.code}</span>
               {f.monthlyReturn != null && (
                 <span style={{ color: f.monthlyReturn >= 0 ? 'var(--green)' : 'var(--red)', fontFamily: 'DM Mono, monospace', fontSize: 11 }}>
                   {f.monthlyReturn >= 0 ? '+' : ''}{f.monthlyReturn?.toFixed(2)}%
                 </span>
               )}
-            </span>
+            </a>
           ))}
         </div>
       </div>
@@ -91,15 +125,13 @@ export default function Home() {
         <div className="fade-up" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: 'var(--accent2)', border: '1px solid rgba(232,255,0,0.2)', borderRadius: 100, padding: '5px 14px', fontSize: 11, color: 'var(--accent)', fontWeight: 500, marginBottom: 28, letterSpacing: 0.5 }}>
           ✦ YAPAY ZEKA DESTEKLİ ANALİZ
         </div>
-        <h1 className="fade-up-2 hero-h1" style={{ fontSize: 'clamp(32px, 5vw, 64px)', fontWeight: 300, lineHeight: 1.1, letterSpacing: -1.5, marginBottom: 24, color: 'var(--text)' }}>
+        <h1 className="fade-up-2 hero-h1" style={{ fontSize: 'clamp(32px, 5vw, 64px)', fontWeight: 300, lineHeight: 1.1, letterSpacing: -1.5, marginBottom: 24 }}>
           Karar vermeden önce,<br />
           <em style={{ fontStyle: 'italic', fontWeight: 300 }}>analiz et.</em>
         </h1>
         <p className="fade-up-3" style={{ fontSize: 15, color: 'var(--text2)', maxWidth: 420, lineHeight: 1.7, marginBottom: 48 }}>
           KAP raporları ve TEFAS verileriyle beslenen AI analizleri. Her fon için derinlemesine içgörü.
         </p>
-
-        {/* STATS */}
         <div className="fade-up-4 stats-bar" style={{ display: 'flex', gap: 1, background: 'var(--border)', borderRadius: 16, overflow: 'hidden', maxWidth: 560 }}>
           {[
             { label: 'Analiz Edilen Fon', value: funds.length.toString() },
@@ -119,12 +151,8 @@ export default function Home() {
       {/* FİLTRELEME */}
       <section className="filter-section" style={{ padding: '28px 40px 16px', maxWidth: 1200, margin: '0 auto' }}>
         <div className="filter-bar" style={{ display: 'flex', gap: 10, flexWrap: 'wrap', alignItems: 'center' }}>
-          <input
-            value={search}
-            onChange={e => setSearch(e.target.value)}
-            placeholder="Fon kodu veya isim ara..."
-            style={{ background: 'var(--bg3)', border: '1px solid var(--border2)', borderRadius: 12, padding: '10px 16px', fontSize: 13, color: 'var(--text)', outline: 'none', width: 220, fontFamily: 'DM Sans, sans-serif' }}
-          />
+          <input value={search} onChange={e => setSearch(e.target.value)} placeholder="Fon kodu veya isim ara..."
+            style={{ background: 'var(--bg3)', border: '1px solid var(--border2)', borderRadius: 12, padding: '10px 16px', fontSize: 13, color: 'var(--text)', outline: 'none', width: 220, fontFamily: 'DM Sans, sans-serif' }} />
           <select value={fundType} onChange={e => setFundType(e.target.value)}
             style={{ background: 'var(--bg3)', border: '1px solid var(--border2)', borderRadius: 12, padding: '10px 14px', fontSize: 13, color: fundType ? 'var(--text)' : 'var(--text3)', outline: 'none', cursor: 'pointer', fontFamily: 'DM Sans, sans-serif' }}>
             <option value="">Tüm Türler</option>
@@ -154,7 +182,7 @@ export default function Home() {
       </section>
 
       {/* FUNDS */}
-      <section className="funds-section" style={{ padding: '24px 40px 60px', maxWidth: 1200, margin: '0 auto' }}>
+      <section className="funds-section" style={{ padding: '20px 40px 60px', maxWidth: 1200, margin: '0 auto' }}>
         {filtered.length === 0 ? (
           <div style={{ textAlign: 'center', padding: '80px 0' }}>
             <div style={{ fontSize: 32, marginBottom: 12 }}>🔍</div>
@@ -162,57 +190,84 @@ export default function Home() {
             <div style={{ color: 'var(--text3)', fontSize: 12 }}>Filtrelerinizi değiştirerek tekrar deneyin.</div>
           </div>
         ) : (
-          <div className="funds-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(360px, 1fr))', gap: 1, background: 'var(--bg)', borderRadius: 20, overflow: 'hidden' }}>
-            {filtered.map((fund: any) => (
-              <a key={fund.code} href={`/fon/${fund.code?.toLowerCase()}`}
-                className="fund-card"
-                style={{ background: 'var(--bg2)', padding: '28px 32px', display: 'flex', flexDirection: 'column', transition: 'background 0.2s' }}
-                onMouseOver={e => (e.currentTarget.style.background = 'var(--bg3)')}
-                onMouseOut={e => (e.currentTarget.style.background = 'var(--bg2)')}>
+          <div className="funds-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(360px, 1fr))', gap: 16, borderRadius: 20 }}>
+            {filtered.map((fund: any) => {
+              const isHovered = hoveredCard === fund.code
+              const yearColor = fund.yearlyReturn == null ? 'var(--text3)' : fund.yearlyReturn >= 0 ? 'var(--green)' : 'var(--red)'
+              const monthColor = fund.monthlyReturn == null ? 'var(--text3)' : fund.monthlyReturn >= 0 ? 'var(--green)' : 'var(--red)'
+              return (
+                <a key={fund.code}
+                  href={`/fon/${fund.code?.toLowerCase()}`}
+                  onMouseEnter={() => setHoveredCard(fund.code)}
+                  onMouseLeave={() => setHoveredCard(null)}
+                  style={{
+                    background: 'var(--bg2)',
+                    border: isHovered ? '1px solid rgba(232,255,0,0.2)' : '1px solid var(--border)',
+                    borderRadius: 16,
+                    padding: '24px 28px',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    transition: 'all 0.2s cubic-bezier(0.16,1,0.3,1)',
+                    transform: isHovered ? 'translateY(-3px)' : 'translateY(0)',
+                    boxShadow: isHovered ? '0 12px 40px rgba(0,0,0,0.5)' : 'none',
+                    textDecoration: 'none',
+                  }}>
 
-                {/* Kart Başlık */}
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 20 }}>
-                  <div style={{ flex: 1, minWidth: 0 }}>
-                    <div style={{ fontFamily: 'DM Mono, monospace', fontSize: 11, color: 'var(--accent)', fontWeight: 500, marginBottom: 6, letterSpacing: 1 }}>{fund.code}</div>
-                    <div style={{ fontSize: 13, fontWeight: 500, lineHeight: 1.4, color: 'var(--text)', maxWidth: 220 }}>{fund.name}</div>
-                    {fund.fundType && <div style={{ fontSize: 11, color: 'var(--text3)', marginTop: 5 }}>{fund.fundType}</div>}
-                  </div>
-                  <div style={{ flexShrink: 0, marginLeft: 12 }}>
-                    <RiskBar score={fund.riskScore || 0} />
-                  </div>
-                </div>
-
-                {/* Metrikler */}
-                <div className="fund-metrics" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 12, marginBottom: 20 }}>
-                  <div>
-                    <div style={{ fontSize: 10, color: 'var(--text3)', letterSpacing: 0.5, marginBottom: 4, fontWeight: 600 }}>AYLIK</div>
-                    <div style={{ fontSize: 18, fontWeight: 500, fontFamily: 'DM Mono, monospace', color: fund.monthlyReturn == null ? 'var(--text3)' : fund.monthlyReturn >= 0 ? 'var(--green)' : 'var(--red)' }}>
-                      {fund.monthlyReturn != null ? `${fund.monthlyReturn >= 0 ? '+' : ''}${fund.monthlyReturn.toFixed(2)}%` : '—'}
+                  {/* Üst: kod + isim + risk */}
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 16 }}>
+                    <div style={{ flex: 1, minWidth: 0 }}>
+                      <div style={{ fontFamily: 'DM Mono, monospace', fontSize: 11, color: 'var(--accent)', fontWeight: 500, marginBottom: 6, letterSpacing: 1 }}>{fund.code}</div>
+                      <div style={{ fontSize: 13, fontWeight: 500, lineHeight: 1.4, color: 'var(--text)', maxWidth: 200 }}>{fund.name}</div>
+                      {fund.fundType && <div style={{ fontSize: 11, color: 'var(--text3)', marginTop: 5 }}>{fund.fundType}</div>}
+                    </div>
+                    <div style={{ flexShrink: 0, marginLeft: 12 }}>
+                      <RiskBadge score={fund.riskScore || 0} />
                     </div>
                   </div>
-                  <div>
-                    <div style={{ fontSize: 10, color: 'var(--text3)', letterSpacing: 0.5, marginBottom: 4, fontWeight: 600 }}>YILLIK</div>
-                    <div style={{ fontSize: 18, fontWeight: 500, fontFamily: 'DM Mono, monospace', color: fund.yearlyReturn == null ? 'var(--text3)' : fund.yearlyReturn >= 0 ? 'var(--green)' : 'var(--red)' }}>
+
+                  {/* Yıllık getiri — büyük, odak nokta */}
+                  <div style={{ marginBottom: 16 }}>
+                    <div style={{ fontSize: 10, color: 'var(--text3)', letterSpacing: 0.5, marginBottom: 4, fontWeight: 600 }}>YILLIK GETİRİ</div>
+                    <div style={{ fontSize: 28, fontWeight: 600, fontFamily: 'DM Mono, monospace', letterSpacing: -0.5, color: yearColor, lineHeight: 1 }}>
                       {fund.yearlyReturn != null ? `${fund.yearlyReturn >= 0 ? '+' : ''}${fund.yearlyReturn.toFixed(2)}%` : '—'}
                     </div>
                   </div>
-                  <div className="fund-metrics-portfolio">
-                    <div style={{ fontSize: 10, color: 'var(--text3)', letterSpacing: 0.5, marginBottom: 4, fontWeight: 600 }}>PORTFÖY</div>
-                    <div style={{ fontSize: 18, fontWeight: 500, fontFamily: 'DM Mono, monospace', color: 'var(--text)' }}>
-                      {fund.totalValue ? fmt(fund.totalValue) : '—'}
-                    </div>
-                  </div>
-                </div>
 
-                {fund.aiInsights?.[0] && (
-                  <div style={{ marginTop: 'auto', borderTop: '1px solid var(--border)', paddingTop: 14, fontSize: 12, color: 'var(--text2)', lineHeight: 1.6, display: 'flex', gap: 8 }}>
-                    <span style={{ color: 'var(--accent)', flexShrink: 0, fontSize: 10, paddingTop: 2 }}>✦</span>
-                    <span>{fund.aiInsights[0]}</span>
+                  {/* Sparkline + Aylık/Portföy */}
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: 16 }}>
+                    <div style={{ display: 'flex', gap: 20 }}>
+                      <div>
+                        <div style={{ fontSize: 10, color: 'var(--text3)', letterSpacing: 0.5, marginBottom: 3, fontWeight: 600 }}>AYLIK</div>
+                        <div style={{ fontSize: 14, fontWeight: 500, fontFamily: 'DM Mono, monospace', color: monthColor }}>
+                          {fund.monthlyReturn != null ? `${fund.monthlyReturn >= 0 ? '+' : ''}${fund.monthlyReturn.toFixed(2)}%` : '—'}
+                        </div>
+                      </div>
+                      <div>
+                        <div style={{ fontSize: 10, color: 'var(--text3)', letterSpacing: 0.5, marginBottom: 3, fontWeight: 600 }}>PORTFÖY</div>
+                        <div style={{ fontSize: 14, fontWeight: 500, fontFamily: 'DM Mono, monospace', color: 'var(--text)' }}>
+                          {fund.totalValue ? fmt(fund.totalValue) : '—'}
+                        </div>
+                      </div>
+                    </div>
+                    {/* Sparkline */}
+                    {fund.priceHistory?.length > 2 && (
+                      <div style={{ opacity: isHovered ? 1 : 0.6, transition: 'opacity 0.2s' }}>
+                        <Sparkline history={fund.priceHistory} color={fund.yearlyReturn >= 0 ? '#00f080' : '#ff4444'} />
+                      </div>
+                    )}
                   </div>
-                )}
-                <div style={{ marginTop: 14, fontSize: 12, color: 'var(--text3)', display: 'flex', justifyContent: 'flex-end' }}>→</div>
-              </a>
-            ))}
+
+                  {/* AI insight */}
+                  {fund.aiInsights?.[0] && (
+                    <div style={{ marginTop: 'auto', borderTop: '1px solid var(--border)', paddingTop: 12, fontSize: 12, color: 'var(--text2)', lineHeight: 1.6, display: 'flex', gap: 8 }}>
+                      <span style={{ color: 'var(--accent)', flexShrink: 0, fontSize: 10, paddingTop: 2 }}>✦</span>
+                      <span>{fund.aiInsights[0]}</span>
+                    </div>
+                  )}
+                  <div style={{ marginTop: 12, fontSize: 12, color: isHovered ? 'var(--accent)' : 'var(--text3)', display: 'flex', justifyContent: 'flex-end', transition: 'color 0.2s' }}>→</div>
+                </a>
+              )
+            })}
           </div>
         )}
       </section>
