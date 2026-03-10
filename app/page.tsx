@@ -67,6 +67,9 @@ export default function Home() {
   const lowestRiskFund = funds.filter(f => f.riskScore).sort((a, b) => a.riskScore - b.riskScore)[0]
   const positiveFunds = funds.filter(f => f.monthlyReturn != null && f.monthlyReturn > 0).length
   const today = new Date().toLocaleDateString('tr-TR', { day: 'numeric', month: 'long' })
+  const biggestFund = funds.filter(f => f.totalValue).sort((a, b) => b.totalValue - a.totalValue)[0]
+  const bestMonthlyFund = funds.filter(f => f.monthlyReturn).sort((a, b) => b.monthlyReturn - a.monthlyReturn)[0]
+  const highestRiskFund = funds.filter(f => f.riskScore).sort((a, b) => b.riskScore - a.riskScore)[0]
 
   const [search, setSearch] = useState('')
   const [fundType, setFundType] = useState('')
@@ -172,6 +175,30 @@ export default function Home() {
               TEFAS canlı veri
             </div>
           </div>
+
+          <a href={`/fon/${biggestFund?.code?.toLowerCase()}`} style={{ textDecoration: 'none', background: 'rgba(255,152,0,0.04)', border: '1px solid rgba(255,152,0,0.15)', borderRadius: 12, padding: '14px 18px', display: 'flex', flexDirection: 'column', gap: 4, transition: 'border-color 0.2s', minWidth: 160 }}
+            onMouseOver={e => (e.currentTarget.style.borderColor = 'rgba(255,152,0,0.4)')}
+            onMouseOut={e => (e.currentTarget.style.borderColor = 'rgba(255,152,0,0.15)')}>
+            <div style={{ fontSize: 9, color: 'var(--text3)', letterSpacing: 0.8 }}>EN BÜYÜK FON</div>
+            <div style={{ fontSize: 20, fontWeight: 500, color: '#ff9800', fontFamily: 'DM Mono, monospace', letterSpacing: -0.5 }}>{fmt(biggestFund?.totalValue)}</div>
+            <div style={{ fontSize: 11, color: 'var(--text2)' }}>{biggestFund?.code} · {biggestFund?.name?.split(' ').slice(0,3).join(' ')}</div>
+          </a>
+
+          <a href={`/fon/${bestMonthlyFund?.code?.toLowerCase()}`} style={{ textDecoration: 'none', background: 'rgba(131,56,236,0.04)', border: '1px solid rgba(131,56,236,0.15)', borderRadius: 12, padding: '14px 18px', display: 'flex', flexDirection: 'column', gap: 4, transition: 'border-color 0.2s', minWidth: 150 }}
+            onMouseOver={e => (e.currentTarget.style.borderColor = 'rgba(131,56,236,0.4)')}
+            onMouseOut={e => (e.currentTarget.style.borderColor = 'rgba(131,56,236,0.15)')}>
+            <div style={{ fontSize: 9, color: 'var(--text3)', letterSpacing: 0.8 }}>BU AY EN İYİ</div>
+            <div style={{ fontSize: 20, fontWeight: 500, color: '#8338EC', fontFamily: 'DM Mono, monospace', letterSpacing: -0.5 }}>{bestMonthlyFund?.monthlyReturn >= 0 ? '+' : ''}{bestMonthlyFund?.monthlyReturn?.toFixed(1)}%</div>
+            <div style={{ fontSize: 11, color: 'var(--text2)' }}>{bestMonthlyFund?.code} · {bestMonthlyFund?.name?.split(' ').slice(0,3).join(' ')}</div>
+          </a>
+
+          <a href={`/fon/${highestRiskFund?.code?.toLowerCase()}`} style={{ textDecoration: 'none', background: 'rgba(255,68,68,0.04)', border: '1px solid rgba(255,68,68,0.12)', borderRadius: 12, padding: '14px 18px', display: 'flex', flexDirection: 'column', gap: 4, transition: 'border-color 0.2s', minWidth: 150 }}
+            onMouseOver={e => (e.currentTarget.style.borderColor = 'rgba(255,68,68,0.35)')}
+            onMouseOut={e => (e.currentTarget.style.borderColor = 'rgba(255,68,68,0.12)')}>
+            <div style={{ fontSize: 9, color: 'var(--text3)', letterSpacing: 0.8 }}>EN YÜKSEK RİSK</div>
+            <div style={{ fontSize: 20, fontWeight: 500, color: '#ff4444', fontFamily: 'DM Mono, monospace', letterSpacing: -0.5 }}>{highestRiskFund?.riskScore}/7</div>
+            <div style={{ fontSize: 11, color: 'var(--text2)' }}>{highestRiskFund?.code} · {highestRiskFund?.fundType?.split(' ').slice(0,2).join(' ')}</div>
+          </a>
         </div>
       </section>
 
