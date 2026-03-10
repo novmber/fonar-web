@@ -1,18 +1,7 @@
-import fs from 'fs'
-import path from 'path'
-
-function getFunds() {
-  try {
-    const filePath = path.join(process.cwd(), 'public', 'funds.json')
-    const data = fs.readFileSync(filePath, 'utf-8')
-    return JSON.parse(data)
-  } catch {
-    return []
-  }
-}
+import fundsData from '../public/funds.json'
 
 export default function Home() {
-  const funds = getFunds()
+  const funds: any[] = fundsData
 
   return (
     <main style={{ minHeight: '100vh', background: '#020817', color: '#f1f5f9', fontFamily: 'system-ui, sans-serif' }}>
