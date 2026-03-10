@@ -9,9 +9,9 @@
   --border: rgba(255,255,255,0.07);
   --border2: rgba(255,255,255,0.12);
   --text: #f5f5f5;
-  --text2: #888;
+  --text2: #999;
   --text3: #555;
-  --green: #00e676;
+  --green: #00f080;
   --red: #ff4444;
   --accent: #e8ff00;
   --accent2: rgba(232,255,0,0.08);
@@ -38,3 +38,20 @@ a { color: inherit; text-decoration: none; }
 .fade-up-2 { animation: fadeUp 0.7s cubic-bezier(0.16,1,0.3,1) 0.1s both; }
 .fade-up-3 { animation: fadeUp 0.7s cubic-bezier(0.16,1,0.3,1) 0.2s both; }
 .fade-up-4 { animation: fadeUp 0.7s cubic-bezier(0.16,1,0.3,1) 0.3s both; }
+
+/* ── Responsive ── */
+@media (max-width: 640px) {
+  .nav-padding { padding: 0 20px !important; }
+  .hero-section { padding: 60px 20px 40px !important; }
+  .filter-section { padding: 24px 20px 0 !important; }
+  .funds-section { padding: 16px 20px 48px !important; }
+  .funds-grid { grid-template-columns: 1fr !important; }
+  .fund-card { padding: 20px !important; }
+  .fund-metrics { grid-template-columns: 1fr 1fr !important; }
+  .fund-metrics-portfolio { grid-column: 1 / -1 !important; }
+  .stats-bar > div { border-right: none !important; border-bottom: 1px solid var(--border); }
+  .stats-bar > div:last-child { border-bottom: none !important; }
+  .filter-bar { flex-direction: column !important; align-items: stretch !important; }
+  .filter-bar input, .filter-bar select, .filter-bar button { width: 100% !important; }
+  .filter-count { margin-left: 0 !important; }
+}
