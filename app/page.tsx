@@ -1,202 +1,228 @@
+'use client'
 import fundsData from '../public/funds.json'
-
-export function generateStaticParams() {
-  return (fundsData as any[]).filter((f: any) => f.code).map((f: any) => ({ code: f.code.toLowerCase() }))
-}
+import { useState } from 'react'
 
 function fmt(v: number) {
-  if (v >= 1e9) return `₺${(v/1e9).toFixed(2)}B`
-  if (v >= 1e6) return `₺${(v/1e6).toFixed(1)}M`
+  if (v >= 1e9) return `₺${(v/1e9).toFixed(1)}B`
+  if (v >= 1e6) return `₺${(v/1e6).toFixed(0)}M`
   return `₺${v.toFixed(0)}`
 }
 
-function RiskGauge({ score }: { score: number }) {
-  const pct = ((score || 0) / 7) * 100
+function RiskBar({ score }: { score: number }) {
   const color = score >= 6 ? '#ff4444' : score >= 4 ? '#ff9800' : '#00f080'
   return (
     <div>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
-        <div style={{ fontSize: 10, color: '#444', letterSpacing: 0.5 }}>RİSK SKORU</div>
-        <div style={{ fontFamily: 'DM Mono, monospace', fontSize: 18, fontWeight: 400, color }}>
-          {score || '—'}<span style={{ fontSize: 12, color: '#444' }}>/7</span>
-        </div>
-      </div>
-      <div style={{ height: 6, background: 'rgba(255,255,255,0.07)', borderRadius: 100, overflow: 'hidden' }}>
-        <div style={{
-          height: '100%', width: `${pct}%`, borderRadius: 100,
-          background: `linear-gradient(90deg, #00f080 0%, #ff9800 60%, #ff4444 100%)`,
-          clipPath: `inset(0 ${100 - pct}% 0 0)`,
-          transition: 'width 0.5s ease'
-        }} />
+      <div style={{ fontSize: 10, color: 'var(--text3)', marginBottom: 4 }}>Risk</div>
+      <div style={{ display: 'flex', gap: 3, alignItems: 'center' }}>
+        {Array.from({ length: 7 }, (_, i) => (
+          <div key={i} style={{
+            width: 4, height: 14, borderRadius: 2,
+            background: i < (score || 0) ? color : 'var(--border2)',
+            transition: 'background 0.2s'
+          }} />
+        ))}
+        <span style={{ fontSize: 10, color: 'var(--text3)', marginLeft: 4, fontFamily: 'DM Mono, monospace' }}>{score}/7</span>
       </div>
     </div>
   )
 }
 
-export default async function FundPage({ params }: { params: Promise<{ code: string }> }) {
-  const { code } = await params
-  const fund = (fundsData as any[]).find((f: any) => f.code?.toLowerCase() === code.toLowerCase())
-  if (!fund) return (
-    <main style={{ minHeight: '100vh', background: '#080808', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-      <div style={{ textAlign: 'center', color: '#555' }}>
-        <div style={{ fontSize: 48, marginBottom: 16 }}>🔍</div>
-        <div style={{ fontSize: 16, marginBottom: 8, color: '#888' }}>Fon bulunamadı.</div>
-        <a href="/" style={{ fontSize: 13, color: '#e8ff00' }}>← Tüm fonlara dön</a>
-      </div>
-    </main>
-  )
+export default function Home() {
+  const funds: any[] = fundsData
+  const totalAum = funds.reduce((s, f) => s + (f.totalValue || 0), 0)
+  const avgReturn = funds.filter(f => f.yearlyReturn).reduce((s, f) => s + f.yearlyReturn, 0) / funds.filter(f => f.yearlyReturn).length
+
+  const [search, setSearch] = useState('')
+  const [fundType, setFundType] = useState('')
+  const [risk, setRisk] = useState('')
+  const [sort, setSort] = useState('')
+
+  const fundTypes = [...new Set(funds.map(f => f.fundType).filter(Boolean))]
+
+  let filtered = funds.filter(f => {
+    if (search && !f.code?.toLowerCase().includes(search.toLowerCase()) && !f.name?.toLowerCase().includes(search.toLowerCase())) return false
+    if (fundType && f.fundType !== fundType) return false
+    if (risk && f.riskScore !== parseInt(risk)) return false
+    return true
+  })
+
+  if (sort === 'monthly') filtered = [...filtered].sort((a, b) => (b.monthlyReturn || -999) - (a.monthlyReturn || -999))
+  if (sort === 'yearly') filtered = [...filtered].sort((a, b) => (b.yearlyReturn || -999) - (a.yearlyReturn || -999))
+  if (sort === 'risk_asc') filtered = [...filtered].sort((a, b) => (a.riskScore || 0) - (b.riskScore || 0))
+  if (sort === 'risk_desc') filtered = [...filtered].sort((a, b) => (b.riskScore || 0) - (a.riskScore || 0))
+
+  const hasFilters = search || fundType || risk || sort
 
   return (
-    <main style={{ minHeight: '100vh', background: '#080808', color: '#f5f5f5', fontFamily: 'DM Sans, sans-serif' }}>
+    <main style={{ minHeight: '100vh', background: 'var(--bg)' }}>
 
       {/* NAV */}
-      <nav style={{ position: 'fixed', top: 0, left: 0, right: 0, zIndex: 100, borderBottom: '1px solid rgba(255,255,255,0.07)', background: 'rgba(8,8,8,0.9)', backdropFilter: 'blur(20px)', padding: '0 40px', height: 56, display: 'flex', alignItems: 'center', gap: 16 }}>
-        <a href="/" style={{ fontSize: 13, color: '#555', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 6 }}>
-          <span>←</span> <span>Tüm Fonlar</span>
-        </a>
-        <div style={{ width: 1, height: 16, background: 'rgba(255,255,255,0.1)' }} />
-        <span style={{ fontWeight: 700, fontSize: 14, letterSpacing: 3 }}>FONAR</span>
-        <div style={{ width: 1, height: 16, background: 'rgba(255,255,255,0.1)' }} />
-        <span style={{ fontFamily: 'DM Mono, monospace', fontSize: 12, color: '#e8ff00', letterSpacing: 1, fontWeight: 500 }}>{fund.code}</span>
+      <nav className="nav-padding" style={{ position: 'fixed', top: 0, left: 0, right: 0, zIndex: 100, borderBottom: '1px solid var(--border)', background: 'rgba(8,8,8,0.85)', backdropFilter: 'blur(20px)', padding: '0 40px', height: 56, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+        <div style={{ display: 'flex', alignItems: 'center' }}>
+          <span style={{ fontWeight: 700, fontSize: 16, letterSpacing: 3, color: 'var(--text)' }}>FONAR</span>
+        </div>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 32, fontSize: 13, color: 'var(--text2)' }}>
+          <span>{funds.length} fon</span>
+          <span style={{ color: 'var(--green)', display: 'flex', alignItems: 'center', gap: 6 }}>
+            <span style={{ display: 'inline-block', width: 6, height: 6, borderRadius: '50%', background: 'var(--green)', animation: 'pulse 2s infinite' }} />
+            Canlı
+          </span>
+        </div>
       </nav>
 
-      <div style={{ maxWidth: 900, margin: '0 auto', padding: '80px 40px 60px' }}>
-
-        {/* HEADER */}
-        <div style={{ marginBottom: 40 }}>
-          {fund.fundType && <div style={{ fontSize: 11, color: '#555', letterSpacing: 1, marginBottom: 12 }}>{fund.fundType.toUpperCase()}</div>}
-          <h1 style={{ fontSize: 'clamp(20px, 3vw, 32px)', fontWeight: 400, lineHeight: 1.2, letterSpacing: -0.5, marginBottom: 12 }}>{fund.name}</h1>
-          {/* Son güncelleme - daha belirgin */}
-          <div style={{ display: 'inline-flex', alignItems: 'center', gap: 6, background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: 8, padding: '5px 12px' }}>
-            <span style={{ display: 'inline-block', width: 6, height: 6, borderRadius: '50%', background: '#00f080' }} />
-            <span style={{ fontSize: 12, color: '#888', fontFamily: 'DM Mono, monospace' }}>Son güncelleme: {fund.latestDate}</span>
-          </div>
-        </div>
-
-        {/* TEMEL BİLGİLER */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))', gap: 1, background: 'rgba(255,255,255,0.07)', borderRadius: 16, overflow: 'hidden', marginBottom: 1 }}>
-          {[
-            { label: 'Pay Fiyatı', value: `${fund.unitPrice?.toFixed(6)} ₺` },
-            { label: 'Portföy', value: fund.totalValue ? fmt(fund.totalValue) : '—' },
-            { label: 'Yatırımcı', value: fund.participantCount?.toLocaleString('tr-TR') || '—' },
-          ].map(item => (
-            <div key={item.label} style={{ background: '#0f0f0f', padding: '20px 24px' }}>
-              <div style={{ fontSize: 10, color: '#444', letterSpacing: 0.5, marginBottom: 8, fontWeight: 600 }}>{item.label.toUpperCase()}</div>
-              <div style={{ fontWeight: 400, fontSize: 18, fontFamily: 'DM Mono, monospace' }}>{item.value}</div>
-            </div>
+      {/* TICKER */}
+      <div style={{ marginTop: 56, borderBottom: '1px solid var(--border)', background: 'var(--bg2)', overflow: 'hidden', height: 36, display: 'flex', alignItems: 'center' }}>
+        <div style={{ display: 'flex', animation: 'ticker 30s linear infinite', whiteSpace: 'nowrap' }}>
+          {[...funds, ...funds].map((f, i) => (
+            <span key={i} style={{ padding: '0 32px', fontSize: 12, color: 'var(--text2)', borderRight: '1px solid var(--border)', display: 'inline-flex', alignItems: 'center', gap: 10, height: 36 }}>
+              <span style={{ color: 'var(--text)', fontFamily: 'DM Mono, monospace', fontWeight: 500, fontSize: 11 }}>{f.code}</span>
+              {f.monthlyReturn != null && (
+                <span style={{ color: f.monthlyReturn >= 0 ? 'var(--green)' : 'var(--red)', fontFamily: 'DM Mono, monospace', fontSize: 11 }}>
+                  {f.monthlyReturn >= 0 ? '+' : ''}{f.monthlyReturn?.toFixed(2)}%
+                </span>
+              )}
+            </span>
           ))}
-          {/* Risk - ayrı kart, daha belirgin */}
-          <div style={{ background: '#0f0f0f', padding: '20px 24px' }}>
-            <RiskGauge score={fund.riskScore} />
-          </div>
-        </div>
-
-        {/* GETİRİ */}
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 1, background: 'rgba(255,255,255,0.07)', borderRadius: 16, overflow: 'hidden', margin: '1px 0 28px' }}>
-          <div style={{ background: '#0f0f0f', padding: '20px 20px' }}>
-            <div style={{ fontSize: 10, color: '#444', letterSpacing: 1, marginBottom: 10, fontWeight: 600 }}>AYLIK GETİRİ</div>
-            <div style={{ fontSize: 'clamp(24px, 6vw, 40px)', fontWeight: 300, fontFamily: 'DM Mono, monospace', letterSpacing: -1, color: fund.monthlyReturn == null ? '#333' : fund.monthlyReturn >= 0 ? '#00f080' : '#ff4444', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-              {fund.monthlyReturn != null ? `${fund.monthlyReturn >= 0 ? '+' : ''}${fund.monthlyReturn.toFixed(2)}%` : '—'}
-            </div>
-          </div>
-          <div style={{ background: '#0f0f0f', padding: '20px 20px' }}>
-            <div style={{ fontSize: 10, color: '#444', letterSpacing: 1, marginBottom: 10, fontWeight: 600 }}>YILLIK GETİRİ</div>
-            <div style={{ fontSize: 'clamp(24px, 6vw, 40px)', fontWeight: 300, fontFamily: 'DM Mono, monospace', letterSpacing: -1, color: fund.yearlyReturn == null ? '#333' : fund.yearlyReturn >= 0 ? '#00f080' : '#ff4444', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-              {fund.yearlyReturn != null ? `${fund.yearlyReturn >= 0 ? '+' : ''}${fund.yearlyReturn.toFixed(2)}%` : '—'}
-            </div>
-          </div>
-        </div>
-
-        {/* PORTFÖY DAĞILIMI */}
-        {fund.portfolioItems?.length > 0 && (() => {
-          const COLORS = ['#e8ff00','#00f080','#00b8d4','#ff6b6b','#ff9800','#b388ff','#f06292','#80cbc4']
-          const items = fund.portfolioItems
-          const total = items.reduce((s: number, i: any) => s + (i.value || 0), 0)
-          let cumAngle = -90
-          const slices = items.map((item: any, idx: number) => {
-            const pct = (item.value || 0) / total
-            const startAngle = cumAngle
-            cumAngle += pct * 360
-            return { ...item, pct, startAngle, endAngle: cumAngle, color: COLORS[idx % COLORS.length] }
-          })
-          const polarToCartesian = (cx: number, cy: number, r: number, deg: number) => {
-            const rad = (deg * Math.PI) / 180
-            return { x: cx + r * Math.cos(rad), y: cy + r * Math.sin(rad) }
-          }
-          const describeArc = (cx: number, cy: number, r: number, start: number, end: number) => {
-            const s = polarToCartesian(cx, cy, r, start)
-            const e = polarToCartesian(cx, cy, r, end)
-            const large = end - start > 180 ? 1 : 0
-            return `M ${cx} ${cy} L ${s.x} ${s.y} A ${r} ${r} 0 ${large} 1 ${e.x} ${e.y} Z`
-          }
-          return (
-            <div style={{ background: '#0f0f0f', border: '1px solid rgba(255,255,255,0.07)', borderRadius: 16, padding: '24px 28px', marginBottom: 20 }}>
-              <div style={{ fontSize: 11, color: '#444', letterSpacing: 1, marginBottom: 24, fontWeight: 600 }}>PORTFÖY DAĞILIMI</div>
-              {/* Mobilde dikey, masaüstünde yatay */}
-              <div style={{ display: 'flex', gap: 32, alignItems: 'flex-start', flexWrap: 'wrap', justifyContent: 'center' }}>
-                <svg width={180} height={180} viewBox="0 0 180 180" style={{ flexShrink: 0 }}>
-                  {slices.map((slice: any, i: number) => (
-                    <path key={i} d={describeArc(90, 90, 80, slice.startAngle, slice.endAngle - 0.3)} fill={slice.color} opacity={0.85} />
-                  ))}
-                  <circle cx={90} cy={90} r={48} fill="#0f0f0f" />
-                  <text x={90} y={85} textAnchor="middle" fill="#555" fontSize={10} fontFamily="DM Mono, monospace">{items.length} varlık</text>
-                  <text x={90} y={100} textAnchor="middle" fill="#888" fontSize={11} fontFamily="DM Mono, monospace">{slices[0]?.value?.toFixed(1)}%</text>
-                </svg>
-                <div style={{ flex: 1, minWidth: 200 }}>
-                  {slices.map((slice: any, i: number) => (
-                    <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 10 }}>
-                      <div style={{ width: 10, height: 10, borderRadius: 2, background: slice.color, flexShrink: 0 }} />
-                      <div style={{ flex: 1, fontSize: 13, color: '#888' }}>{slice.name}</div>
-                      <div style={{ fontFamily: 'DM Mono, monospace', fontSize: 12, color: '#f5f5f5' }}>{slice.value?.toFixed(1)}%</div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          )
-        })()}
-
-        {/* AI TESPİTLER */}
-        {fund.aiInsights?.length > 0 && (
-          <div style={{ background: '#0f0f0f', border: '1px solid rgba(255,255,255,0.07)', borderRadius: 16, padding: '24px 28px', marginBottom: 20 }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 20 }}>
-              <span style={{ color: '#e8ff00', fontSize: 12 }}>✦</span>
-              <div style={{ fontSize: 11, color: '#444', letterSpacing: 1, fontWeight: 600 }}>AI TESPİTLERİ</div>
-            </div>
-            {fund.aiInsights.map((insight: string, i: number) => (
-              <div key={i} style={{ padding: '12px 0', borderBottom: i < fund.aiInsights.length - 1 ? '1px solid rgba(255,255,255,0.05)' : 'none', fontSize: 14, color: '#888', lineHeight: 1.7, display: 'flex', gap: 12, alignItems: 'flex-start' }}>
-                <span style={{ color: '#e8ff00', flexShrink: 0, fontSize: 10, paddingTop: 4 }}>◆</span>
-                {insight}
-              </div>
-            ))}
-          </div>
-        )}
-
-        {/* DEXTER */}
-        {fund.dexterRecommendations?.length > 0 && (
-          <div style={{ background: '#0f0f0f', border: '1px solid rgba(255,255,255,0.07)', borderRadius: 16, padding: '24px 28px', marginBottom: 20 }}>
-            <div style={{ fontSize: 11, color: '#444', letterSpacing: 1, marginBottom: 20, fontWeight: 600 }}>DEXTER ANALİZİ</div>
-            {fund.dexterRecommendations.map((rec: string, i: number) => (
-              <div key={i} style={{ padding: '12px 0', borderBottom: i < fund.dexterRecommendations.length - 1 ? '1px solid rgba(255,255,255,0.05)' : 'none', fontSize: 14, color: '#888', lineHeight: 1.7, display: 'flex', gap: 12 }}>
-                <span style={{ fontFamily: 'DM Mono, monospace', fontSize: 11, color: '#555', flexShrink: 0, paddingTop: 2 }}>0{i+1}</span>
-                {rec}
-              </div>
-            ))}
-          </div>
-        )}
-
-        {/* TWEET ÖZETİ */}
-        {fund.twitterSummary && (
-          <div style={{ background: '#0a0a0a', border: '1px solid rgba(255,255,255,0.07)', borderRadius: 16, padding: '24px 28px', marginBottom: 20 }}>
-            <div style={{ fontSize: 11, color: '#444', letterSpacing: 1, marginBottom: 20, fontWeight: 600 }}>FON ÖZETİ</div>
-            <pre style={{ color: '#666', fontSize: 13, lineHeight: 1.8, whiteSpace: 'pre-wrap', margin: 0, fontFamily: 'DM Mono, monospace' }}>{fund.twitterSummary}</pre>
-          </div>
-        )}
-
-        <div style={{ paddingTop: 32, borderTop: '1px solid rgba(255,255,255,0.05)', fontSize: 11, color: '#333', lineHeight: 1.8 }}>
-          ⚠️ Bu sayfadaki bilgiler yalnızca bilgilendirme amaçlıdır. Yatırım tavsiyesi değildir.
         </div>
       </div>
+
+      {/* HERO */}
+      <section className="hero-section" style={{ padding: '80px 40px 60px', maxWidth: 1200, margin: '0 auto' }}>
+        <div className="fade-up" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: 'var(--accent2)', border: '1px solid rgba(232,255,0,0.2)', borderRadius: 100, padding: '5px 14px', fontSize: 11, color: 'var(--accent)', fontWeight: 500, marginBottom: 28, letterSpacing: 0.5 }}>
+          ✦ YAPAY ZEKA DESTEKLİ ANALİZ
+        </div>
+        <h1 className="fade-up-2 hero-h1" style={{ fontSize: 'clamp(32px, 5vw, 64px)', fontWeight: 300, lineHeight: 1.1, letterSpacing: -1.5, marginBottom: 24, color: 'var(--text)' }}>
+          Karar vermeden önce,<br />
+          <em style={{ fontStyle: 'italic', fontWeight: 300 }}>analiz et.</em>
+        </h1>
+        <p className="fade-up-3" style={{ fontSize: 15, color: 'var(--text2)', maxWidth: 420, lineHeight: 1.7, marginBottom: 48 }}>
+          KAP raporları ve TEFAS verileriyle beslenen AI analizleri. Her fon için derinlemesine içgörü.
+        </p>
+
+        {/* STATS */}
+        <div className="fade-up-4 stats-bar" style={{ display: 'flex', gap: 1, background: 'var(--border)', borderRadius: 16, overflow: 'hidden', maxWidth: 560 }}>
+          {[
+            { label: 'Analiz Edilen Fon', value: funds.length.toString() },
+            { label: 'Toplam AUM', value: fmt(totalAum) },
+            { label: 'Ort. Yıllık Getiri', value: `+${avgReturn?.toFixed(1)}%` },
+          ].map((s, i) => (
+            <div key={i} style={{ flex: 1, background: 'var(--bg3)', padding: '18px 20px', borderRight: i < 2 ? '1px solid var(--border)' : 'none' }}>
+              <div style={{ fontSize: 10, color: 'var(--text3)', marginBottom: 6, letterSpacing: 0.5 }}>{s.label.toUpperCase()}</div>
+              <div style={{ fontSize: 20, fontWeight: 500, letterSpacing: -0.5, fontFamily: 'DM Mono, monospace' }}>{s.value}</div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <div style={{ height: 1, background: 'var(--border)', maxWidth: 1200, margin: '0 auto' }} />
+
+      {/* FİLTRELEME */}
+      <section className="filter-section" style={{ padding: '32px 40px 0', maxWidth: 1200, margin: '0 auto' }}>
+        <div className="filter-bar" style={{ display: 'flex', gap: 10, flexWrap: 'wrap', alignItems: 'center' }}>
+          <input
+            value={search}
+            onChange={e => setSearch(e.target.value)}
+            placeholder="Fon kodu veya isim ara..."
+            style={{ background: 'var(--bg3)', border: '1px solid var(--border2)', borderRadius: 12, padding: '10px 16px', fontSize: 13, color: 'var(--text)', outline: 'none', width: 220, fontFamily: 'DM Sans, sans-serif' }}
+          />
+          <select value={fundType} onChange={e => setFundType(e.target.value)}
+            style={{ background: 'var(--bg3)', border: '1px solid var(--border2)', borderRadius: 12, padding: '10px 14px', fontSize: 13, color: fundType ? 'var(--text)' : 'var(--text3)', outline: 'none', cursor: 'pointer', fontFamily: 'DM Sans, sans-serif' }}>
+            <option value="">Tüm Türler</option>
+            {fundTypes.map(t => <option key={t} value={t}>{t}</option>)}
+          </select>
+          <select value={risk} onChange={e => setRisk(e.target.value)}
+            style={{ background: 'var(--bg3)', border: '1px solid var(--border2)', borderRadius: 12, padding: '10px 14px', fontSize: 13, color: risk ? 'var(--text)' : 'var(--text3)', outline: 'none', cursor: 'pointer', fontFamily: 'DM Sans, sans-serif' }}>
+            <option value="">Tüm Riskler</option>
+            {[1,2,3,4,5,6,7].map(r => <option key={r} value={r}>Risk {r}/7</option>)}
+          </select>
+          <select value={sort} onChange={e => setSort(e.target.value)}
+            style={{ background: 'var(--bg3)', border: '1px solid var(--border2)', borderRadius: 12, padding: '10px 14px', fontSize: 13, color: sort ? 'var(--text)' : 'var(--text3)', outline: 'none', cursor: 'pointer', fontFamily: 'DM Sans, sans-serif' }}>
+            <option value="">Sırala</option>
+            <option value="monthly">Aylık Getiri ↓</option>
+            <option value="yearly">Yıllık Getiri ↓</option>
+            <option value="risk_asc">Risk ↑</option>
+            <option value="risk_desc">Risk ↓</option>
+          </select>
+          {hasFilters && (
+            <button onClick={() => { setSearch(''); setFundType(''); setRisk(''); setSort('') }}
+              style={{ background: 'transparent', border: '1px solid var(--border2)', borderRadius: 12, padding: '10px 14px', fontSize: 13, color: 'var(--text3)', cursor: 'pointer' }}>
+              ✕ Temizle
+            </button>
+          )}
+          <span className="filter-count" style={{ marginLeft: 'auto', fontSize: 12, color: 'var(--text3)', fontFamily: 'DM Mono, monospace' }}>{filtered.length} fon</span>
+        </div>
+      </section>
+
+      {/* FUNDS */}
+      <section className="funds-section" style={{ padding: '24px 40px 60px', maxWidth: 1200, margin: '0 auto' }}>
+        {filtered.length === 0 ? (
+          <div style={{ textAlign: 'center', padding: '80px 0' }}>
+            <div style={{ fontSize: 32, marginBottom: 12 }}>🔍</div>
+            <div style={{ color: 'var(--text3)', fontSize: 14, marginBottom: 8 }}>Sonuç bulunamadı.</div>
+            <div style={{ color: 'var(--text3)', fontSize: 12 }}>Filtrelerinizi değiştirerek tekrar deneyin.</div>
+          </div>
+        ) : (
+          <div className="funds-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(360px, 1fr))', gap: 1, background: 'var(--border)', borderRadius: 20, overflow: 'hidden' }}>
+            {filtered.map((fund: any) => (
+              <a key={fund.code} href={`/fon/${fund.code?.toLowerCase()}`}
+                className="fund-card"
+                style={{ background: 'var(--bg2)', padding: '28px 32px', display: 'block', transition: 'background 0.2s' }}
+                onMouseOver={e => (e.currentTarget.style.background = 'var(--bg3)')}
+                onMouseOut={e => (e.currentTarget.style.background = 'var(--bg2)')}>
+
+                {/* Kart Başlık */}
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 20 }}>
+                  <div style={{ flex: 1, minWidth: 0 }}>
+                    <div style={{ fontFamily: 'DM Mono, monospace', fontSize: 11, color: 'var(--accent)', fontWeight: 500, marginBottom: 6, letterSpacing: 1 }}>{fund.code}</div>
+                    <div style={{ fontSize: 13, fontWeight: 500, lineHeight: 1.4, color: 'var(--text)', maxWidth: 220 }}>{fund.name}</div>
+                    {fund.fundType && <div style={{ fontSize: 11, color: 'var(--text3)', marginTop: 5 }}>{fund.fundType}</div>}
+                  </div>
+                  <div style={{ flexShrink: 0, marginLeft: 12 }}>
+                    <RiskBar score={fund.riskScore || 0} />
+                  </div>
+                </div>
+
+                {/* Metrikler */}
+                <div className="fund-metrics" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 12, marginBottom: 20 }}>
+                  <div>
+                    <div style={{ fontSize: 10, color: 'var(--text3)', letterSpacing: 0.5, marginBottom: 4, fontWeight: 600 }}>AYLIK</div>
+                    <div style={{ fontSize: 18, fontWeight: 500, fontFamily: 'DM Mono, monospace', color: fund.monthlyReturn == null ? 'var(--text3)' : fund.monthlyReturn >= 0 ? 'var(--green)' : 'var(--red)' }}>
+                      {fund.monthlyReturn != null ? `${fund.monthlyReturn >= 0 ? '+' : ''}${fund.monthlyReturn.toFixed(2)}%` : '—'}
+                    </div>
+                  </div>
+                  <div>
+                    <div style={{ fontSize: 10, color: 'var(--text3)', letterSpacing: 0.5, marginBottom: 4, fontWeight: 600 }}>YILLIK</div>
+                    <div style={{ fontSize: 18, fontWeight: 500, fontFamily: 'DM Mono, monospace', color: fund.yearlyReturn == null ? 'var(--text3)' : fund.yearlyReturn >= 0 ? 'var(--green)' : 'var(--red)' }}>
+                      {fund.yearlyReturn != null ? `${fund.yearlyReturn >= 0 ? '+' : ''}${fund.yearlyReturn.toFixed(2)}%` : '—'}
+                    </div>
+                  </div>
+                  <div className="fund-metrics-portfolio">
+                    <div style={{ fontSize: 10, color: 'var(--text3)', letterSpacing: 0.5, marginBottom: 4, fontWeight: 600 }}>PORTFÖY</div>
+                    <div style={{ fontSize: 18, fontWeight: 500, fontFamily: 'DM Mono, monospace', color: 'var(--text)' }}>
+                      {fund.totalValue ? fmt(fund.totalValue) : '—'}
+                    </div>
+                  </div>
+                </div>
+
+                {fund.aiInsights?.[0] && (
+                  <div style={{ borderTop: '1px solid var(--border)', paddingTop: 14, fontSize: 12, color: 'var(--text2)', lineHeight: 1.6, display: 'flex', gap: 8 }}>
+                    <span style={{ color: 'var(--accent)', flexShrink: 0, fontSize: 10, paddingTop: 2 }}>✦</span>
+                    <span>{fund.aiInsights[0]}</span>
+                  </div>
+                )}
+                <div style={{ marginTop: 14, fontSize: 12, color: 'var(--text3)', display: 'flex', justifyContent: 'flex-end' }}>→</div>
+              </a>
+            ))}
+          </div>
+        )}
+      </section>
+
+      <footer style={{ borderTop: '1px solid var(--border)', padding: '32px 40px', textAlign: 'center' }}>
+        <p style={{ fontSize: 11, color: 'var(--text3)', maxWidth: 600, margin: '0 auto', lineHeight: 1.8 }}>
+          ⚠️ Bu platformdaki içerikler yalnızca bilgilendirme amaçlıdır. Yatırım tavsiyesi değildir.
+          Geçmiş performans gelecekteki getirilerin garantisi değildir.
+        </p>
+      </footer>
     </main>
   )
 }
