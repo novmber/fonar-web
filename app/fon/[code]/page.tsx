@@ -32,9 +32,13 @@ export function generateStaticParams() {
 }
 
 function fmt(v: number) {
-  if (v >= 1e9) return `₺${(v/1e9).toFixed(2)}B`
-  if (v >= 1e6) return `₺${(v/1e6).toFixed(1)}M`
-  return `₺${v.toFixed(0)}`
+  if (v >= 1e9) return `₺${(v/1e9).toLocaleString('tr-TR', {minimumFractionDigits:2, maximumFractionDigits:2})}B`
+  if (v >= 1e6) return `₺${(v/1e6).toLocaleString('tr-TR', {minimumFractionDigits:1, maximumFractionDigits:1})}M`
+  return `₺${v.toLocaleString('tr-TR')}`
+}
+
+function fmtPrice(v: number) {
+  return v.toLocaleString('tr-TR', { minimumFractionDigits: 6, maximumFractionDigits: 6 })
 }
 
 function RiskGauge({ score }: { score: number }) {
@@ -113,7 +117,7 @@ export default async function FundPage({ params }: { params: Promise<{ code: str
         {/* TEMEL BİLGİLER */}
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))', gap: 1, background: 'rgba(255,255,255,0.07)', borderRadius: 16, overflow: 'hidden', marginBottom: 1 }}>
           {[
-            { label: 'Pay Fiyatı', value: `${fund.unitPrice?.toFixed(6)} ₺` },
+            { label: 'Pay Fiyatı', value: `${fund.unitPrice?.toLocaleString('tr-TR', {minimumFractionDigits: 6, maximumFractionDigits: 6})} ₺` },
             { label: 'Portföy', value: fund.totalValue ? fmt(fund.totalValue) : '—' },
             { label: 'Yatırımcı', value: fund.participantCount?.toLocaleString('tr-TR') || '—' },
           ].map(item => (
