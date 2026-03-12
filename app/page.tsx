@@ -123,12 +123,22 @@ export default function Home() {
 
       {/* TICKER — tıklanabilir */}
       <div style={{ marginTop: 56, borderBottom: '1px solid var(--border)', background: 'var(--bg2)', overflow: 'hidden', height: 36, display: 'flex', alignItems: 'center' }}>
-        <div style={{ display: 'flex', animation: 'ticker 40s linear infinite', whiteSpace: 'nowrap' }}>
+        <div className='ticker-wrapper' style={{ display: 'flex', animation: 'ticker 80s linear infinite', whiteSpace: 'nowrap' }}>
           {[...funds, ...funds].map((f, i) => (
             <a key={i} href={`/fon/${f.code?.toLowerCase()}`}
-              style={{ padding: '0 28px', fontSize: 12, color: 'var(--text2)', borderRight: '1px solid var(--border)', display: 'inline-flex', alignItems: 'center', gap: 10, height: 36, textDecoration: 'none', transition: 'background 0.15s' }}
-              onMouseOver={e => (e.currentTarget.style.background = 'rgba(255,255,255,0.04)')}
-              onMouseOut={e => (e.currentTarget.style.background = 'transparent')}>
+              style={{ padding: '0 28px', fontSize: 12, color: 'var(--text2)', borderRight: '1px solid var(--border)', display: 'inline-flex', alignItems: 'center', gap: 10, height: 36, textDecoration: 'none', transition: 'all 0.2s' }}
+              onMouseOver={e => {
+                e.currentTarget.style.background = 'rgba(232,255,0,0.07)'
+                e.currentTarget.style.borderBottom = '2px solid rgba(232,255,0,0.4)'
+                const parent = e.currentTarget.closest('.ticker-wrapper') as HTMLElement
+                if (parent) parent.style.animationPlayState = 'paused'
+              }}
+              onMouseOut={e => {
+                e.currentTarget.style.background = 'transparent'
+                e.currentTarget.style.borderBottom = 'none'
+                const parent = e.currentTarget.closest('.ticker-wrapper') as HTMLElement
+                if (parent) parent.style.animationPlayState = 'running'
+              }}>
               <span style={{ color: 'var(--text)', fontFamily: 'DM Mono, monospace', fontWeight: 500, fontSize: 11 }}>{f.code}</span>
               {f.monthlyReturn != null && (
                 <span style={{ color: f.monthlyReturn >= 0 ? 'var(--green)' : 'var(--red)', fontFamily: 'DM Mono, monospace', fontSize: 11 }}>
