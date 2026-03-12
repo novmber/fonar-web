@@ -225,7 +225,6 @@ export default function Home() {
             <div style={{ fontSize: 11, color: 'var(--text2)' }}>{mostStableFund?.fundType?.split(' ').slice(0,2).join(' ')} · risk {mostStableFund?.riskScore}/7</div>
           </a>
         </div>
-        </div>
       </div>
       <AnimatedStats fundCount={funds.length} totalAum={totalAum} avgReturn={avgReturn} />
       </div>
