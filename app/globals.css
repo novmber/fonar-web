@@ -109,3 +109,9 @@ html, body {
     padding: 16px 16px !important;
   }
 }
+
+@media (max-width: 768px) {
+  .hero-section > div {
+    grid-template-columns: 1fr !important;
+  }
+}

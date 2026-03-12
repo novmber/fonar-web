@@ -1,5 +1,6 @@
 'use client'
 import fundsData from '../public/funds.json'
+import AnimatedStats from './AnimatedStats'
 import { useState } from 'react'
 
 function fmt(v: number) {
@@ -152,6 +153,7 @@ export default function Home() {
 
       {/* HERO */}
       <section className="hero-section" style={{ padding: '40px 5% 32px', maxWidth: 1400, margin: '0 auto' }}>
+        <div>
         <div className="fade-up" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: 'var(--accent2)', border: '1px solid rgba(232,255,0,0.2)', borderRadius: 100, padding: '5px 14px', fontSize: 11, color: 'var(--accent)', fontWeight: 500, marginBottom: 28, letterSpacing: 0.5 }}>
           ✦ YAPAY ZEKA DESTEKLİ ANALİZ
         </div>
@@ -212,7 +214,7 @@ export default function Home() {
             onMouseOut={e => (e.currentTarget.style.borderColor = 'rgba(255,68,68,0.12)')}>
             <div style={{ fontSize: 10, color: '#777', letterSpacing: 0.8, fontWeight: 600 }}>EN YÜKSEK RİSK</div>
             <div style={{ fontSize: 20, fontWeight: 500, color: '#ff4444', fontFamily: 'DM Mono, monospace', letterSpacing: -0.5 }}>{highestRiskFund?.riskScore}/7</div>
-            <div style={{ fontSize: 11, color: 'var(--text2)' }}>{highestRiskFund?.code} · {highestRiskFund?.fundType?.split(' ').slice(0,2).join(' ')}</div>
+            <div style={{ fontSize: 11, color: 'var(--text2)' }}>{highestRiskFund?.code} · {highestRiskFund?.fundType || highestRiskFund?.name?.split(' ').slice(0,2).join(' ')}</div>
           </a>
 
           <a href={`/fon/${mostStableFund?.code?.toLowerCase()}`} style={{ textDecoration: 'none', background: 'rgba(0,184,212,0.04)', border: '1px solid rgba(0,184,212,0.12)', borderRadius: 12, padding: '14px 18px', display: 'flex', flexDirection: 'column', gap: 4, transition: 'border-color 0.2s' }}
@@ -223,6 +225,10 @@ export default function Home() {
             <div style={{ fontSize: 11, color: 'var(--text2)' }}>{mostStableFund?.fundType?.split(' ').slice(0,2).join(' ')} · risk {mostStableFund?.riskScore}/7</div>
           </a>
         </div>
+        </div>
+      </div>
+      <AnimatedStats fundCount={funds.length} totalAum={totalAum} avgReturn={avgReturn} />
+      </div>
       </section>
 
       <div style={{ height: 1, background: 'var(--border)' }} />
