@@ -153,6 +153,7 @@ export default function Home() {
 
       {/* HERO */}
       <section className="hero-section" style={{ padding: '40px 5% 32px', maxWidth: 1400, margin: '0 auto' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 48, alignItems: 'start' }}>
         <div>
         <div className="fade-up" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: 'var(--accent2)', border: '1px solid rgba(232,255,0,0.2)', borderRadius: 100, padding: '5px 14px', fontSize: 11, color: 'var(--accent)', fontWeight: 500, marginBottom: 28, letterSpacing: 0.5 }}>
           ✦ YAPAY ZEKA DESTEKLİ ANALİZ
