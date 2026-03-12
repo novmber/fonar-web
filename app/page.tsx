@@ -190,7 +190,6 @@ export default function Home() {
               TEFAS canlı veri
             </div>
           </div>
-
           <a href={`/fon/${biggestFund?.code?.toLowerCase()}`} style={{ textDecoration: 'none', background: 'rgba(255,152,0,0.04)', border: '1px solid rgba(255,152,0,0.15)', borderRadius: 12, padding: '14px 18px', display: 'flex', flexDirection: 'column', gap: 4, transition: 'border-color 0.2s' }}
             onMouseOver={e => (e.currentTarget.style.borderColor = 'rgba(255,152,0,0.4)')}
             onMouseOut={e => (e.currentTarget.style.borderColor = 'rgba(255,152,0,0.15)')}>
@@ -198,7 +197,6 @@ export default function Home() {
             <div style={{ fontSize: 20, fontWeight: 500, color: '#ff9800', fontFamily: 'DM Mono, monospace', letterSpacing: -0.5 }}>{fmt(biggestFund?.totalValue)}</div>
             <div style={{ fontSize: 11, color: 'var(--text2)' }}>{biggestFund?.code} · {biggestFund?.name?.split(' ').slice(0,3).join(' ')}</div>
           </a>
-
           <a href={`/fon/${bestMonthlyFund?.code?.toLowerCase()}`} style={{ textDecoration: 'none', background: 'rgba(131,56,236,0.04)', border: '1px solid rgba(131,56,236,0.15)', borderRadius: 12, padding: '14px 18px', display: 'flex', flexDirection: 'column', gap: 4, transition: 'border-color 0.2s' }}
             onMouseOver={e => (e.currentTarget.style.borderColor = 'rgba(131,56,236,0.4)')}
             onMouseOut={e => (e.currentTarget.style.borderColor = 'rgba(131,56,236,0.15)')}>
@@ -206,7 +204,6 @@ export default function Home() {
             <div style={{ fontSize: 20, fontWeight: 500, color: '#8338EC', fontFamily: 'DM Mono, monospace', letterSpacing: -0.5 }}>{bestMonthlyFund?.monthlyReturn >= 0 ? '+' : ''}{bestMonthlyFund?.monthlyReturn?.toFixed(1)}%</div>
             <div style={{ fontSize: 11, color: 'var(--text2)' }}>{bestMonthlyFund?.code} · {bestMonthlyFund?.name?.split(' ').slice(0,3).join(' ')}</div>
           </a>
-
           <a href={`/fon/${highestRiskFund?.code?.toLowerCase()}`} style={{ textDecoration: 'none', background: 'rgba(255,68,68,0.04)', border: '1px solid rgba(255,68,68,0.12)', borderRadius: 12, padding: '14px 18px', display: 'flex', flexDirection: 'column', gap: 4, transition: 'border-color 0.2s' }}
             onMouseOver={e => (e.currentTarget.style.borderColor = 'rgba(255,68,68,0.35)')}
             onMouseOut={e => (e.currentTarget.style.borderColor = 'rgba(255,68,68,0.12)')}>
@@ -214,18 +211,14 @@ export default function Home() {
             <div style={{ fontSize: 20, fontWeight: 500, color: '#ff4444', fontFamily: 'DM Mono, monospace', letterSpacing: -0.5 }}>{highestRiskFund?.riskScore}/7</div>
             <div style={{ fontSize: 11, color: 'var(--text2)' }}>{highestRiskFund?.code} · {highestRiskFund?.fundType || highestRiskFund?.name?.split(' ').slice(0,2).join(' ')}</div>
           </a>
-
           <a href={`/fon/${mostStableFund?.code?.toLowerCase()}`} style={{ textDecoration: 'none', background: 'rgba(0,184,212,0.04)', border: '1px solid rgba(0,184,212,0.12)', borderRadius: 12, padding: '14px 18px', display: 'flex', flexDirection: 'column', gap: 4, transition: 'border-color 0.2s' }}
             onMouseOver={e => (e.currentTarget.style.borderColor = 'rgba(0,184,212,0.4)')}
             onMouseOut={e => (e.currentTarget.style.borderColor = 'rgba(0,184,212,0.12)')}>
             <div style={{ fontSize: 10, color: '#777', letterSpacing: 0.8, fontWeight: 600 }}>EN İSTİKRARLI</div>
             <div style={{ fontSize: 20, fontWeight: 500, color: '#00b8d4', fontFamily: 'DM Mono, monospace', letterSpacing: -0.5 }}>{mostStableFund?.code}</div>
-            <div style={{ fontSize: 11, color: 'var(--text2)' }}>{mostStableFund?.fundType?.split(' ').slice(0,2).join(' ')} · risk {mostStableFund?.riskScore}/7</div>
+            <div style={{ fontSize: 11, color: 'var(--text2)' }}>{mostStableFund?.fundType || mostStableFund?.name?.split(' ').slice(0,2).join(' ')}</div>
           </a>
         </div>
-      </div>
-      <AnimatedStats fundCount={funds.length} totalAum={totalAum} avgReturn={avgReturn} />
-      </div>
       </section>
 
       <div style={{ height: 1, background: 'var(--border)' }} />
