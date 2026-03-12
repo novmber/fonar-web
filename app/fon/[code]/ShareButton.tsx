@@ -4,7 +4,9 @@ export default function ShareButton({ fund }: { fund: any }) {
   const handleShare = async () => {
     const monthly = fund.monthlyReturn != null ? `${fund.monthlyReturn >= 0 ? '+' : ''}${fund.monthlyReturn.toFixed(2)}%` : '—'
     const yearly = fund.yearlyReturn != null ? `${fund.yearlyReturn >= 0 ? '+' : ''}${fund.yearlyReturn.toFixed(2)}%` : '—'
-    const text = `${fund.code} — ${fund.name}\n\nAylık: ${monthly} | Yıllık: ${yearly}\nRisk: ${fund.riskScore}/7\n\nDetaylı analiz 👇`
+    const riskEmoji = (fund.riskScore || 0) >= 6 ? '🔴' : (fund.riskScore || 0) >= 4 ? '🟡' : '🟢'
+    const trendEmoji = (fund.yearlyReturn || 0) > 50 ? '🚀' : (fund.yearlyReturn || 0) > 0 ? '📈' : '📉'
+    const text = `${trendEmoji} $${fund.code} — ${fund.name}\n\n📅 Aylık getiri: ${monthly}\n📊 Yıllık getiri: ${yearly}\n${riskEmoji} Risk skoru: ${fund.riskScore}/7\n\n🔍 Detaylı analiz @GridBotman`
     const url = `https://fonar.com.tr/fon/${fund.code?.toLowerCase()}`
 
     if (navigator.share) {
