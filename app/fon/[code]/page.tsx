@@ -119,9 +119,12 @@ export default async function FundPage({ params }: { params: Promise<{ code: str
           {fund.fundType && <div style={{ fontSize: 11, color: '#555', letterSpacing: 1, marginBottom: 12 }}>{fund.fundType.toUpperCase()}</div>}
           <h1 style={{ fontSize: 'clamp(20px, 3vw, 32px)', fontWeight: 400, lineHeight: 1.2, letterSpacing: -0.5, marginBottom: 12 }}>{fund.name}</h1>
           {/* Son güncelleme - daha belirgin */}
-          <div style={{ display: 'inline-flex', alignItems: 'center', gap: 6, background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: 8, padding: '5px 12px' }}>
-            <span style={{ display: 'inline-block', width: 6, height: 6, borderRadius: '50%', background: '#00f080' }} />
-            <span style={{ fontSize: 12, color: '#888', fontFamily: 'DM Mono, monospace' }}>Son güncelleme: {fund.latestDate}</span>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 12, flexWrap: 'wrap', marginTop: 8 }}>
+            <div style={{ display: 'inline-flex', alignItems: 'center', gap: 6, background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: 8, padding: '5px 12px' }}>
+              <span style={{ display: 'inline-block', width: 6, height: 6, borderRadius: '50%', background: '#00f080' }} />
+              <span style={{ fontSize: 12, color: '#888', fontFamily: 'DM Mono, monospace' }}>Son güncelleme: {fund.latestDate}</span>
+            </div>
+            <ShareButton fund={fund} />
           </div>
         </div>
 
