@@ -222,18 +222,18 @@ export default function Home() {
             <div style={{ fontSize: 11, color: 'var(--text2)' }}>{mostStableFund?.fundType || mostStableFund?.name?.split(' ').slice(0,2).join(' ')}</div>
           </a>
         </div>
-        {/* TOP 5 WIDGET */}
-        <div style={{ background: 'rgba(232,255,0,0.02)', border: '1px solid rgba(232,255,0,0.12)', borderRadius: 16, padding: '18px 20px', minWidth: 280, maxWidth: 320 }}>
-          <div style={{ fontSize: 11, color: '#777', fontWeight: 600, letterSpacing: 0.8, marginBottom: 14 }}>🏆 BU AYIN TOP 5'İ</div>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+        {/* TOP 5 WIDGET - TAM GENİŞLİK YATAY */}
+        <div style={{ marginTop: 16, background: 'rgba(232,255,0,0.02)', border: '1px solid rgba(232,255,0,0.12)', borderRadius: 16, padding: '16px 20px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 12, overflowX: 'auto', scrollbarWidth: 'none' }}>
+            <div style={{ fontSize: 11, color: '#777', fontWeight: 600, letterSpacing: 0.8, whiteSpace: 'nowrap' }}>🏆 BU AYIN TOP 5</div>
             {top5_1m.map((f: any, i: number) => (
-              <a key={f.code} href={`/fon/${f.code?.toLowerCase()}`} style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 10, padding: '6px 8px', borderRadius: 8, background: 'rgba(255,255,255,0.02)', transition: 'background 0.15s' }}
-                onMouseOver={e => (e.currentTarget.style.background = 'rgba(232,255,0,0.05)')}
-                onMouseOut={e => (e.currentTarget.style.background = 'rgba(255,255,255,0.02)')}>
-                <span style={{ fontSize: 14, width: 20, textAlign: 'center' }}>{i===0?'🥇':i===1?'🥈':i===2?'🥉':`${i+1}.`}</span>
-                <span style={{ background: 'rgba(232,255,0,0.1)', border: '1px solid rgba(232,255,0,0.2)', borderRadius: 6, padding: '2px 7px', fontSize: 11, fontWeight: 700, color: 'var(--accent)', fontFamily: 'DM Mono, monospace', minWidth: 36, textAlign: 'center' }}>{f.code}</span>
+              <a key={f.code} href={`/fon/${f.code?.toLowerCase()}`} style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 8, padding: '8px 14px', borderRadius: 10, background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.06)', flex: 1, minWidth: 160, transition: 'border-color 0.15s' }}
+                onMouseOver={e => (e.currentTarget.style.borderColor = 'rgba(232,255,0,0.3)')}
+                onMouseOut={e => (e.currentTarget.style.borderColor = 'rgba(255,255,255,0.06)')}>
+                <span style={{ fontSize: 16 }}>{i===0?'🥇':i===1?'🥈':i===2?'🥉':'  '}</span>
+                <span style={{ background: 'rgba(232,255,0,0.1)', border: '1px solid rgba(232,255,0,0.2)', borderRadius: 6, padding: '2px 7px', fontSize: 11, fontWeight: 700, color: 'var(--accent)', fontFamily: 'DM Mono, monospace' }}>{f.code}</span>
                 <span style={{ flex: 1, fontSize: 11, color: 'var(--text2)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{f.name?.split(' ').slice(0,3).join(' ')}</span>
-                <span style={{ fontSize: 13, fontWeight: 700, color: '#4ade80', fontFamily: 'DM Mono, monospace' }}>+{f.return1m?.toFixed(1)}%</span>
+                <span style={{ fontSize: 14, fontWeight: 700, color: '#4ade80', fontFamily: 'DM Mono, monospace', whiteSpace: 'nowrap' }}>+{f.return1m?.toFixed(1)}%</span>
               </a>
             ))}
           </div>
