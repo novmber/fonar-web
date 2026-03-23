@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import fundsData from '../../../public/funds.json'
 import DonutChart from './DonutChart'
 import ShareButton from './ShareButton'
+import Scorecard from './Scorecard'
 
 export async function generateMetadata({ params }: { params: Promise<{ code: string }> }): Promise<Metadata> {
   const { code } = await params
@@ -164,6 +165,9 @@ export default async function FundPage({ params }: { params: Promise<{ code: str
 
         {/* PORTFÖY DAĞILIMI */}
         {fund.portfolioItems?.length > 0 && <DonutChart items={fund.portfolioItems} />}
+	{/* SCORECARD */}
+        {fund.scorecard && Object.keys(fund.scorecard).length > 0 && (<Scorecard scorecard={fund.scorecard} fundCode={fund.code} />
+				          )}
 
         {/* AI TESPİTLER */}
         {fund.aiInsights?.length > 0 && (
