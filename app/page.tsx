@@ -223,10 +223,18 @@ export default function Home() {
           </a>
         </div>
         {/* TOP 10 WIDGET - TAM GENİŞLİK YATAY */}
-        <div style={{ marginTop: 16, background: 'rgba(232,255,0,0.02)', border: '1px solid rgba(232,255,0,0.12)', borderRadius: 16, padding: '16px 20px' }}
-          onMouseEnter={e => { const el = e.currentTarget.querySelector('.top10-scroll') as HTMLElement; if(el) el.scrollBy({left: 300, behavior: 'smooth'}) }}
-          onMouseLeave={e => { const el = e.currentTarget.querySelector('.top10-scroll') as HTMLElement; if(el) el.scrollTo({left: 0, behavior: 'smooth'}) }}>
-          <div className="top10-scroll" style={{ display: 'flex', alignItems: 'center', gap: 12, overflowX: 'auto', scrollbarWidth: 'none', transition: 'scroll 0.5s' }}>
+        <div style={{ marginTop: 16, background: 'rgba(232,255,0,0.02)', border: '1px solid rgba(232,255,0,0.12)', borderRadius: 16, padding: '16px 20px' }}>
+          <div className="top10-scroll" style={{ display: 'flex', alignItems: 'center', gap: 12, overflowX: 'auto', scrollbarWidth: 'none', cursor: 'grab', paddingRight: 20 }}
+            onMouseDown={e => {
+              const el = e.currentTarget
+              el.style.cursor = 'grabbing'
+              const startX = e.pageX - el.offsetLeft
+              const scrollLeft = el.scrollLeft
+              const onMove = (ev: MouseEvent) => { el.scrollLeft = scrollLeft - (ev.pageX - el.offsetLeft - startX) }
+              const onUp = () => { el.style.cursor = 'grab'; window.removeEventListener('mousemove', onMove); window.removeEventListener('mouseup', onUp) }
+              window.addEventListener('mousemove', onMove)
+              window.addEventListener('mouseup', onUp)
+            }}>
             <div style={{ fontSize: 11, color: '#777', fontWeight: 600, letterSpacing: 0.8, whiteSpace: 'nowrap' }}>🏆 BU AYIN TOP 10</div>
             {top5_1m.map((f: any, i: number) => (
               <a key={f.code} href={`/fon/${f.code?.toLowerCase()}`} style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 8, padding: '8px 14px', borderRadius: 10, background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.06)', flex: 1, minWidth: 160, transition: 'border-color 0.15s' }}
