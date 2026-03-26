@@ -228,10 +228,25 @@ export default function Home() {
             onMouseDown={e => {
               const el = e.currentTarget
               el.style.cursor = 'grabbing'
-              const startX = e.pageX - el.offsetLeft
+              const startX = e.pageX
               const scrollLeft = el.scrollLeft
-              const onMove = (ev: MouseEvent) => { el.scrollLeft = scrollLeft - (ev.pageX - el.offsetLeft - startX) }
-              const onUp = () => { el.style.cursor = 'grab'; window.removeEventListener('mousemove', onMove); window.removeEventListener('mouseup', onUp) }
+              let dragged = false
+              const onMove = (ev: MouseEvent) => {
+                const dx = ev.pageX - startX
+                if (Math.abs(dx) > 5) dragged = true
+                el.scrollLeft = scrollLeft - dx
+              }
+              const onUp = () => {
+                el.style.cursor = 'grab'
+                window.removeEventListener('mousemove', onMove)
+                window.removeEventListener('mouseup', onUp)
+                if (dragged) {
+                  el.querySelectorAll('a').forEach(a => {
+                    const stop = (ev: Event) => { ev.preventDefault(); a.removeEventListener('click', stop) }
+                    a.addEventListener('click', stop)
+                  })
+                }
+              }
               window.addEventListener('mousemove', onMove)
               window.addEventListener('mouseup', onUp)
             }}>
