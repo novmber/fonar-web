@@ -224,31 +224,20 @@ export default function Home() {
         </div>
         {/* TOP 10 WIDGET - TAM GENİŞLİK YATAY */}
         <div style={{ marginTop: 16, background: 'rgba(232,255,0,0.02)', border: '1px solid rgba(232,255,0,0.12)', borderRadius: 16, padding: '16px 20px' }}>
-          <div className="top10-scroll" style={{ display: 'flex', alignItems: 'center', gap: 12, overflowX: 'auto', scrollbarWidth: 'none', cursor: 'grab', paddingRight: 20 }}
-            onMouseDown={e => {
+          <div className="top10-scroll" style={{ display: 'flex', alignItems: 'center', gap: 12, overflowX: 'auto', scrollbarWidth: 'none', cursor: 'default', paddingRight: 20 }}
+            onMouseMove={e => {
               const el = e.currentTarget
-              el.style.cursor = 'grabbing'
-              const startX = e.pageX
-              const scrollLeft = el.scrollLeft
-              let dragged = false
-              const onMove = (ev: MouseEvent) => {
-                const dx = ev.pageX - startX
-                if (Math.abs(dx) > 5) dragged = true
-                el.scrollLeft = scrollLeft - dx
+              const rect = el.getBoundingClientRect()
+              const x = e.clientX - rect.left
+              const w = rect.width
+              const zone = w * 0.25
+              if (x > w - zone) {
+                const speed = ((x - (w - zone)) / zone) * 8
+                el.scrollLeft += speed
+              } else if (x < zone) {
+                const speed = ((zone - x) / zone) * 8
+                el.scrollLeft -= speed
               }
-              const onUp = () => {
-                el.style.cursor = 'grab'
-                window.removeEventListener('mousemove', onMove)
-                window.removeEventListener('mouseup', onUp)
-                if (dragged) {
-                  el.querySelectorAll('a').forEach(a => {
-                    const stop = (ev: Event) => { ev.preventDefault(); a.removeEventListener('click', stop) }
-                    a.addEventListener('click', stop)
-                  })
-                }
-              }
-              window.addEventListener('mousemove', onMove)
-              window.addEventListener('mouseup', onUp)
             }}>
             <div style={{ fontSize: 11, color: '#777', fontWeight: 600, letterSpacing: 0.8, whiteSpace: 'nowrap' }}>🏆 BU AYIN TOP 10</div>
             {top5_1m.map((f: any, i: number) => (
