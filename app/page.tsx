@@ -257,6 +257,11 @@ export default function Home() {
 
       <div style={{ height: 1, background: 'var(--border)' }} />
 
+      {/* HABERLER */}
+      <div style={{ borderBottom: '1px solid var(--border)' }}>
+        <NewsSection />
+      </div>
+
       {/* FİLTRELEME */}
       <section className="filter-section" style={{ padding: '28px 5% 16px', maxWidth: 1400, margin: '0 auto' }}>
         <div className="filter-bar" style={{ display: 'flex', gap: 10, flexWrap: 'wrap', alignItems: 'center' }}>
@@ -387,11 +392,6 @@ export default function Home() {
           Geçmiş performans gelecekteki getirilerin garantisi değildir.
         </p>
       </footer>
-      {/* HABERLER */}
-      <div style={{ borderTop: '1px solid var(--border)' }}>
-        <NewsSection />
-      </div>
-
       {/* FOOTER */}
       <footer style={{ borderTop: '1px solid var(--border)', marginTop: 80, padding: '32px 40px' }}>
         <div style={{ maxWidth: 1400, margin: '0 auto', padding: '0 5%', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 16 }}>
