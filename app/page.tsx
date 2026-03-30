@@ -1,5 +1,6 @@
 'use client'
 import fundsData from '../public/funds.json'
+import NewsSection from './NewsSection'
 import top5Data from '../public/top5.json'
 import { useState } from 'react'
 
@@ -386,6 +387,11 @@ export default function Home() {
           Geçmiş performans gelecekteki getirilerin garantisi değildir.
         </p>
       </footer>
+      {/* HABERLER */}
+      <div style={{ borderTop: '1px solid var(--border)' }}>
+        <NewsSection />
+      </div>
+
       {/* FOOTER */}
       <footer style={{ borderTop: '1px solid var(--border)', marginTop: 80, padding: '32px 40px' }}>
         <div style={{ maxWidth: 1400, margin: '0 auto', padding: '0 5%', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 16 }}>
