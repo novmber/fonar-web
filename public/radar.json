@@ -1,4 +1,30 @@
 {
-  "positives": [],
-  "warnings": []
+  "positives": [
+    {
+      "code": "AES",
+      "change": 41.83
+    },
+    {
+      "code": "TLY",
+      "change": 28.99
+    },
+    {
+      "code": "PHE",
+      "change": 24.78
+    }
+  ],
+  "warnings": [
+    {
+      "code": "THV",
+      "change": -77.79
+    },
+    {
+      "code": "BLT",
+      "change": -9.32
+    },
+    {
+      "code": "AFO",
+      "change": -8.61
+    }
+  ]
 }
