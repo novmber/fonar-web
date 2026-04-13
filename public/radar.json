@@ -2,29 +2,29 @@
   "positives": [
     {
       "code": "AES",
-      "change": 41.83
+      "change": 41.44
     },
     {
       "code": "TLY",
-      "change": 28.99
+      "change": 27.88
     },
     {
-      "code": "PHE",
-      "change": 24.78
+      "code": "DNK",
+      "change": 25.91
     }
   ],
   "warnings": [
     {
       "code": "THV",
-      "change": -77.79
+      "change": -75.22
+    },
+    {
+      "code": "FAL",
+      "change": -9.75
     },
     {
       "code": "BLT",
-      "change": -9.32
-    },
-    {
-      "code": "AFO",
-      "change": -8.61
+      "change": -9.22
     }
   ]
 }
