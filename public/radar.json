@@ -1,30 +1,30 @@
 {
   "positives": [
     {
-      "code": "KHA",
-      "change": 3.89
-    },
-    {
       "code": "TLY",
-      "change": 3.51
+      "change": 3.14
     },
     {
-      "code": "PHE",
-      "change": 3.17
+      "code": "VPS",
+      "change": 2.05
+    },
+    {
+      "code": "KHA",
+      "change": 1.62
     }
   ],
   "warnings": [
     {
-      "code": "IIE",
-      "change": -4.28
-    },
-    {
       "code": "YAY",
-      "change": -2.63
+      "change": -3.27
     },
     {
-      "code": "THV",
-      "change": -2.55
+      "code": "IIE",
+      "change": -2.94
+    },
+    {
+      "code": "AFT",
+      "change": -2.74
     }
   ]
 }
