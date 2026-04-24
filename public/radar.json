@@ -2,28 +2,28 @@
   "positives": [
     {
       "code": "TLY",
-      "change": 3.9
-    },
-    {
-      "code": "GIH",
-      "change": 2.84
+      "change": 3.73
     },
     {
       "code": "PHE",
-      "change": 2.38
+      "change": 2.43
+    },
+    {
+      "code": "KHA",
+      "change": 1.87
     }
   ],
   "warnings": [
     {
       "code": "YAY",
-      "change": -2.41
+      "change": -2.39
     },
     {
-      "code": "IJZ",
-      "change": -2.36
+      "code": "AES",
+      "change": -2.31
     },
     {
-      "code": "IIE",
+      "code": "PPS",
       "change": -2.13
     }
   ]
