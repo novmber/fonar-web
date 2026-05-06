@@ -2,29 +2,29 @@
   "positives": [
     {
       "code": "NUH",
-      "change": 2.35
+      "change": 3.7
     },
     {
-      "code": "YIT",
-      "change": 2.1
+      "code": "PBR",
+      "change": 2.58
     },
     {
-      "code": "TLY",
-      "change": 2.04
+      "code": "IOG",
+      "change": 2.18
     }
   ],
   "warnings": [
     {
       "code": "IIE",
-      "change": -3.06
+      "change": -2.75
+    },
+    {
+      "code": "IJZ",
+      "change": -1.19
     },
     {
       "code": "THV",
-      "change": -1.58
-    },
-    {
-      "code": "AFT",
-      "change": -1.32
+      "change": -0.69
     }
   ]
 }
