@@ -1,30 +1,30 @@
 {
   "positives": [
     {
+      "code": "EYT",
+      "change": 93.28
+    },
+    {
       "code": "NUH",
-      "change": 3.7
+      "change": 2.87
     },
     {
       "code": "PBR",
-      "change": 2.58
-    },
-    {
-      "code": "IOG",
-      "change": 2.18
+      "change": 2.69
     }
   ],
   "warnings": [
     {
-      "code": "IIE",
-      "change": -2.75
+      "code": "MOZ",
+      "change": -96.03
     },
     {
-      "code": "IJZ",
-      "change": -1.19
+      "code": "AES",
+      "change": -93.04
     },
     {
-      "code": "THV",
-      "change": -0.69
+      "code": "AKE",
+      "change": -52.49
     }
   ]
 }
