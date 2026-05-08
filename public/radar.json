@@ -1,30 +1,30 @@
 {
   "positives": [
     {
+      "code": "KHA",
+      "change": 171.76
+    },
+    {
+      "code": "HAM",
+      "change": 140.15
+    },
+    {
       "code": "EYT",
-      "change": 93.28
-    },
-    {
-      "code": "NUH",
-      "change": 2.87
-    },
-    {
-      "code": "PBR",
-      "change": 2.69
+      "change": 102.09
     }
   ],
   "warnings": [
     {
       "code": "MOZ",
-      "change": -96.03
+      "change": -95.52
     },
     {
       "code": "AES",
-      "change": -93.04
+      "change": -93.92
     },
     {
-      "code": "AKE",
-      "change": -52.49
+      "code": "AYR",
+      "change": -58.22
     }
   ]
 }
