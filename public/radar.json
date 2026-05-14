@@ -2,29 +2,29 @@
   "positives": [
     {
       "code": "PBR",
-      "change": 2.6
+      "change": 2.06
     },
     {
-      "code": "CPT",
-      "change": 2.47
+      "code": "TLY",
+      "change": 2.03
     },
     {
-      "code": "GO9",
-      "change": 2.34
+      "code": "PHE",
+      "change": 1.56
     }
   ],
   "warnings": [
     {
       "code": "IIE",
-      "change": -2.69
+      "change": -2.82
     },
     {
-      "code": "THV",
-      "change": -1.42
+      "code": "GAF",
+      "change": -2.3
     },
     {
-      "code": "OTJ",
-      "change": -1.08
+      "code": "AES",
+      "change": -1.66
     }
   ]
 }
