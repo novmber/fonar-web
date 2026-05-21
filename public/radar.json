@@ -2,11 +2,11 @@
   "positives": [
     {
       "code": "PHE",
-      "change": 2.49
+      "change": 2.34
     },
     {
       "code": "PBR",
-      "change": 1.91
+      "change": 1.97
     },
     {
       "code": "TLY",
@@ -16,15 +16,15 @@
   "warnings": [
     {
       "code": "GAF",
-      "change": -3.96
-    },
-    {
-      "code": "THV",
-      "change": -3.37
+      "change": -3.59
     },
     {
       "code": "BIG",
-      "change": -2.98
+      "change": -3.11
+    },
+    {
+      "code": "BDS",
+      "change": -3.08
     }
   ]
 }
