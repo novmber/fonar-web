@@ -2,29 +2,29 @@
   "positives": [
     {
       "code": "PHE",
-      "change": 2.34
+      "change": 1.93
     },
     {
-      "code": "PBR",
-      "change": 1.97
+      "code": "AFO",
+      "change": 1.62
     },
     {
-      "code": "IJZ",
-      "change": 1.46
+      "code": "BLT",
+      "change": 1.39
     }
   ],
   "warnings": [
     {
       "code": "GAF",
-      "change": -3.59
+      "change": -4.11
+    },
+    {
+      "code": "THV",
+      "change": -3.0
     },
     {
       "code": "BIG",
-      "change": -3.11
-    },
-    {
-      "code": "BDS",
-      "change": -3.08
+      "change": -2.85
     }
   ]
 }
