@@ -6,25 +6,25 @@
     },
     {
       "code": "TLY",
-      "change": 1.61
+      "change": 2.74
     },
     {
-      "code": "IJZ",
-      "change": 1.48
+      "code": "TI3",
+      "change": 1.7
     }
   ],
   "warnings": [
     {
-      "code": "THV",
-      "change": -3.2
+      "code": "VPS",
+      "change": -4.24
+    },
+    {
+      "code": "THF",
+      "change": -3.36
     },
     {
       "code": "SKO",
       "change": -3.15
-    },
-    {
-      "code": "GIH",
-      "change": -2.91
     }
   ]
 }
