@@ -6,7 +6,7 @@
     },
     {
       "code": "TLY",
-      "change": 2.74
+      "change": 2.29
     },
     {
       "code": "PHE",
@@ -15,16 +15,16 @@
   ],
   "warnings": [
     {
-      "code": "VPS",
-      "change": -4.24
-    },
-    {
-      "code": "THF",
-      "change": -3.36
-    },
-    {
       "code": "GAF",
       "change": -3.14
+    },
+    {
+      "code": "GLG",
+      "change": -2.71
+    },
+    {
+      "code": "BIG",
+      "change": -2.53
     }
   ]
 }
