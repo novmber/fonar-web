@@ -2,15 +2,15 @@
   "positives": [
     {
       "code": "IIE",
-      "change": 4.27
+      "change": 5.21
     },
     {
       "code": "TLY",
       "change": 2.74
     },
     {
-      "code": "TI3",
-      "change": 1.7
+      "code": "PHE",
+      "change": 2.25
     }
   ],
   "warnings": [
@@ -23,8 +23,8 @@
       "change": -3.36
     },
     {
-      "code": "SKO",
-      "change": -3.15
+      "code": "GAF",
+      "change": -3.14
     }
   ]
 }
