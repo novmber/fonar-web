@@ -2,29 +2,29 @@
   "positives": [
     {
       "code": "IIE",
-      "change": 5.21
+      "change": 3.71
     },
     {
       "code": "TLY",
       "change": 2.29
     },
     {
-      "code": "PHE",
-      "change": 2.25
+      "code": "THF",
+      "change": 1.8
     }
   ],
   "warnings": [
     {
       "code": "GAF",
-      "change": -3.14
+      "change": -2.76
     },
     {
-      "code": "GLG",
-      "change": -2.71
+      "code": "MLT",
+      "change": -2.4
     },
     {
       "code": "BIG",
-      "change": -2.53
+      "change": -2.27
     }
   ]
 }
