@@ -1,12 +1,12 @@
 {
   "positives": [
     {
-      "code": "PBR",
-      "change": 2.36
+      "code": "TLY",
+      "change": 2.19
     },
     {
-      "code": "IIE",
-      "change": 2.07
+      "code": "PBR",
+      "change": 1.91
     },
     {
       "code": "TI3",
@@ -19,12 +19,12 @@
       "change": -4.49
     },
     {
-      "code": "MLT",
-      "change": -1.62
+      "code": "AOY",
+      "change": -3.46
     },
     {
-      "code": "MTH",
-      "change": -1.54
+      "code": "GLG",
+      "change": -2.18
     }
   ]
 }
