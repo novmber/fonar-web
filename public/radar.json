@@ -9,15 +9,11 @@
       "change": 1.91
     },
     {
-      "code": "TI3",
-      "change": 1.84
+      "code": "BSM",
+      "change": 1.73
     }
   ],
   "warnings": [
-    {
-      "code": "THV",
-      "change": -4.49
-    },
     {
       "code": "AOY",
       "change": -3.46
@@ -25,6 +21,10 @@
     {
       "code": "GLG",
       "change": -2.18
+    },
+    {
+      "code": "MLT",
+      "change": -2.14
     }
   ]
 }
