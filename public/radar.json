@@ -1,16 +1,16 @@
 {
   "positives": [
     {
-      "code": "TLY",
-      "change": 2.19
-    },
-    {
       "code": "IIE",
       "change": 2.16
     },
     {
       "code": "BDS",
       "change": 1.98
+    },
+    {
+      "code": "YAY",
+      "change": 1.74
     }
   ],
   "warnings": [
@@ -23,8 +23,8 @@
       "change": -3.61
     },
     {
-      "code": "IOG",
-      "change": -3.17
+      "code": "URA",
+      "change": -3.58
     }
   ]
 }
