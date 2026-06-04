@@ -5,26 +5,26 @@
       "change": 2.19
     },
     {
-      "code": "PBR",
-      "change": 1.91
+      "code": "IIE",
+      "change": 2.16
     },
     {
-      "code": "BSM",
-      "change": 1.73
+      "code": "BDS",
+      "change": 1.98
     }
   ],
   "warnings": [
     {
-      "code": "AOY",
-      "change": -3.46
+      "code": "GMC",
+      "change": -3.98
     },
     {
-      "code": "GLG",
-      "change": -2.18
+      "code": "GAF",
+      "change": -3.61
     },
     {
-      "code": "MLT",
-      "change": -2.14
+      "code": "IOG",
+      "change": -3.17
     }
   ]
 }
