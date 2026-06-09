@@ -1,30 +1,30 @@
 {
   "positives": [
     {
-      "code": "IIE",
-      "change": 2.16
+      "code": "SNY",
+      "change": 6.41
     },
     {
-      "code": "BDS",
-      "change": 1.98
+      "code": "PBR",
+      "change": 2.82
     },
     {
-      "code": "YAY",
-      "change": 1.74
+      "code": "PHE",
+      "change": 2.62
     }
   ],
   "warnings": [
     {
+      "code": "PPS",
+      "change": -2.75
+    },
+    {
+      "code": "IOG",
+      "change": -1.97
+    },
+    {
       "code": "GMC",
-      "change": -3.98
-    },
-    {
-      "code": "GAF",
-      "change": -3.61
-    },
-    {
-      "code": "URA",
-      "change": -3.58
+      "change": -1.86
     }
   ]
 }
