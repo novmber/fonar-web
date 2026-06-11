@@ -1,16 +1,16 @@
 {
   "positives": [
     {
-      "code": "YZG",
+      "code": "GUK",
+      "change": 6.42
+    },
+    {
+      "code": "IIE",
       "change": 6.13
     },
     {
-      "code": "GUK",
-      "change": 5.92
-    },
-    {
-      "code": "FPG",
-      "change": 5.8
+      "code": "YZG",
+      "change": 6.13
     }
   ],
   "warnings": [
@@ -19,12 +19,12 @@
       "change": -1.98
     },
     {
-      "code": "BIG",
-      "change": -1.7
+      "code": "IJZ",
+      "change": -1.84
     },
     {
       "code": "MTH",
-      "change": -1.66
+      "change": -1.49
     }
   ]
 }
