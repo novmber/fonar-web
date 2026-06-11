@@ -9,15 +9,11 @@
       "change": 6.13
     },
     {
-      "code": "YZG",
-      "change": 6.13
+      "code": "MJG",
+      "change": 5.75
     }
   ],
   "warnings": [
-    {
-      "code": "YAY",
-      "change": -1.98
-    },
     {
       "code": "IJZ",
       "change": -1.84
@@ -25,6 +21,10 @@
     {
       "code": "MTH",
       "change": -1.49
+    },
+    {
+      "code": "BIG",
+      "change": -1.28
     }
   ]
 }
