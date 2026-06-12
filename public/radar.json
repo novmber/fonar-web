@@ -1,30 +1,30 @@
 {
   "positives": [
     {
+      "code": "FPG",
+      "change": 7.77
+    },
+    {
       "code": "GUK",
-      "change": 6.42
+      "change": 7.51
     },
     {
-      "code": "IIE",
-      "change": 6.13
-    },
-    {
-      "code": "MJG",
-      "change": 5.75
+      "code": "FMG",
+      "change": 5.26
     }
   ],
   "warnings": [
     {
-      "code": "IJZ",
-      "change": -1.84
+      "code": "AFT",
+      "change": -1.82
     },
     {
-      "code": "MTH",
-      "change": -1.49
+      "code": "PIL",
+      "change": -1.61
     },
     {
-      "code": "BIG",
-      "change": -1.28
+      "code": "GLG",
+      "change": -1.55
     }
   ]
 }
