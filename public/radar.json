@@ -1,22 +1,22 @@
 {
   "positives": [
     {
-      "code": "YZG",
-      "change": 8.07
-    },
-    {
       "code": "GMC",
       "change": 5.27
     },
     {
       "code": "GUK",
       "change": 5.06
+    },
+    {
+      "code": "YZG",
+      "change": 5.04
     }
   ],
   "warnings": [
     {
       "code": "YAY",
-      "change": -2.05
+      "change": -2.77
     },
     {
       "code": "GLG",
