@@ -6,7 +6,7 @@
     },
     {
       "code": "YZG",
-      "change": 5.04
+      "change": 4.91
     },
     {
       "code": "FPG",
@@ -15,16 +15,16 @@
   ],
   "warnings": [
     {
-      "code": "YAY",
-      "change": -2.77
-    },
-    {
       "code": "DHT",
       "change": -1.5
     },
     {
       "code": "GAF",
       "change": -1.5
+    },
+    {
+      "code": "YAY",
+      "change": -1.36
     }
   ]
 }
