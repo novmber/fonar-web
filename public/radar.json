@@ -2,29 +2,29 @@
   "positives": [
     {
       "code": "SNY",
-      "change": 11.56
+      "change": 12.67
     },
     {
       "code": "YZG",
       "change": 8.71
     },
     {
-      "code": "FPG",
-      "change": 7.57
+      "code": "PBR",
+      "change": 4.1
     }
   ],
   "warnings": [
     {
-      "code": "GAF",
-      "change": -3.18
+      "code": "GUK",
+      "change": -3.03
+    },
+    {
+      "code": "GMI",
+      "change": -2.65
     },
     {
       "code": "MTH",
-      "change": -2.7
-    },
-    {
-      "code": "ASJ",
-      "change": -2.53
+      "change": -2.57
     }
   ]
 }
