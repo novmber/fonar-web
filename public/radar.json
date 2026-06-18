@@ -5,15 +5,19 @@
       "change": 12.67
     },
     {
-      "code": "YZG",
-      "change": 8.71
-    },
-    {
       "code": "PBR",
       "change": 4.1
+    },
+    {
+      "code": "PPS",
+      "change": 3.69
     }
   ],
   "warnings": [
+    {
+      "code": "YZG",
+      "change": -3.94
+    },
     {
       "code": "GUK",
       "change": -3.03
@@ -21,10 +25,6 @@
     {
       "code": "GMI",
       "change": -2.65
-    },
-    {
-      "code": "MTH",
-      "change": -2.57
     }
   ]
 }
