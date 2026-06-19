@@ -6,11 +6,11 @@
     },
     {
       "code": "PBR",
-      "change": 4.1
+      "change": 4.43
     },
     {
-      "code": "PPS",
-      "change": 3.69
+      "code": "PHE",
+      "change": 2.82
     }
   ],
   "warnings": [
@@ -20,11 +20,11 @@
     },
     {
       "code": "GUK",
-      "change": -3.03
+      "change": -3.31
     },
     {
-      "code": "GMI",
-      "change": -2.65
+      "code": "MJG",
+      "change": -2.88
     }
   ]
 }
