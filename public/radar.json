@@ -2,15 +2,15 @@
   "positives": [
     {
       "code": "PBR",
-      "change": 4.43
+      "change": 4.29
     },
     {
-      "code": "TLY",
-      "change": 3.21
+      "code": "GMC",
+      "change": 4.14
     },
     {
-      "code": "PHE",
-      "change": 2.82
+      "code": "IOG",
+      "change": 3.51
     }
   ],
   "warnings": [
