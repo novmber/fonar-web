@@ -1,4 +1,30 @@
 {
-  "positives": [],
-  "warnings": []
+  "positives": [
+    {
+      "code": "DUH",
+      "change": 10.26
+    },
+    {
+      "code": "SNY",
+      "change": 9.0
+    },
+    {
+      "code": "TLY",
+      "change": 2.87
+    }
+  ],
+  "warnings": [
+    {
+      "code": "HTK",
+      "change": -2.72
+    },
+    {
+      "code": "IDI",
+      "change": -1.97
+    },
+    {
+      "code": "TLZ",
+      "change": -1.76
+    }
+  ]
 }
