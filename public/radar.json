@@ -5,12 +5,12 @@
       "change": 10.26
     },
     {
-      "code": "SNY",
-      "change": 9.0
-    },
-    {
       "code": "IIE",
       "change": 6.4
+    },
+    {
+      "code": "YIT",
+      "change": 5.1
     }
   ],
   "warnings": [
@@ -23,8 +23,8 @@
       "change": -1.84
     },
     {
-      "code": "TLZ",
-      "change": -1.76
+      "code": "BST",
+      "change": -1.59
     }
   ]
 }
