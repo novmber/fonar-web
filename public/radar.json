@@ -1,30 +1,30 @@
 {
   "positives": [
     {
-      "code": "DUH",
-      "change": 10.26
-    },
-    {
       "code": "IIE",
-      "change": 6.4
+      "change": 10.71
     },
     {
       "code": "YIT",
       "change": 5.1
+    },
+    {
+      "code": "SNY",
+      "change": 4.99
     }
   ],
   "warnings": [
     {
-      "code": "PBR",
-      "change": -2.12
+      "code": "DUH",
+      "change": -18.92
     },
     {
       "code": "IDI",
-      "change": -1.84
+      "change": -2.79
     },
     {
-      "code": "BST",
-      "change": -1.59
+      "code": "DPT",
+      "change": -2.35
     }
   ]
 }
