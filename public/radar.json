@@ -5,12 +5,12 @@
       "change": 10.71
     },
     {
-      "code": "YIT",
-      "change": 5.1
+      "code": "FPG",
+      "change": 4.52
     },
     {
-      "code": "SNY",
-      "change": 4.99
+      "code": "YIT",
+      "change": 4.2
     }
   ],
   "warnings": [
@@ -19,12 +19,12 @@
       "change": -18.92
     },
     {
-      "code": "IDI",
-      "change": -2.79
+      "code": "PBR",
+      "change": -3.31
     },
     {
-      "code": "DPT",
-      "change": -2.35
+      "code": "IDI",
+      "change": -2.79
     }
   ]
 }
