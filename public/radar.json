@@ -2,21 +2,21 @@
   "positives": [
     {
       "code": "IIE",
-      "change": 10.71
-    },
-    {
-      "code": "FPG",
-      "change": 4.52
+      "change": 10.68
     },
     {
       "code": "YIT",
       "change": 4.2
+    },
+    {
+      "code": "YZG",
+      "change": 3.47
     }
   ],
   "warnings": [
     {
       "code": "DUH",
-      "change": -18.92
+      "change": -11.48
     },
     {
       "code": "PBR",
@@ -24,7 +24,7 @@
     },
     {
       "code": "IDI",
-      "change": -2.79
+      "change": -2.44
     }
   ]
 }
