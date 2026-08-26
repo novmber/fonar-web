@@ -6,11 +6,11 @@
     },
     {
       "code": "YIT",
-      "change": 4.2
+      "change": 5.85
     },
     {
-      "code": "YZG",
-      "change": 3.47
+      "code": "TLY",
+      "change": 2.83
     }
   ],
   "warnings": [
@@ -19,12 +19,12 @@
       "change": -11.48
     },
     {
-      "code": "PBR",
-      "change": -3.31
-    },
-    {
       "code": "IDI",
       "change": -2.44
+    },
+    {
+      "code": "DPT",
+      "change": -2.34
     }
   ]
 }
