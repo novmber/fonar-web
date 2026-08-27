@@ -2,29 +2,29 @@
   "positives": [
     {
       "code": "IIE",
-      "change": 10.68
+      "change": 12.63
     },
     {
       "code": "YIT",
       "change": 5.85
     },
     {
-      "code": "TLY",
-      "change": 2.83
+      "code": "DFI",
+      "change": 2.94
     }
   ],
   "warnings": [
     {
       "code": "DUH",
-      "change": -11.48
+      "change": -9.53
     },
     {
-      "code": "IDI",
-      "change": -2.44
+      "code": "GO9",
+      "change": -2.73
     },
     {
-      "code": "DPT",
-      "change": -2.34
+      "code": "DNK",
+      "change": -2.71
     }
   ]
 }
