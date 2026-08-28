@@ -162,7 +162,7 @@ export default function Home() {
 
       {/* TICKER — tıklanabilir */}
       <div style={{ marginTop: 56, borderBottom: '1px solid var(--border)', background: 'var(--bg2)', overflow: 'hidden', height: 36, display: 'flex', alignItems: 'center' }}>
-        <div className='ticker-wrapper' style={{ display: 'flex', animation: 'ticker 80s linear infinite', whiteSpace: 'nowrap' }}>
+        <div className='ticker-wrapper' style={{ display: 'flex', animation: `ticker ${Math.max(funds.length * 4, 40)}s linear infinite`, whiteSpace: 'nowrap' }}>
           {[...funds, ...funds].map((f, i) => (
             <a key={i} href={`/fon/${f.code?.toLowerCase()}`}
               style={{ padding: '0 28px', fontSize: 12, color: 'var(--text2)', borderRight: '1px solid var(--border)', display: 'inline-flex', alignItems: 'center', gap: 10, height: 36, textDecoration: 'none', transition: 'all 0.2s' }}
