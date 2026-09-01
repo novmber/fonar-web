@@ -9,8 +9,8 @@
       "change": 3.78
     },
     {
-      "code": "SNY",
-      "change": 3.28
+      "code": "THF",
+      "change": 2.39
     }
   ],
   "warnings": [
@@ -19,12 +19,12 @@
       "change": -5.9
     },
     {
-      "code": "KVT",
-      "change": -4.69
+      "code": "PBR",
+      "change": -5.29
     },
     {
-      "code": "PBR",
-      "change": -3.54
+      "code": "KVT",
+      "change": -4.69
     }
   ]
 }
