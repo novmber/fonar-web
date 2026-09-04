@@ -16,15 +16,15 @@
   "warnings": [
     {
       "code": "PBR",
-      "change": -8.98
+      "change": -10.62
+    },
+    {
+      "code": "PHE",
+      "change": -7.68
     },
     {
       "code": "DUH",
       "change": -5.16
-    },
-    {
-      "code": "SNY",
-      "change": -3.65
     }
   ]
 }
