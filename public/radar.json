@@ -2,15 +2,15 @@
   "positives": [
     {
       "code": "IIE",
-      "change": 33.54
+      "change": 12.98
     },
     {
       "code": "BMU",
-      "change": 9.22
+      "change": 5.81
     },
     {
-      "code": "DFI",
-      "change": 3.56
+      "code": "GMC",
+      "change": 4.57
     }
   ],
   "warnings": [
@@ -24,7 +24,7 @@
     },
     {
       "code": "DUH",
-      "change": -5.16
+      "change": -4.12
     }
   ]
 }
