@@ -9,22 +9,22 @@
       "change": 5.39
     },
     {
-      "code": "MJG",
-      "change": 5.0
+      "code": "YZG",
+      "change": 5.09
     }
   ],
   "warnings": [
     {
-      "code": "PBR",
-      "change": -12.3
-    },
-    {
       "code": "PHE",
-      "change": -8.12
+      "change": -10.1
     },
     {
-      "code": "SNY",
-      "change": -3.79
+      "code": "PPS",
+      "change": -4.15
+    },
+    {
+      "code": "YEF",
+      "change": -3.47
     }
   ]
 }
