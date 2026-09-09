@@ -1,16 +1,16 @@
 {
   "positives": [
     {
-      "code": "IIE",
-      "change": 7.33
-    },
-    {
-      "code": "GMC",
-      "change": 5.39
-    },
-    {
       "code": "YZG",
       "change": 5.09
+    },
+    {
+      "code": "DFI",
+      "change": 3.96
+    },
+    {
+      "code": "GMI",
+      "change": 3.65
     }
   ],
   "warnings": [
