@@ -1,30 +1,30 @@
 {
   "positives": [
     {
-      "code": "YZG",
-      "change": 5.09
-    },
-    {
       "code": "DFI",
       "change": 3.96
     },
     {
       "code": "GMI",
       "change": 3.65
+    },
+    {
+      "code": "MJG",
+      "change": 3.62
     }
   ],
   "warnings": [
     {
       "code": "PHE",
-      "change": -10.1
-    },
-    {
-      "code": "PPS",
-      "change": -4.15
+      "change": -10.32
     },
     {
       "code": "YEF",
-      "change": -3.47
+      "change": -3.77
+    },
+    {
+      "code": "HBU",
+      "change": -2.61
     }
   ]
 }
