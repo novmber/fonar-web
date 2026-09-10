@@ -9,22 +9,22 @@
       "change": 4.31
     },
     {
-      "code": "YZG",
-      "change": 3.36
+      "code": "TLY",
+      "change": 3.22
     }
   ],
   "warnings": [
     {
       "code": "PHE",
-      "change": -10.32
+      "change": -18.19
+    },
+    {
+      "code": "PBR",
+      "change": -14.93
     },
     {
       "code": "BHF",
       "change": -3.8
-    },
-    {
-      "code": "MLT",
-      "change": -3.77
     }
   ]
 }
