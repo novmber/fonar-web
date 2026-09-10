@@ -1,16 +1,16 @@
 {
   "positives": [
     {
+      "code": "IIE",
+      "change": 5.83
+    },
+    {
       "code": "DFI",
-      "change": 3.96
+      "change": 4.31
     },
     {
-      "code": "GMI",
-      "change": 3.65
-    },
-    {
-      "code": "MJG",
-      "change": 3.62
+      "code": "YZG",
+      "change": 3.36
     }
   ],
   "warnings": [
@@ -19,12 +19,12 @@
       "change": -10.32
     },
     {
-      "code": "YEF",
-      "change": -3.77
+      "code": "BHF",
+      "change": -3.8
     },
     {
-      "code": "HBU",
-      "change": -2.61
+      "code": "MLT",
+      "change": -3.77
     }
   ]
 }
