@@ -1,16 +1,16 @@
 {
   "positives": [
     {
-      "code": "IIE",
-      "change": 5.83
-    },
-    {
       "code": "DFI",
-      "change": 4.31
+      "change": 4.04
     },
     {
       "code": "TLY",
       "change": 3.22
+    },
+    {
+      "code": "THF",
+      "change": 3.16
     }
   ],
   "warnings": [
@@ -23,8 +23,8 @@
       "change": -14.93
     },
     {
-      "code": "BHF",
-      "change": -3.8
+      "code": "MLT",
+      "change": -4.73
     }
   ]
 }
