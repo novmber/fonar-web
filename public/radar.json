@@ -6,21 +6,21 @@
     },
     {
       "code": "TLY",
-      "change": 3.22
+      "change": 2.84
     },
     {
       "code": "THF",
-      "change": 3.16
+      "change": 2.53
     }
   ],
   "warnings": [
     {
       "code": "PHE",
-      "change": -18.19
+      "change": -46.46
     },
     {
       "code": "PBR",
-      "change": -14.93
+      "change": -28.83
     },
     {
       "code": "MLT",
