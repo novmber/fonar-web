@@ -15,16 +15,16 @@
   ],
   "warnings": [
     {
-      "code": "BHF",
-      "change": -4.7
-    },
-    {
       "code": "PHK",
       "change": -3.21
     },
     {
       "code": "MLT",
       "change": -2.7
+    },
+    {
+      "code": "BHF",
+      "change": -2.65
     }
   ]
 }
