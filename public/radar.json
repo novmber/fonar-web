@@ -6,25 +6,25 @@
     },
     {
       "code": "DFI",
-      "change": 3.68
+      "change": 4.15
     },
     {
-      "code": "TLY",
-      "change": 2.89
+      "code": "GMI",
+      "change": 3.08
     }
   ],
   "warnings": [
+    {
+      "code": "MLT",
+      "change": -4.16
+    },
     {
       "code": "PHK",
       "change": -3.21
     },
     {
-      "code": "MLT",
-      "change": -2.7
-    },
-    {
-      "code": "BHF",
-      "change": -2.65
+      "code": "HBU",
+      "change": -2.93
     }
   ]
 }
