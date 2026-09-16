@@ -2,11 +2,11 @@
   "positives": [
     {
       "code": "DFI",
-      "change": 4.15
+      "change": 3.81
     },
     {
-      "code": "GMI",
-      "change": 3.08
+      "code": "DUH",
+      "change": 2.97
     },
     {
       "code": "TLY",
@@ -23,8 +23,8 @@
       "change": -20.88
     },
     {
-      "code": "MLT",
-      "change": -4.16
+      "code": "SNY",
+      "change": -3.11
     }
   ]
 }
