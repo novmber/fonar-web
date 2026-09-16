@@ -5,26 +5,26 @@
       "change": 3.81
     },
     {
-      "code": "DUH",
-      "change": 2.97
+      "code": "TLY",
+      "change": 3.15
     },
     {
-      "code": "TLY",
-      "change": 2.86
+      "code": "DUH",
+      "change": 2.97
     }
   ],
   "warnings": [
     {
-      "code": "PUK",
-      "change": -23.25
-    },
-    {
       "code": "PBR",
-      "change": -20.88
+      "change": -40.75
     },
     {
-      "code": "SNY",
-      "change": -3.11
+      "code": "PHE",
+      "change": -38.16
+    },
+    {
+      "code": "PUK",
+      "change": -13.15
     }
   ]
 }
