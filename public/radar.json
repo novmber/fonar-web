@@ -1,16 +1,16 @@
 {
   "positives": [
     {
-      "code": "DFI",
-      "change": 3.81
-    },
-    {
-      "code": "TLY",
-      "change": 3.15
-    },
-    {
       "code": "DUH",
-      "change": 2.97
+      "change": 4.77
+    },
+    {
+      "code": "KVT",
+      "change": 3.41
+    },
+    {
+      "code": "DFI",
+      "change": 3.22
     }
   ],
   "warnings": [
