@@ -1,22 +1,22 @@
 {
   "positives": [
     {
+      "code": "THV",
+      "change": 12.33
+    },
+    {
       "code": "DUH",
       "change": 4.77
     },
     {
-      "code": "KVT",
-      "change": 3.41
-    },
-    {
-      "code": "DFI",
-      "change": 3.22
+      "code": "NKC",
+      "change": 3.99
     }
   ],
   "warnings": [
     {
       "code": "PBR",
-      "change": -40.75
+      "change": -40.15
     },
     {
       "code": "PHE",
@@ -24,7 +24,7 @@
     },
     {
       "code": "PUK",
-      "change": -13.15
+      "change": -8.39
     }
   ]
 }
