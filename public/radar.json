@@ -2,7 +2,7 @@
   "positives": [
     {
       "code": "THV",
-      "change": 12.33
+      "change": 20.42
     },
     {
       "code": "DUH",
@@ -16,15 +16,15 @@
   "warnings": [
     {
       "code": "PBR",
-      "change": -40.15
+      "change": -100.0
     },
     {
       "code": "PHE",
       "change": -38.16
     },
     {
-      "code": "PUK",
-      "change": -8.39
+      "code": "DOH",
+      "change": -8.19
     }
   ]
 }
