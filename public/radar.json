@@ -6,11 +6,11 @@
     },
     {
       "code": "DUH",
-      "change": 9.24
+      "change": 10.45
     },
     {
       "code": "KVT",
-      "change": 8.76
+      "change": 8.28
     }
   ],
   "warnings": [
@@ -23,8 +23,8 @@
       "change": -38.16
     },
     {
-      "code": "DOH",
-      "change": -8.19
+      "code": "SNY",
+      "change": -7.52
     }
   ]
 }
