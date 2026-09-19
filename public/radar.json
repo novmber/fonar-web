@@ -1,16 +1,16 @@
 {
   "positives": [
     {
-      "code": "THV",
-      "change": 20.42
-    },
-    {
       "code": "DUH",
       "change": 10.45
     },
     {
       "code": "KVT",
       "change": 8.28
+    },
+    {
+      "code": "BMU",
+      "change": 6.65
     }
   ],
   "warnings": [
@@ -24,7 +24,7 @@
     },
     {
       "code": "SNY",
-      "change": -7.52
+      "change": -7.81
     }
   ]
 }
