@@ -1,16 +1,16 @@
 {
   "positives": [
     {
+      "code": "DFI",
+      "change": 27.59
+    },
+    {
       "code": "DUH",
-      "change": 10.45
+      "change": 11.01
     },
     {
       "code": "KVT",
-      "change": 8.28
-    },
-    {
-      "code": "BMU",
-      "change": 6.65
+      "change": 9.09
     }
   ],
   "warnings": [
@@ -23,8 +23,8 @@
       "change": -38.16
     },
     {
-      "code": "SNY",
-      "change": -7.81
+      "code": "DOH",
+      "change": -14.01
     }
   ]
 }
