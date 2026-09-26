@@ -1,16 +1,16 @@
 {
   "positives": [
     {
+      "code": "DHV",
+      "change": 7.27
+    },
+    {
       "code": "DUH",
-      "change": 8.73
+      "change": 5.73
     },
     {
       "code": "KVT",
-      "change": 7.96
-    },
-    {
-      "code": "DHV",
-      "change": 6.02
+      "change": 4.47
     }
   ],
   "warnings": [
