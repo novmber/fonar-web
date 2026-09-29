@@ -1,26 +1,26 @@
 {
   "positives": [
     {
-      "code": "SSS",
-      "change": 3.32
+      "code": "DUH",
+      "change": 2.48
     },
     {
-      "code": "SKO",
-      "change": 2.78
+      "code": "KVT",
+      "change": 2.43
     },
     {
-      "code": "RHS",
-      "change": 2.55
+      "code": "NUH",
+      "change": 2.2
     }
   ],
   "warnings": [
     {
-      "code": "YAY",
-      "change": -5.09
-    },
-    {
       "code": "MHF",
       "change": -5.05
+    },
+    {
+      "code": "YAY",
+      "change": -4.81
     },
     {
       "code": "KHA",
