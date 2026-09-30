@@ -1,22 +1,22 @@
 {
   "positives": [
     {
-      "code": "DUH",
-      "change": 2.48
+      "code": "DHV",
+      "change": 8.18
     },
     {
-      "code": "KVT",
-      "change": 2.43
+      "code": "NHY",
+      "change": 3.61
     },
     {
       "code": "NUH",
-      "change": 2.2
+      "change": 2.88
     }
   ],
   "warnings": [
     {
       "code": "MHF",
-      "change": -5.05
+      "change": -10.13
     },
     {
       "code": "YAY",
@@ -24,7 +24,7 @@
     },
     {
       "code": "KHA",
-      "change": -4.2
+      "change": -4.48
     }
   ]
 }
