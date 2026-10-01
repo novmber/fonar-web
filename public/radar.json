@@ -2,25 +2,25 @@
   "positives": [
     {
       "code": "DHV",
-      "change": 8.18
+      "change": 5.7
+    },
+    {
+      "code": "DNK",
+      "change": 3.67
     },
     {
       "code": "NHY",
-      "change": 3.61
-    },
-    {
-      "code": "SSS",
-      "change": 3.25
+      "change": 3.63
     }
   ],
   "warnings": [
     {
       "code": "MHF",
-      "change": -10.13
+      "change": -10.0
     },
     {
       "code": "KHA",
-      "change": -4.48
+      "change": -4.96
     },
     {
       "code": "YAY",
