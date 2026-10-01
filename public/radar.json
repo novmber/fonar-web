@@ -5,12 +5,12 @@
       "change": 5.7
     },
     {
-      "code": "DNK",
-      "change": 3.67
+      "code": "PHK",
+      "change": 3.69
     },
     {
-      "code": "NHY",
-      "change": 3.63
+      "code": "DNK",
+      "change": 3.67
     }
   ],
   "warnings": [
@@ -23,8 +23,8 @@
       "change": -4.96
     },
     {
-      "code": "YAY",
-      "change": -4.07
+      "code": "THV",
+      "change": -4.43
     }
   ]
 }
