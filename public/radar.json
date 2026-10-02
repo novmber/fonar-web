@@ -5,12 +5,12 @@
       "change": 4.31
     },
     {
-      "code": "HBU",
-      "change": 4.19
+      "code": "PHK",
+      "change": 4.27
     },
     {
-      "code": "NUH",
-      "change": 4.09
+      "code": "HBU",
+      "change": 4.19
     }
   ],
   "warnings": [
@@ -24,7 +24,7 @@
     },
     {
       "code": "THV",
-      "change": -4.43
+      "change": -6.96
     }
   ]
 }
