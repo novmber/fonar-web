@@ -5,26 +5,26 @@
       "change": 4.54
     },
     {
-      "code": "NUH",
-      "change": 3.72
+      "code": "HBU",
+      "change": 3.79
     },
     {
       "code": "DNK",
-      "change": 3.71
+      "change": 3.44
     }
   ],
   "warnings": [
     {
-      "code": "THV",
-      "change": -6.05
-    },
-    {
-      "code": "KHA",
-      "change": -3.1
+      "code": "DUH",
+      "change": -6.5
     },
     {
       "code": "AFT",
-      "change": -2.96
+      "change": -2.97
+    },
+    {
+      "code": "RTG",
+      "change": -2.7
     }
   ]
 }
