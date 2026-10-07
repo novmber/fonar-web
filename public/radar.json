@@ -2,29 +2,29 @@
   "positives": [
     {
       "code": "HBU",
-      "change": 3.79
+      "change": 3.0
     },
     {
-      "code": "DNK",
-      "change": 3.44
+      "code": "DHV",
+      "change": 2.89
     },
     {
-      "code": "PPS",
-      "change": 3.39
+      "code": "NUH",
+      "change": 2.73
     }
   ],
   "warnings": [
     {
       "code": "DUH",
-      "change": -6.5
+      "change": -8.45
     },
     {
       "code": "YAY",
-      "change": -3.21
+      "change": -2.91
     },
     {
-      "code": "AFT",
-      "change": -2.97
+      "code": "RTG",
+      "change": -2.66
     }
   ]
 }
