@@ -2,29 +2,29 @@
   "positives": [
     {
       "code": "HBU",
-      "change": 3.0
+      "change": 3.58
+    },
+    {
+      "code": "KHA",
+      "change": 3.5
     },
     {
       "code": "DHV",
-      "change": 2.89
-    },
-    {
-      "code": "NUH",
-      "change": 2.73
+      "change": 2.55
     }
   ],
   "warnings": [
     {
       "code": "DUH",
-      "change": -8.45
-    },
-    {
-      "code": "YAY",
-      "change": -2.91
+      "change": -9.14
     },
     {
       "code": "RTG",
-      "change": -2.66
+      "change": -3.16
+    },
+    {
+      "code": "YAY",
+      "change": -2.36
     }
   ]
 }
