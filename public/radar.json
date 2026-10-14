@@ -2,29 +2,29 @@
   "positives": [
     {
       "code": "KHA",
-      "change": 47970.31
+      "change": 19826.27
     },
     {
       "code": "BST",
-      "change": 458.22
+      "change": 138.39
     },
     {
       "code": "CAH",
-      "change": 241.83
+      "change": 55.55
     }
   ],
   "warnings": [
     {
+      "code": "THV",
+      "change": -2.59
+    },
+    {
+      "code": "MHF",
+      "change": -2.56
+    },
+    {
       "code": "DUH",
-      "change": -3.65
-    },
-    {
-      "code": "YAY",
-      "change": -1.47
-    },
-    {
-      "code": "RTG",
-      "change": -1.42
+      "change": -2.3
     }
   ]
 }
