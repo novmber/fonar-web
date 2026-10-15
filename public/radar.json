@@ -1,30 +1,30 @@
 {
   "positives": [
     {
-      "code": "KHA",
-      "change": 19826.27
-    },
-    {
-      "code": "BST",
-      "change": 138.39
-    },
-    {
       "code": "CAH",
-      "change": 55.55
+      "change": 67.43
+    },
+    {
+      "code": "URA",
+      "change": 3.0
+    },
+    {
+      "code": "HBU",
+      "change": 1.51
     }
   ],
   "warnings": [
     {
-      "code": "THV",
-      "change": -2.59
-    },
-    {
       "code": "MHF",
-      "change": -2.56
+      "change": -3.16
     },
     {
-      "code": "DUH",
-      "change": -2.3
+      "code": "THV",
+      "change": -2.29
+    },
+    {
+      "code": "NTI",
+      "change": -1.98
     }
   ]
 }
