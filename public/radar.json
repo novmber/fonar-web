@@ -2,29 +2,29 @@
   "positives": [
     {
       "code": "CAH",
-      "change": 31.12
+      "change": 32.27
     },
     {
-      "code": "URA",
-      "change": 2.55
+      "code": "GMI",
+      "change": 6.11
     },
     {
-      "code": "HBU",
-      "change": 2.31
+      "code": "CPT",
+      "change": 3.12
     }
   ],
   "warnings": [
     {
       "code": "MHF",
-      "change": -4.58
+      "change": -3.75
     },
     {
-      "code": "THV",
-      "change": -2.88
+      "code": "MAC",
+      "change": -1.87
     },
     {
       "code": "DUH",
-      "change": -2.73
+      "change": -1.76
     }
   ]
 }
