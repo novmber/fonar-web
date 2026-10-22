@@ -1,30 +1,30 @@
 {
   "positives": [
     {
-      "code": "PHK",
-      "change": 6.2
-    },
-    {
       "code": "CAH",
-      "change": 6.14
+      "change": 19.13
     },
     {
-      "code": "DHV",
-      "change": 5.9
+      "code": "GLG",
+      "change": 3.79
+    },
+    {
+      "code": "PHK",
+      "change": 3.64
     }
   ],
   "warnings": [
     {
-      "code": "MHF",
-      "change": -6.56
+      "code": "THV",
+      "change": -2.34
     },
     {
-      "code": "GIH",
-      "change": -4.44
+      "code": "PPS",
+      "change": -1.58
     },
     {
-      "code": "VPS",
-      "change": -2.64
+      "code": "OLD",
+      "change": -0.88
     }
   ]
 }
