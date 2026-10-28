@@ -2,29 +2,29 @@
   "positives": [
     {
       "code": "MLT",
-      "change": 6.35
+      "change": 6.72
     },
     {
-      "code": "TLZ",
-      "change": 5.52
+      "code": "DHV",
+      "change": 4.32
     },
     {
-      "code": "PHK",
-      "change": 4.95
+      "code": "RTG",
+      "change": 4.26
     }
   ],
   "warnings": [
     {
-      "code": "THV",
-      "change": -4.49
-    },
-    {
-      "code": "VPS",
-      "change": -3.75
-    },
-    {
       "code": "MHF",
       "change": -3.07
+    },
+    {
+      "code": "PPS",
+      "change": -2.95
+    },
+    {
+      "code": "THV",
+      "change": -2.1
     }
   ]
 }
