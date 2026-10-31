@@ -2,7 +2,7 @@
   "positives": [
     {
       "code": "DHV",
-      "change": 4.73
+      "change": 4.54
     },
     {
       "code": "MLT",
@@ -19,12 +19,12 @@
       "change": -3.29
     },
     {
-      "code": "GIH",
-      "change": -2.37
-    },
-    {
       "code": "VPS",
       "change": -2.09
+    },
+    {
+      "code": "BVF",
+      "change": -2.03
     }
   ]
 }
