@@ -2,29 +2,29 @@
   "positives": [
     {
       "code": "DHV",
-      "change": 4.54
+      "change": 4.14
     },
     {
-      "code": "RTG",
-      "change": 3.11
+      "code": "CPT",
+      "change": 3.66
     },
     {
-      "code": "MLT",
-      "change": 3.04
+      "code": "GMI",
+      "change": 3.54
     }
   ],
   "warnings": [
     {
+      "code": "GIH",
+      "change": -3.88
+    },
+    {
+      "code": "BVF",
+      "change": -3.41
+    },
+    {
       "code": "PPS",
       "change": -2.74
-    },
-    {
-      "code": "THV",
-      "change": -2.27
-    },
-    {
-      "code": "MTH",
-      "change": -2.12
     }
   ]
 }
