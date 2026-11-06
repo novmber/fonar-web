@@ -5,12 +5,12 @@
       "change": 3.88
     },
     {
-      "code": "YIT",
-      "change": 3.49
+      "code": "NTI",
+      "change": 3.27
     },
     {
-      "code": "NTI",
-      "change": 3.03
+      "code": "NHY",
+      "change": 2.66
     }
   ],
   "warnings": [
@@ -19,12 +19,12 @@
       "change": -3.12
     },
     {
-      "code": "PPS",
-      "change": -1.89
-    },
-    {
       "code": "BVF",
       "change": -1.88
+    },
+    {
+      "code": "TI3",
+      "change": -1.58
     }
   ]
 }
