@@ -2,7 +2,7 @@
   "positives": [
     {
       "code": "CPT",
-      "change": 4.97
+      "change": 4.99
     },
     {
       "code": "YIT",
@@ -15,16 +15,16 @@
   ],
   "warnings": [
     {
-      "code": "AES",
-      "change": -2.92
+      "code": "BVF",
+      "change": -2.67
+    },
+    {
+      "code": "KNJ",
+      "change": -2.03
     },
     {
       "code": "AOY",
-      "change": -2.47
-    },
-    {
-      "code": "MTH",
-      "change": -1.64
+      "change": -1.86
     }
   ]
 }
