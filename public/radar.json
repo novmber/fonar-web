@@ -1,22 +1,22 @@
 {
   "positives": [
     {
+      "code": "YIT",
+      "change": 5.98
+    },
+    {
       "code": "CPT",
       "change": 5.94
     },
     {
-      "code": "YIT",
-      "change": 5.14
-    },
-    {
       "code": "YAY",
-      "change": 3.18
+      "change": 5.0
     }
   ],
   "warnings": [
     {
       "code": "PPS",
-      "change": -4.54
+      "change": -2.49
     },
     {
       "code": "BVF",
