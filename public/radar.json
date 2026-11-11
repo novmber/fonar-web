@@ -1,12 +1,12 @@
 {
   "positives": [
     {
-      "code": "YIT",
-      "change": 5.14
+      "code": "CPT",
+      "change": 5.94
     },
     {
-      "code": "CPT",
-      "change": 4.99
+      "code": "YIT",
+      "change": 5.14
     },
     {
       "code": "YAY",
@@ -20,11 +20,11 @@
     },
     {
       "code": "BVF",
-      "change": -2.67
+      "change": -2.3
     },
     {
-      "code": "KNJ",
-      "change": -2.03
+      "code": "GAF",
+      "change": -1.41
     }
   ]
 }
