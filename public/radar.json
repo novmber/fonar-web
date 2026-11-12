@@ -1,16 +1,16 @@
 {
   "positives": [
     {
-      "code": "YIT",
-      "change": 5.98
-    },
-    {
       "code": "YAY",
-      "change": 5.0
+      "change": 5.55
     },
     {
-      "code": "RTG",
-      "change": 4.81
+      "code": "YIT",
+      "change": 4.71
+    },
+    {
+      "code": "NTI",
+      "change": 4.47
     }
   ],
   "warnings": [
@@ -19,8 +19,8 @@
       "change": -2.76
     },
     {
-      "code": "PPS",
-      "change": -2.49
+      "code": "NHY",
+      "change": -1.92
     },
     {
       "code": "KNJ",
