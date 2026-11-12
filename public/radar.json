@@ -5,26 +5,26 @@
       "change": 5.98
     },
     {
-      "code": "CPT",
-      "change": 5.94
-    },
-    {
       "code": "YAY",
       "change": 5.0
+    },
+    {
+      "code": "RTG",
+      "change": 4.81
     }
   ],
   "warnings": [
+    {
+      "code": "BVF",
+      "change": -2.76
+    },
     {
       "code": "PPS",
       "change": -2.49
     },
     {
-      "code": "BVF",
-      "change": -2.3
-    },
-    {
-      "code": "GAF",
-      "change": -1.41
+      "code": "KNJ",
+      "change": -1.78
     }
   ]
 }
