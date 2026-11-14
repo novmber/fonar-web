@@ -1,16 +1,16 @@
 {
   "positives": [
     {
-      "code": "RIK",
-      "change": 7.28
-    },
-    {
-      "code": "NTI",
-      "change": 4.34
+      "code": "MHF",
+      "change": 2.82
     },
     {
       "code": "YIT",
-      "change": 3.82
+      "change": 2.73
+    },
+    {
+      "code": "FS6",
+      "change": 2.61
     }
   ],
   "warnings": [
@@ -19,12 +19,12 @@
       "change": -4.17
     },
     {
-      "code": "NHY",
-      "change": -2.57
-    },
-    {
       "code": "MAC",
       "change": -1.18
+    },
+    {
+      "code": "OLD",
+      "change": -0.87
     }
   ]
 }
