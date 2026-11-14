@@ -5,18 +5,18 @@
       "change": 7.28
     },
     {
-      "code": "GO6",
-      "change": 6.0
-    },
-    {
       "code": "NTI",
       "change": 4.34
+    },
+    {
+      "code": "YIT",
+      "change": 3.82
     }
   ],
   "warnings": [
     {
       "code": "BVF",
-      "change": -3.93
+      "change": -4.17
     },
     {
       "code": "NHY",
@@ -24,7 +24,7 @@
     },
     {
       "code": "MAC",
-      "change": -1.77
+      "change": -1.18
     }
   ]
 }
