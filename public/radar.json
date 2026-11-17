@@ -1,30 +1,30 @@
 {
   "positives": [
     {
-      "code": "MHF",
-      "change": 2.82
-    },
-    {
       "code": "YIT",
       "change": 2.73
     },
     {
-      "code": "FS6",
-      "change": 2.61
+      "code": "AES",
+      "change": 2.32
+    },
+    {
+      "code": "RIK",
+      "change": 2.2
     }
   ],
   "warnings": [
     {
       "code": "BVF",
-      "change": -4.17
+      "change": -4.53
     },
     {
-      "code": "MAC",
-      "change": -1.18
+      "code": "DHV",
+      "change": -1.11
     },
     {
-      "code": "OLD",
-      "change": -0.87
+      "code": "KVT",
+      "change": -1.08
     }
   ]
 }
