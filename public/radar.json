@@ -1,16 +1,16 @@
 {
   "positives": [
     {
-      "code": "YIT",
-      "change": 2.73
+      "code": "YAY",
+      "change": 2.66
     },
     {
       "code": "AES",
       "change": 2.32
     },
     {
-      "code": "RIK",
-      "change": 2.2
+      "code": "YIT",
+      "change": 2.25
     }
   ],
   "warnings": [
