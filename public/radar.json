@@ -6,7 +6,7 @@
     },
     {
       "code": "CPT",
-      "change": 3.52
+      "change": 3.98
     },
     {
       "code": "YAY",
@@ -16,15 +16,15 @@
   "warnings": [
     {
       "code": "BVF",
-      "change": -2.9
+      "change": -3.66
     },
     {
       "code": "NKC",
       "change": -2.5
     },
     {
-      "code": "NTI",
-      "change": -0.76
+      "code": "MAC",
+      "change": -2.02
     }
   ]
 }
