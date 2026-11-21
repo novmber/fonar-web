@@ -6,25 +6,25 @@
     },
     {
       "code": "YIT",
-      "change": 4.35
+      "change": 4.56
     },
     {
       "code": "YAY",
-      "change": 4.24
+      "change": 3.94
     }
   ],
   "warnings": [
-    {
-      "code": "NHY",
-      "change": -3.5
-    },
     {
       "code": "BVF",
       "change": -3.33
     },
     {
-      "code": "TI3",
-      "change": -2.48
+      "code": "MAC",
+      "change": -2.46
+    },
+    {
+      "code": "GMC",
+      "change": -2.17
     }
   ]
 }
