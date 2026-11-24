@@ -9,8 +9,8 @@
       "change": 5.54
     },
     {
-      "code": "GBV",
-      "change": 4.56
+      "code": "YIT",
+      "change": 5.47
     }
   ],
   "warnings": [
@@ -19,12 +19,12 @@
       "change": -4.02
     },
     {
-      "code": "GMC",
-      "change": -3.46
+      "code": "PPS",
+      "change": -3.65
     },
     {
-      "code": "IOG",
-      "change": -3.03
+      "code": "GMC",
+      "change": -3.46
     }
   ]
 }
