@@ -1,16 +1,16 @@
 {
   "positives": [
     {
-      "code": "YIT",
-      "change": 5.47
-    },
-    {
       "code": "YAY",
-      "change": 5.1
+      "change": 2.99
     },
     {
-      "code": "MTV",
-      "change": 3.32
+      "code": "CPT",
+      "change": 2.47
+    },
+    {
+      "code": "YIT",
+      "change": 2.46
     }
   ],
   "warnings": [
@@ -19,12 +19,12 @@
       "change": -5.88
     },
     {
-      "code": "PPS",
-      "change": -3.65
+      "code": "NTI",
+      "change": -3.74
     },
     {
-      "code": "YZG",
-      "change": -3.27
+      "code": "GMC",
+      "change": -3.22
     }
   ]
 }
