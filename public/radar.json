@@ -5,26 +5,26 @@
       "change": 2.99
     },
     {
-      "code": "CPT",
-      "change": 2.47
+      "code": "AOY",
+      "change": 2.58
     },
     {
-      "code": "YIT",
-      "change": 2.46
+      "code": "CPT",
+      "change": 2.53
     }
   ],
   "warnings": [
     {
       "code": "BVF",
-      "change": -5.88
+      "change": -7.85
     },
     {
       "code": "NTI",
       "change": -3.74
     },
     {
-      "code": "GMC",
-      "change": -3.22
+      "code": "THV",
+      "change": -3.16
     }
   ]
 }
