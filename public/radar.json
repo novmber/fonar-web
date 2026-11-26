@@ -2,15 +2,15 @@
   "positives": [
     {
       "code": "YAY",
-      "change": 2.99
+      "change": 3.34
+    },
+    {
+      "code": "YIT",
+      "change": 2.8
     },
     {
       "code": "AOY",
       "change": 2.58
-    },
-    {
-      "code": "CPT",
-      "change": 2.53
     }
   ],
   "warnings": [
@@ -19,12 +19,12 @@
       "change": -7.85
     },
     {
-      "code": "NTI",
-      "change": -3.74
+      "code": "GMC",
+      "change": -3.02
     },
     {
-      "code": "THV",
-      "change": -3.16
+      "code": "IOG",
+      "change": -2.66
     }
   ]
 }
