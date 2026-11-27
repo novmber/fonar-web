@@ -5,26 +5,26 @@
       "change": 3.34
     },
     {
-      "code": "YIT",
-      "change": 2.8
+      "code": "GBV",
+      "change": 2.81
     },
     {
-      "code": "AOY",
-      "change": 2.58
+      "code": "YIT",
+      "change": 2.8
     }
   ],
   "warnings": [
     {
       "code": "BVF",
-      "change": -7.85
+      "change": -8.1
+    },
+    {
+      "code": "MHF",
+      "change": -4.25
     },
     {
       "code": "GMC",
-      "change": -3.02
-    },
-    {
-      "code": "IOG",
-      "change": -2.66
+      "change": -4.07
     }
   ]
 }
