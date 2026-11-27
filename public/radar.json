@@ -1,16 +1,16 @@
 {
   "positives": [
     {
+      "code": "SUC",
+      "change": 3.85
+    },
+    {
       "code": "YAY",
-      "change": 3.34
+      "change": 2.9
     },
     {
       "code": "GBV",
       "change": 2.81
-    },
-    {
-      "code": "YIT",
-      "change": 2.8
     }
   ],
   "warnings": [
