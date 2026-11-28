@@ -5,26 +5,26 @@
       "change": 3.85
     },
     {
-      "code": "YAY",
-      "change": 2.9
+      "code": "BVD",
+      "change": 3.11
     },
     {
-      "code": "GBV",
-      "change": 2.81
+      "code": "YAY",
+      "change": 2.9
     }
   ],
   "warnings": [
     {
       "code": "BVF",
-      "change": -8.1
+      "change": -4.56
     },
     {
-      "code": "MHF",
-      "change": -4.25
+      "code": "YZG",
+      "change": -3.96
     },
     {
-      "code": "GMC",
-      "change": -4.07
+      "code": "THV",
+      "change": -3.75
     }
   ]
 }
