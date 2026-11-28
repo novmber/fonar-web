@@ -1,16 +1,16 @@
 {
   "positives": [
     {
-      "code": "SUC",
-      "change": 3.85
-    },
-    {
       "code": "BVD",
       "change": 3.11
     },
     {
+      "code": "IJZ",
+      "change": 2.34
+    },
+    {
       "code": "YAY",
-      "change": 2.9
+      "change": 1.97
     }
   ],
   "warnings": [
@@ -19,12 +19,12 @@
       "change": -4.56
     },
     {
-      "code": "YZG",
-      "change": -3.96
+      "code": "TI3",
+      "change": -2.94
     },
     {
-      "code": "THV",
-      "change": -3.75
+      "code": "GMC",
+      "change": -2.9
     }
   ]
 }
